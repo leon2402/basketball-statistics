@@ -21,7 +21,7 @@
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink>
-            Singe Player
+            <p>{{this.$store.state.player[0].data.name}}</p>
           </v-flex>
         </v-layout>
       </v-container>
@@ -35,11 +35,13 @@
 <script>
   export default {
     name: 'Player',
-    data: () => ({
-      menuItems: [
-        { title: 'AllPlayer', link:'/allplayer'},
-        { title: 'Teams', link:'/team'},
-      ]
-    }),
+    data () {
+      return{
+        menuItems: [
+          { title: 'AllPlayer', link:'/allplayer'},
+          { title: 'Teams', link:'/team'},
+        ]
+      }
+    },
   }
 </script>

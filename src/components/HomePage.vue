@@ -33,12 +33,14 @@
 
 <script>
   export default {
-    data: () => ({
-      menuItems: [
-        { title: 'AllPlayer', link:'/allplayer'},
-        { title: 'Teams', link:'/team'},
-      ]
-    }),
+    data () {
+      return{
+        menuItems: [
+          { title: 'AllPlayer', link:'/allplayer'},
+          { title: 'Teams', link:'/team'},
+        ]
+      }
+    },
     props: {
       source: String
     }

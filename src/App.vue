@@ -6,11 +6,17 @@
 
 <script>
 import HomePage from './components/HomePage.vue'
+import Team from './components/Team.vue'
+import AllPlayer from './components/AllPlayer.vue'
+import Player from './components/Player.vue'
 
 export default {
   name: 'App',
   components: {
-    HomePage
+    HomePage,
+    Team,
+    AllPlayer, 
+    Player
   },
 }
 </script>

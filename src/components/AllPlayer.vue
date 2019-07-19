@@ -36,7 +36,7 @@
                 <v-btn 
                 flat  
                 color="orange"
-                @click="onLoadPlayer(player.data.name, player.id)"
+                @click="onLoadPlayer(player.data, player.id)"
                 >
                 Show Player
                 </v-btn>
@@ -55,15 +55,17 @@
 <script>
   export default {
     name: 'AllPlayer',
-    data: () => ({
-      menuItems: [
-        { title: 'AllPlayer', link:'/allplayer'},
-        { title: 'Teams', link:'/team'},
-      ]
-    }),
+    data () {
+      return{
+        menuItems: [
+          { title: 'AllPlayer', link:'/allplayer'},
+          { title: 'Teams', link:'/team'},
+        ],
+      }
+    },
     methods: {
-      onLoadPlayer (name, id) {
-        this.$router.push('/player/' + name + '/' + id)
+      onLoadPlayer (playerdata, id) {
+        this.$router.push('/player/' + playerdata.name + '/' + id)
       }
     }
   }
