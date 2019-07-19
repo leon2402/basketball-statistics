@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '../components/HomePage.vue'
+import AllPlayer from '../components/AllPlayer.vue'
+import Team from '../components/Team.vue'
 import Player from '../components/Player.vue'
 
 Vue.use(VueRouter)
@@ -15,9 +17,19 @@ export default new VueRouter({
             component: HomePage
         },
         {
-            path: '/player',
+            path: '/allplayer',
+            name: 'AllPlayer',
+            component: AllPlayer
+        },
+        {
+            path: '/player/:name/:id',
             name: 'Player',
             component: Player
+        },
+        {
+            path: '/team',
+            name: 'Team',
+            component: Team
         },
     ]
 })
