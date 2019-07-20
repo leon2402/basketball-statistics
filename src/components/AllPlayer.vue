@@ -59,8 +59,8 @@
       return{
         menuItems: [
           { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/team'},
-        ],
+          { title: 'Teams', link:'/teams'},
+        ]
       }
     },
     methods: {
