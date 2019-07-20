@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
         loading: null,
         siteLoading: null,
         selectedPlayer: null,
+        selectedTeam: null,
         error: null,
     },
     mutations:{
@@ -34,6 +35,13 @@ export const store = new Vuex.Store({
         },
         setTeams (state, payload) {
             state.teams = payload
+        },
+        setSelectedTeam (state, payload) {
+            state.teams.map((item, index) => {
+                if(item.id == payload){
+                    state.selectedTeam = item
+                }
+            })
         },
         setLoading (state, payload) {
             state.loading = payload
@@ -105,6 +113,9 @@ export const store = new Vuex.Store({
         },
         getSelectedPlayer({commit}, id) {
             commit('setSelectedPlayer', id)
+        },
+        selectTeam({commit}, id) {
+            commit('setSelectedTeam', id)
         },
         createPlayer ({commit}, player) {
             commit('setLoading', true)

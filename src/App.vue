@@ -6,7 +6,7 @@
 
 <script>
 import HomePage from './components/HomePage.vue'
-import Team from './components/Team.vue'
+import Teams from './components/Teams.vue'
 import AllPlayer from './components/AllPlayer.vue'
 import Player from './components/Player.vue'
 
@@ -14,7 +14,7 @@ export default {
   name: 'App',
   components: {
     HomePage,
-    Team,
+    Teams,
     AllPlayer, 
     Player
   },

@@ -2,10 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import AllPlayer from '../components/AllPlayer.vue'
-import Team from '../components/Team.vue'
+import Teams from '../components/Teams.vue'
 import Player from '../components/Player.vue'
 import PlayerCreate from '../components/PlayerCreate.vue'
 import TeamCreate from '../components/TeamCreate.vue'
+import Team from '../components/Team.vue'
 
 Vue.use(VueRouter)
 
@@ -34,7 +35,12 @@ export default new VueRouter({
             component: PlayerCreate
         },
         {
-            path: '/team',
+            path: '/teams',
+            name: 'Teams',
+            component: Teams
+        },
+        {
+            path: '/team/:name',
             name: 'Team',
             component: Team
         },
