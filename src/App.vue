@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app dark v-if="!siteLoading">
     <router-view></router-view>
   </v-app>
 </template>
@@ -18,5 +18,10 @@ export default {
     AllPlayer, 
     Player
   },
+  computed: {
+    siteLoading () {
+      return this.$store.getters.siteLoading
+    }
+  }
 }
 </script>

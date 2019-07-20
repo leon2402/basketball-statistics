@@ -8,29 +8,49 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state:{
         player:  null,
+        teams: null,
         loading: null,
+        siteLoading: null,
+        selectedPlayer: null,
+        error: null,
     },
     mutations:{
-        deleteUpdatedPlayer(state, payload){
+        setPlayer (state, payload) {
+            state.player = payload
+        },
+        deletePlayer(state, payload){
             state.player.map((item, index) => {
                 if(item.id == payload.id){
                     state.player.splice(index)
                 }
             })
         },
-        setPlayer (state, payload) {
-            state.player = payload
+        setSelectedPlayer (state, payload) {
+            state.player.map((item, index) => {
+                if(item.id == payload){
+                    state.selectedPlayer = item
+                }
+            })
         },
-        setLoading (state) {
-            state.loading = true
+        setTeams (state, payload) {
+            state.teams = payload
         },
-        loaded (state) {
-            state.loading = false
+        setLoading (state, payload) {
+            state.loading = payload
+        },
+        setSiteLoading (state, payload) {
+            state.siteLoading = payload
+        },
+        setError (state, payload) {
+            state.error = payload
+        },
+        clearError (state) {
+            state.error = null
         },
     },
     actions:{
-        getPlayer ({commit}, state) { 
-            commit('setLoading')
+        getPlayer ({commit}) { 
+            commit('setSiteLoading', true)
             let allPlayer = []
             let query = db.collection('player')
             let observer = query.onSnapshot(querySnapshot => {
@@ -42,7 +62,14 @@ export const store = new Vuex.Store({
                             id: change.doc.id,
                             data: change.doc.data()
                         }
-                        commit('deleteUpdatedPlayer', player) 
+                        commit('deletePlayer', player) 
+                    }
+                    else if(change.type == 'removed'){
+                        let player = {
+                            id: change.doc.id,
+                            data: change.doc.data()
+                        }
+                        commit('deletePlayer', player) 
                     }
                     let player = {
                         id: change.doc.id,
@@ -51,10 +78,82 @@ export const store = new Vuex.Store({
                     allPlayer.push(player)
                 })
             commit('setPlayer', allPlayer)
-            commit('loaded')
+            //commit('setSiteLoading', false)
             }, err => {
                 console.log(`Encountered error: ${err}`);
             });
         },
+        getTeams ({commit}) { 
+            //commit('setSiteLoading', true)
+            let allTeams = []
+            let query = db.collection('teams')
+            let observer = query.onSnapshot(querySnapshot => {
+                let changes = querySnapshot.docChanges()
+                changes.forEach(change => {
+                    console.log(change.type)
+                    let team = {
+                        id: change.doc.id,
+                        data: change.doc.data()
+                    }
+                    allTeams.push(team)
+                })
+            commit('setTeams', allTeams)
+            commit('setSiteLoading', false)
+            }, err => {
+                console.log(`Encountered error: ${err}`);
+            });
+        },
+        getSelectedPlayer({commit}, id) {
+            commit('setSelectedPlayer', id)
+        },
+        createPlayer ({commit}, player) {
+            commit('setLoading', true)
+            commit('clearError')
+            db.collection("player").add({
+                firstname: player.firstname,
+                name: player.name,
+                imageLink: player.imageLink,
+                birth: player.birth,
+                birthplace: player.birthplace,
+                nation: player.nation,
+                height: player.height,
+                teamID: player.teamID
+            })
+            .then(function() {
+                alert("Document successfully written!");
+            })
+            .catch(function(error) {
+                commit('setError', error)
+                alert("Error writing document: ", error);
+            });
+            commit('setLoading', false)
+        },
+        createTeam ({commit}, team) {
+            commit('setLoading', true)
+            commit('clearError')
+            db.collection("teams").add({
+                name: team.name,
+                imageLink: team.imageLink
+            })
+            .then(function() {
+                alert("Document successfully written!");
+            })
+            .catch(function(error) {
+                commit('setError', error)
+                alert("Error writing document: ", error);
+            });
+            commit('setLoading', false)
+        }
     },
+    getters: {
+        siteLoading (state) {
+            return state.siteLoading
+        },
+        loadingStatus (state) {
+            return state.loading
+        },
+        error (state) {
+            return state.error
+        }
+    }
 })

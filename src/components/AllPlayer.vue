@@ -65,6 +65,7 @@
     },
     methods: {
       onLoadPlayer (playerdata, id) {
+        this.$store.dispatch('getSelectedPlayer', id)
         this.$router.push('/player/' + playerdata.name + '/' + id)
       }
     }

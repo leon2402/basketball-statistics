@@ -16,5 +16,6 @@ new Vue({
   store,
   created (){
     this.$store.dispatch('getPlayer')
+    this.$store.dispatch('getTeams')
   }
 }).$mount('#app')
