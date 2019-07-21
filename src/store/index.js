@@ -7,29 +7,29 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state:{
-        player:  null,
+        persons:  null,
         teams: null,
         loading: null,
         siteLoading: null,
-        selectedPlayer: null,
+        selectedPerson: null,
         selectedTeam: null,
         error: null,
     },
     mutations:{
-        setPlayer (state, payload) {
-            state.player = payload
+        setPersons (state, payload) {
+            state.persons = payload
         },
-        deletePlayer(state, payload){
-            state.player.map((item, index) => {
+        deletePerson (state, payload){
+            state.persons.map((item, index) => {
                 if(item.id == payload.id){
-                    state.player.splice(index)
+                    state.persons.splice(index)
                 }
             })
         },
-        setSelectedPlayer (state, payload) {
-            state.player.map((item, index) => {
+        setSelectedPerson (state, payload) {
+            state.persons.map((item, index) => {
                 if(item.id == payload){
-                    state.selectedPlayer = item
+                    state.selectedPerson = item
                 }
             })
         },
@@ -57,37 +57,39 @@ export const store = new Vuex.Store({
         },
     },
     actions:{
-        getPlayer ({commit}) { 
+        getPersons ({commit}) { 
             commit('setSiteLoading', true)
-            let allPlayer = []
-            let query = db.collection('player')
+            let allPersons = []
+            let query = db.collection('persons')
             let observer = query.onSnapshot(querySnapshot => {
                 let changes = querySnapshot.docChanges()
                 changes.forEach(change => {
                     console.log(change.type)
                     if(change.type == 'modified'){
-                        let player = {
+                        let person = {
                             id: change.doc.id,
                             data: change.doc.data()
                         }
-                        commit('deletePlayer', player) 
+                        commit('deletePerson', person) 
                     }
                     else if(change.type == 'removed'){
-                        let player = {
+                        let person = {
                             id: change.doc.id,
                             data: change.doc.data()
                         }
-                        commit('deletePlayer', player) 
+                        commit('deletePerson', person) 
+                    } else {
+                        let person = {
+                            id: change.doc.id,
+                            data: change.doc.data()
+                        }
+                        allPersons.push(person)
                     }
-                    let player = {
-                        id: change.doc.id,
-                        data: change.doc.data()
-                    }
-                    allPlayer.push(player)
                 })
-            commit('setPlayer', allPlayer)
+            commit('setPersons', allPersons)
             //commit('setSiteLoading', false)
             }, err => {
+                commit('setError', error)
                 console.log(`Encountered error: ${err}`);
             });
         },
@@ -108,27 +110,40 @@ export const store = new Vuex.Store({
             commit('setTeams', allTeams)
             commit('setSiteLoading', false)
             }, err => {
+                commit('setError', error)
                 console.log(`Encountered error: ${err}`);
             });
         },
-        getSelectedPlayer({commit}, id) {
-            commit('setSelectedPlayer', id)
+        getSelectedPerson({commit}, id) {
+            commit('setSelectedPerson', id)
         },
         selectTeam({commit}, id) {
             commit('setSelectedTeam', id)
         },
-        createPlayer ({commit}, player) {
+        createPerson ({commit}, player) {
             commit('setLoading', true)
             commit('clearError')
-            db.collection("player").add({
+            db.collection("persons").add({
+                role: player.role,
+                gender: player.gender,
                 firstname: player.firstname,
                 name: player.name,
+                fullname: player.fullname,
+                nickname: player.nickname,
                 imageLink: player.imageLink,
                 birth: player.birth,
                 birthplace: player.birthplace,
+                birthnation: player.birthnation,
+                death: player.death,
                 nation: player.nation,
+                nation2: player.nation2,
                 height: player.height,
-                teamID: player.teamID
+                position1: player.position1,
+                position2: player.position2,
+                teamID: player.teamID,
+                draftyear: player.draftyear,
+                draftpick: player.draftpick,
+                draftround: player.draftround
             })
             .then(function() {
                 alert("Document successfully written!");
@@ -144,6 +159,8 @@ export const store = new Vuex.Store({
             commit('clearError')
             db.collection("teams").add({
                 name: team.name,
+                foundation: team.foundation,
+                location: team.location,
                 imageLink: team.imageLink
             })
             .then(function() {
@@ -157,6 +174,9 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
+        getAllPersons (state) {
+            return state.persons
+        },
         siteLoading (state) {
             return state.siteLoading
         },

@@ -21,7 +21,7 @@
       <v-container fluid fill-height>
         <v-layout>
           <v-flex shrink>
-            <v-card v-for="player in this.$store.state.player" :key="player.id">
+            <v-card v-for="player in players" :key="player.id">
               <v-img
                 :src="player.data.imageLink"
                 aspect-ratio="0.7"
@@ -65,8 +65,14 @@
     },
     methods: {
       onLoadPlayer (playerdata, id) {
-        this.$store.dispatch('getSelectedPlayer', id)
+        this.$store.dispatch('getSelectedPerson', id)
         this.$router.push('/player/' + playerdata.name + '/' + id)
+      }
+    },
+    computed: {
+      players () {
+        const allplayer = this.$store.getters.getAllPersons.filter(item => item.data.role == "player")
+        return allplayer
       }
     }
   }

@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row>
             <v-flex xs6>
-                <h2>Spieler erstellen</h2>
+                <h2>Person erstellen</h2>
             </v-flex>
         </v-layout>
         <v-layout row v-if="error">
@@ -14,13 +14,14 @@
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="firstname"
-                                name="firstname"
-                                label="Vorname"
-                                id="firstname">
-                            </v-text-field>
+                        <v-flex xs6 offset-sm2>
+                            <v-select
+                                v-model="role"
+                                :items="roles"
+                                name="role"
+                                label="Rolle"
+                                id="role">
+                            </v-select>
                         </v-flex>
                     </v-layout>
                 </form>
@@ -30,7 +31,32 @@
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs6 offset-sm2>
+                            <v-select
+                                v-model="gender"
+                                :items="genders"
+                                name="gender"
+                                label="Geschlecht"
+                                id="gender">
+                            </v-select>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex>
+                <form>
+                    <v-layout row>
+                        <v-flex xs3 offset-sm1>
+                            <v-text-field
+                                v-model="firstname"
+                                name="firstname"
+                                label="Vorname"
+                                id="firstname">
+                            </v-text-field>
+                        </v-flex>
+                        <v-flex xs3 offset-sm1>
                             <v-text-field
                                 v-model="name"
                                 name="name"
@@ -46,7 +72,39 @@
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs6 offset-sm2>
+                            <v-text-field
+                                v-model="fullname"
+                                name="fullname"
+                                label="Vollständiger Name"
+                                id="fullname">
+                            </v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex xs6>
+                <form>
+                    <v-layout row>
+                        <v-flex xs6 offset-sm2>
+                            <v-text-field
+                                v-model="nickname"
+                                name="nickname"
+                                label="Künstlername"
+                                id="fullname">
+                            </v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex xs6>
+                <form>
+                    <v-layout row>
+                        <v-flex xs6 offset-sm2>
                             <v-text-field
                                 v-model="imageLink"
                                 name="imageLink"
@@ -59,10 +117,10 @@
             </v-flex>
         </v-layout>
         <v-layout row>
-            <v-flex xs6>
+            <v-flex xs12>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs4 offset-sm1>
                             <v-text-field
                                 v-model="birth"
                                 name="birthdate"
@@ -70,15 +128,7 @@
                                 id="birthdate">
                             </v-text-field>
                         </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs4 offset-sm1>
                             <v-text-field
                                 v-model="birthplace"
                                 name="birthplace"
@@ -86,21 +136,13 @@
                                 id="birthplace">
                             </v-text-field>
                         </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs4 offset-sm1>
                             <v-select
-                                v-model="nation"
+                                v-model="birthnation"
                                 :items="nations"
-                                name="nation"
-                                label="Nationalität"
-                                id="nation">
+                                name="birthnation"
+                                label="Geburtsland"
+                                id="birthnation">
                             </v-select>
                         </v-flex>
                     </v-layout>
@@ -111,7 +153,49 @@
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs6 offset-sm2>
+                            <v-text-field
+                                v-model="death"
+                                name="death"
+                                label="Todestag"
+                                id="death">
+                            </v-text-field>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex>
+                <form>
+                    <v-layout row>
+                        <v-flex xs3 offset-sm1>
+                            <v-select
+                                v-model="nation"
+                                :items="nations"
+                                name="nation"
+                                label="1. Nationalität"
+                                id="nation">
+                            </v-select>
+                        </v-flex>
+                        <v-flex xs3 offset-sm1>
+                            <v-select
+                                v-model="nation2"
+                                :items="nations"
+                                name="nation2"
+                                label="2. Nationalität"
+                                id="nation2">
+                            </v-select>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+            <v-flex xs6>
+                <form>
+                    <v-layout row>
+                        <v-flex xs6 offset-sm2>
                             <v-text-field
                                 v-model="height"
                                 name="height"
@@ -123,11 +207,37 @@
                 </form>
             </v-flex>
         </v-layout>
-       <v-layout row>
+        <v-layout row>
+            <v-flex>
+                <form>
+                    <v-layout row>
+                        <v-flex xs3 offset-sm1>
+                            <v-select
+                                v-model="position1"
+                                :items="positions"
+                                name="position1"
+                                label="Hauptposition"
+                                id="position1">
+                            </v-select>
+                        </v-flex>
+                        <v-flex xs3 offset-sm1>
+                            <v-select
+                                v-model="position2"
+                                :items="positions"
+                                name="position2"
+                                label="Nebenposition"
+                                id="position2">
+                            </v-select>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs6 offset-sm2>
                             <v-select
                                 v-model="team"
                                 :items="teams"
@@ -141,17 +251,52 @@
             </v-flex>
         </v-layout>
         <v-layout row>
+            <v-flex xs12>
+                <form>
+                    <v-layout row>
+                        <v-flex xs4 offset-sm1>
+                            <v-select
+                                v-model="draftyear"
+                                :items="draftyears"
+                                name="draftyear"
+                                label="Draft"
+                                id="draftyear">
+                            </v-select>
+                        </v-flex>
+                        <v-flex xs4 offset-sm1>
+                            <v-select
+                                v-model="draftpick"
+                                :items="draftpicks"
+                                name="draftpick"
+                                label="Pick"
+                                id="draftpick">
+                            </v-select>
+                        </v-flex>
+                        <v-flex xs4 offset-sm1>
+                            <v-select
+                                v-model="draftround"
+                                :items="draftrounds"
+                                name="draftround"
+                                label="Runde"
+                                id="draftround">
+                            </v-select>
+                        </v-flex>
+                    </v-layout>
+                </form>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
+                        <v-flex xs6 offset-sm2>
                             <v-btn
                             :loading="loadingCheck"
                             :disabled="loadingCheck"
                             color="secondary"
                             @click="createPlayer"
                             >
-                            Spieler Erstellen
+                            Person Erstellen
                             </v-btn>
                         </v-flex>
                     </v-layout>
@@ -165,16 +310,38 @@
     export default {
         data () {
             return {
+                roles: ['player', 'Coach', 'assistant coach', 'referee'],
+                genders: ['männlich', 'weiblich'],
+                role: null,
+                gender: null,
                 firstname: null,
                 name: null,
+                fullname: null,
+                nickname: null,
                 imageLink: null,
                 birth: null,
                 birthplace: null,
+                birthnation: null,
+                position1: null,
+                position2: null,
+                death: null,
                 nation: null,
+                nation2: null,
                 height: null,
+                draftyear: null,
+                draftpick: null,
+                draftround: null,
+                positions: ['Center', 'Power Forward', 'Small Forward', 'Shooting Guard', 'Point Guard'],
                 team: null,
                 nations: ['Deutschland', 'Vereinigte Staaten von Amerika'],
-                teams: []
+                teams: [],
+                draftyears: ['1997', '1998', '1999',
+                '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
+                '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
+                draftpicks: ['1', '2', '3', '4', '5', '6', '7', '8', '9',
+                '10', '11', '12', '13','14', '15', '16', '17', '18', '19',
+                '20', '21', '22', '23','24', '25', '26', '27', '28', '29', '30'],
+                draftrounds: ['Runde 1', 'Runde 2']
             }
            
         },
@@ -186,19 +353,31 @@
                         teamID = team.id
                     }
                 })  
-                let newplayer = {
+                let newperson = {
+                    role: this.role,
+                    gender: this.gender,
                     firstname: this.firstname,
                     name: this.name,
+                    fullname: this.fullname,
+                    nickname: this.nickname,
                     imageLink: this.imageLink,
                     birth: this.birth,
                     birthplace: this.birthplace,
+                    birthnation: this.birthnation,
+                    death: this.death,
                     nation: this.nation,
+                    nation2: this.nation2,
                     height: this.height,
-                    teamID: teamID
+                    position1: this.position1,
+                    position2: this.position2,
+                    teamID: teamID,
+                    draftyear: this.draftyear,
+                    draftpick: this.draftpick,
+                    draftround: this.draftround
                 }
-                console.log(newplayer)
-                this.$store.dispatch('createPlayer', newplayer)
-            }
+                console.log(newperson)
+                this.$store.dispatch('createPerson', newperson)
+            },
         },
         computed: {
             loadingCheck () {
