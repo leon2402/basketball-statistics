@@ -8,6 +8,7 @@ import PersonCreate from '../components/person/PersonCreate.vue'
 import TeamCreate from '../components/team//TeamCreate.vue'
 import Team from '../components/team/Team.vue'
 import AllNews from '../components/news/AllNews.vue'
+import News from '../components/news/News.vue'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,11 @@ export default new VueRouter({
             path: '/allnews',
             name: 'AllNews',
             component: AllNews
+        },
+        {
+            path: '/news/:name/:id',
+            name: 'News',
+            component: News
         },
     ]
 })

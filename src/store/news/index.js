@@ -3,11 +3,19 @@ import { db } from '@/firebase.js'
 export default {
     state: {
         allNews: null,
+        selectedNews: null
     },
     mutations: {
         setAllNews (state, payload) {
             state.allNews = payload
-        }
+        },
+        setSelectedNews(state, payload) {
+            state.allNews.map((item, index) => {
+                if(item.id == payload){
+                    state.selectedNews = item
+                }
+            })
+        },
     },
     actions: {
         loadAllNews ({commit}) { 
@@ -31,10 +39,16 @@ export default {
                 console.log(`Encountered error: ${err}`);
             });
         },
+        selectNews({commit}, id) {
+            commit('setSelectedNews', id)
+        },
     },
     getters: {
         getAllNews (state) {
             return state.allNews
+        },
+        getSelectedNews (state) {
+            return state.selectedNews
         }
     }
 }

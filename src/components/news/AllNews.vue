@@ -28,7 +28,7 @@
                   <v-card-title primary-title>
                     <div>
                       <div class="headline">{{news.data.title}}</div>
-                      <div>({{news.data.text}})</div>
+                      <div>{{news.data.text}}</div>
                     </div>
                   </v-card-title>
                 </v-flex>
@@ -45,7 +45,7 @@
                 <v-btn 
                 flat 
                 dark
-                @click="viewNews(news.id, news.data)"
+                @click="viewNews(news.data, news.id)"
                 >
                 View News
                 </v-btn>
@@ -72,6 +72,12 @@
             { title: 'AllPlayer', link:'/allplayer'},
             { title: 'Teams', link:'/teams'},
         ]
+      }
+    },
+    methods: {
+        viewNews (newsData, id) {
+            this.$store.dispatch('selectNews', id)
+            this.$router.push('/news/' + newsData.title + '/' + id)
       }
     },
     computed: {
