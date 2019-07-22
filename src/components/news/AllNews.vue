@@ -20,21 +20,21 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout>
-          <v-flex xs12>
-            <v-card color="blue" class="white--text" v-for="team in teams" :key="team.id">
+          <v-flex shrink>
+            <v-flex xs12>
+            <v-card color="blue" class="white--text" v-for="news in allNews" :key="news.id">
               <v-layout row>
                 <v-flex xs7>
                   <v-card-title primary-title>
                     <div>
-                      <div class="headline">{{team.data.name}}</div>
-                      <div>Head Coach: {{team.data.headcoach}}</div>
-                      <div>({{team.data.foundation}})</div>
+                      <div class="headline">{{news.data.title}}</div>
+                      <div>({{news.data.text}})</div>
                     </div>
                   </v-card-title>
                 </v-flex>
                 <v-flex xs5>
                   <v-img
-                    :src="team.data.imageLink"
+                    :src="news.data.imageLink"
                     height="125px"
                     contain
                   ></v-img>
@@ -45,12 +45,13 @@
                 <v-btn 
                 flat 
                 dark
-                @click="viewTeam(team.id, team.data)"
+                @click="viewNews(news.id, news.data)"
                 >
-                View Team
+                View News
                 </v-btn>
               </v-card-actions>
             </v-card>
+          </v-flex>
           </v-flex>
         </v-layout>
       </v-container>
@@ -60,28 +61,23 @@
     </v-footer>
   </v-app>
 </template>
+
 <script>
   export default {
     name: 'Player',
     data () {
       return{
         menuItems: [
-          { title: 'News', link:'/allnews'},
-          { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/teams'},
+            { title: 'News', link:'/allnews'},
+            { title: 'AllPlayer', link:'/allplayer'},
+            { title: 'Teams', link:'/teams'},
         ]
       }
     },
-    methods: {
-      viewTeam (id, teamData) {
-        this.$store.dispatch('selectTeam', id)
-        this.$router.push('/team/' + teamData.name)
-      }
-    },
     computed: {
-      teams () {
-        return this.$store.getters.getAllTeams
-      }
+        allNews () {
+            return this.$store.getters.getAllNews
+        }
     }
   }
 </script>

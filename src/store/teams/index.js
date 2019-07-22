@@ -33,7 +33,7 @@ export default {
                     allTeams.push(team)
                 })
             commit('setTeams', allTeams)
-            commit('setSiteLoading', false)
+            //commit('setSiteLoading', false)
             }, err => {
                 commit('setError', error)
                 console.log(`Encountered error: ${err}`);
