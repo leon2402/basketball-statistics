@@ -21,7 +21,7 @@
       <v-container fluid fill-height>
         <v-layout>
           <v-flex xs12>
-            <v-card color="blue" class="white--text" v-for="team in this.$store.state.teams" :key="team.id">
+            <v-card color="blue" class="white--text" v-for="team in teams" :key="team.id">
               <v-layout row>
                 <v-flex xs7>
                   <v-card-title primary-title>
@@ -75,6 +75,11 @@
       viewTeam (id, teamData) {
         this.$store.dispatch('selectTeam', id)
         this.$router.push('/team/' + teamData.name)
+      }
+    },
+    computed: {
+      teams () {
+        return this.$store.getters.getAllTeams
       }
     }
   }

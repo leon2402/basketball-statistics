@@ -21,7 +21,7 @@
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink>
-              {{this.$store.state.selectedTeam.data.name}}
+              {{team.data.name}}
           </v-flex>
         </v-layout>
       </v-container>
@@ -42,8 +42,10 @@
         ]
       }
     },
-    props: {
-      source: String
+    computed: {
+      team () {
+        return this.$store.getters.getSelectedTeam
+      }
     }
   }
 </script>

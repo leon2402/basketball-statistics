@@ -21,7 +21,7 @@
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
           <v-flex shrink>
-            <p>{{this.$store.state.selectedPerson.data.name}}</p>
+            <p>{{player.data.name}}</p>
           </v-flex>
         </v-layout>
       </v-container>
@@ -43,5 +43,10 @@
         ]
       }
     },
+    computed: {
+      player () {
+        return this.$store.getters.getSelectedPerson
+      }
+    }
   }
 </script>

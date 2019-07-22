@@ -240,7 +240,7 @@
                         <v-flex xs6 offset-sm2>
                             <v-select
                                 v-model="team"
-                                :items="teams"
+                                :items="teamNames"
                                 name="team"
                                 label="Team Auswahl"
                                 id="team">
@@ -333,23 +333,23 @@
                 draftround: null,
                 positions: ['Center', 'Power Forward', 'Small Forward', 'Shooting Guard', 'Point Guard'],
                 team: null,
+                teamNames: [],
                 nations: ['Deutschland', 'Vereinigte Staaten von Amerika'],
-                teams: [],
                 draftyears: ['1997', '1998', '1999',
                 '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
                 '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
                 draftpicks: ['1', '2', '3', '4', '5', '6', '7', '8', '9',
                 '10', '11', '12', '13','14', '15', '16', '17', '18', '19',
                 '20', '21', '22', '23','24', '25', '26', '27', '28', '29', '30'],
-                draftrounds: ['Runde 1', 'Runde 2']
+                draftrounds: ['Runde 1', 'Runde 2'],
             }
            
         },
         methods: {
             createPerson () {
-                let teamID = null
-                this.$store.state.teams.map((team, index) => {
-                    if(team.data.name == this.team) {
+                let teamID
+                this.teams.map((team, index) => {
+                    if(team.data.name == this.team){
                         teamID = team.id
                     }
                 })  
@@ -385,11 +385,14 @@
             },
             error () {
                 return this.$store.getters.error
-            }
+            },
+            teams () {
+                return this.$store.getters.getAllTeams
+            },
         },
-        created () {
-            this.$store.state.teams.map((team, index) => {
-                this.teams.push(team.data.name)
+        mounted () {
+            this.teams.map((team, index) => {
+                this.teamNames.push(team.data.name)
             })  
         }
     }
