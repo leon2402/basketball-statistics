@@ -294,7 +294,7 @@
                             :loading="loadingCheck"
                             :disabled="loadingCheck"
                             color="secondary"
-                            @click="createPlayer"
+                            @click="createPerson"
                             >
                             Person Erstellen
                             </v-btn>
@@ -346,7 +346,7 @@
            
         },
         methods: {
-            createPlayer () {
+            createPerson () {
                 let teamID = null
                 this.$store.state.teams.map((team, index) => {
                     if(team.data.name == this.team) {
