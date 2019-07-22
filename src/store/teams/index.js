@@ -47,9 +47,11 @@ export default {
             commit('clearError')
             db.collection("teams").add({
                 name: team.name,
+                nickname: team.nickname,
+                shortname: team.shortname,
                 foundation: team.foundation,
                 location: team.location,
-                imageLink: team.imageLink
+                imageLink: team.imageLink,
             })
             .then(function() {
                 alert("Document successfully written!");
