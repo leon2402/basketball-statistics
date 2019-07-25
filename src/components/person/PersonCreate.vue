@@ -7,7 +7,7 @@
         </v-layout>
         <v-layout row v-if="error">
             <v-flex xs6>
-                <h2>{{this.$store.state.error}}</h2>
+                <h2>{{error}}</h2>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -292,7 +292,7 @@
                         <v-flex xs6 offset-sm2>
                             <v-btn
                             :loading="loadingCheck"
-                            :disabled="loadingCheck"
+                            :disabled="checkForm"
                             color="secondary"
                             @click="createPerson"
                             >
@@ -381,14 +381,21 @@
         },
         computed: {
             loadingCheck () {
-                return this.$store.getters.loading
+                return this.$store.getters.loadingStatus
             },
             error () {
                 return this.$store.getters.error
             },
-            teams () {
+           teams  () {
                 return this.$store.getters.getAllTeams
             },
+            checkForm () {
+                if(this.name && this.firstname && this.team && this.role){
+                    return false
+                } else {
+                    return true
+                }
+            }
         },
         mounted () {
             this.teams.map((team, index) => {

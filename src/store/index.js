@@ -5,6 +5,7 @@ import shared from './shared'
 import news from './news'
 import teams from './teams'
 import persons from './persons'
+import playreports from './playreports'
 
 
 Vue.use(Vuex)
@@ -14,6 +15,7 @@ export const store = new Vuex.Store({
         shared: shared,
         news: news,
         teams: teams,
-        persons: persons
+        persons: persons,
+        playreports: playreports
     }
 })
