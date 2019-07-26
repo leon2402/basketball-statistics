@@ -35,8 +35,10 @@ export default {
             commit('setLoading', true)
             commit('clearError')
             db.collection("playreports").add({
-               name: data.name,
-               playerTeam1: data.playerTeam1
+               liga: data.liga,
+               team1: data.team1,
+               team2: data.team2,
+               date: data.date
             })
             .then(function() {
                 alert("Document successfully written!");

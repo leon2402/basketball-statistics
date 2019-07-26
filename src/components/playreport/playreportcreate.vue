@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row>
             <v-flex xs6>
-                <h2>Team erstellen</h2>
+                <h2>Spiel erstellen</h2>
             </v-flex>
         </v-layout>
         <v-layout row v-if="error">
@@ -14,29 +14,14 @@
             <v-flex xs6>
                 <form>
                     <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="name"
-                                name="name"
-                                label="Name"
-                                id="name">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="attendance"
-                                name="attendance"
-                                label="Attendance"
-                                id="attendance">
-                            </v-text-field>
+                        <v-flex xs6 offset-sm2>
+                            <v-select
+                                v-model="liga"
+                                :items="ligen"
+                                name="liga"
+                                label="Liga Auswahl"
+                                id="liga">
+                            </v-select>
                         </v-flex>
                     </v-layout>
                 </form>
@@ -79,27 +64,7 @@
                 <form>
                     <v-layout row>
                         <v-flex xs6 offset-sm2>
-                            <v-select
-                                v-model="player1Team1"
-                                :items="playerTeam1"
-                                items-text="data.name"
-                                items-value="id"
-                                name="player1Team1"
-                                label="Spieler 1 Team 2"
-                                id="player1Team2"
-                                
-                                >
-                                <template slot="selection" scope="data">
-                                    {{ data.item.data.fullname }} 
-                                </template>
-                                <template slot="item" scope="data">
-                                    <template>
-                                        <v-list-tile-content>
-                                        <v-list-tile-title v-html="data.item.data.fullname "></v-list-tile-title>
-                                        </v-list-tile-content>
-                                    </template>
-                                </template>
-                            </v-select>
+                            <v-date-picker v-model="datePicker" color="green lighten-1" header-color="primary"></v-date-picker>
                         </v-flex>
                     </v-layout>
                 </form>
@@ -108,30 +73,7 @@
                 <form>
                     <v-layout row>
                         <v-flex xs6 offset-sm2>
-                            <v-select
-                                v-model="player1Team2"
-                                :items="playerTeam2"
-                                items-text="data.name"
-                                items-value="id"
-                                name="player1Team2"
-                                label="Spieler 1 Team 2"
-                                id="player1Team2"
-                                
-                                >
-                                <template slot="selection" scope="data">
-                                    {{ data.item.data.fullname }} 
-                                </template>
-                                <template slot="item" scope="data">
-                                    <template v-if="typeof data.item !== 'object'">
-                                        <v-list-tile-content v-text="data.item"></v-list-tile-content>
-                                    </template>
-                                    <template v-else>
-                                        <v-list-tile-content>
-                                        <v-list-tile-title v-html="data.item.data.fullname"></v-list-tile-title>
-                                        </v-list-tile-content>
-                                    </template>
-                                </template>
-                            </v-select>
+                            <v-time-picker v-model="time" color="green lighten-1" header-color="primary" format="24hr"></v-time-picker>
                         </v-flex>
                     </v-layout>
                 </form>
@@ -162,20 +104,38 @@
     export default {
         data () {
             return {
-                name: null,
-                attendance: null,
+                liga: null,
+                ligen: ['NBA', 'BBL'],
                 team1: null,
                 team2: null,
-                player1Team1: null,
-                player1Team2: null,
                 teamNames: [],
-                playerTeam1: this.persons,
-                playerTeam2: this.persons,
+                datePicker: new Date().toISOString().substr(0, 10),
+                time: null
             }
         },
         methods: {
             createPlayReport () {
-               
+                let teamID1
+                this.teams.map((team, index) => {
+                    if(team.data.name == this.team1){
+                        teamID1 = team.id
+                    }
+                }) 
+                let teamID2
+                this.teams.map((team, index) => {
+                    if(team.data.name == this.team2){
+                        teamID2 = team.id
+                    }
+                })
+
+                let newPlayReport = {
+                    liga: this.liga,
+                    team1: teamID1,
+                    team2: teamID2,
+                    date: this.submittableDateTime
+                }
+                //console.log(newPlayReport)
+                this.$store.dispatch('createPlayReport', newPlayReport)
             }
         },
         computed: {
@@ -191,6 +151,14 @@
             persons () {
                 return this.$store.getters.getAllPersons
             },
+            submittableDateTime () {
+                const date = new Date(this.datePicker)
+                const hours = this.time.match(/^(\d+)/)[1]
+                const minutes = this.time.match(/:(\d+)/)[1]
+                date.setHours(hours)
+                date.setMinutes(minutes)
+                return date
+            }
             /*checkForm () {
                 if(this.name && this.firstname && this.team && this.role){
                     return false
@@ -198,28 +166,6 @@
                     return true
                 }
             }*/
-        },
-        watch: {
-            team1 () {
-                this.playerTeam1 = null
-                let teamID
-                this.teams.map((team, index) => {
-                    if(team.data.name == this.team1){
-                        teamID = team.id
-                    }
-                })
-                this.playerTeam1 =  this.persons.filter(person => person.data.teamID == teamID)
-            },
-            team2 () {
-                this.playerTeam2 = null
-                let teamID
-                this.teams.map((team, index) => {
-                    if(team.data.name == this.team2){
-                        teamID = team.id
-                    }
-                })
-                this.playerTeam2 =  this.persons.filter(person => person.data.teamID == teamID)
-            }
         },
         mounted () {
             this.teams.map((team, index) => {
