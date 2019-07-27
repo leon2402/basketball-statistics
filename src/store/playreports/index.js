@@ -3,10 +3,18 @@ import { db } from '@/firebase.js'
 export default {
     state:{
         allPlayReports: null,
+        selectedPlayReport: null
     },
     mutations:{
         setPlayReport(state, payload){
             state.allPlayReports = payload
+        },
+        setSelectedPlayReport(state, payload){
+            state.allPlayReports.map((item, index) => {
+                if(item.id == payload){
+                    state.selectedPlayReport = item
+                }
+            })
         },
     },
     actions: {
@@ -48,11 +56,17 @@ export default {
                 alert("Error writing document: ", error);
             });
             commit('setLoading', false)
-        }
+        },
+        selectPlayReport({commit}, id) {
+            commit('setSelectedPlayReport', id)
+        },
     },
     getters: {
         getAllPlayReports (state) {
             return state.allPlayReports
+        },
+        getSelectedPlayReport (state) {
+            return state.selectedPlayReport
         }
     }
 }

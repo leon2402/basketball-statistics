@@ -9,7 +9,9 @@ import TeamCreate from '../components/team//TeamCreate.vue'
 import Team from '../components/team/Team.vue'
 import AllNews from '../components/news/AllNews.vue'
 import News from '../components/news/News.vue'
+import AllPlayReports from '../components/playreport/allplayreports.vue'
 import PlayReportCreate from '../components/playreport/playreportcreate.vue'
+import PlayReportEdit from '../components/playreport/playreportedit.vue'
 
 Vue.use(VueRouter)
 
@@ -66,6 +68,16 @@ export default new VueRouter({
             path: '/playreportcreate',
             name: 'PlayReportCreate',
             component: PlayReportCreate
+        },
+        {
+            path: '/allplayreports',
+            name: 'AllPlayReports',
+            component: AllPlayReports
+        },
+        {
+            path: '/playreportedit/:id',
+            name: 'PlayReportEdit',
+            component: PlayReportEdit
         },
     ]
 })
