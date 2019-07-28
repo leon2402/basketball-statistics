@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire" dark>
+  <v-app dark>
     <v-toolbar app fixed clipped-left>
       <v-toolbar-title> 
         <router-link to="/" tag="span" style="cursor: pointer">Basketball Stats</router-link>

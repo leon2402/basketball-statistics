@@ -1,6 +1,10 @@
 <template>
-  <v-app dark v-if="!siteLoading">
-    <router-view></router-view>
+  <v-app>
+    <v-content>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
   </v-app>
 </template>
 
