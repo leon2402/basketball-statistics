@@ -1,134 +1,146 @@
 <template>
-    <v-container>
-        <v-layout row>
-            <v-flex xs6>
-                <h2>Team erstellen</h2>
-            </v-flex>
-        </v-layout>
-        <v-layout row v-if="error">
-            <v-flex xs6>
-                <h2>{{this.$store.state.error}}</h2>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="name"
-                                name="name"
-                                label="Name"
-                                id="name">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="nickname"
-                                name="nickname"
-                                label="Spitzname Team"
-                                id="nickname">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="shortname"
-                                name="shortname"
-                                label="Abkürzung"
-                                id="shortname">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="foundation"
-                                name="foundation"
-                                label="Gründung"
-                                id="foundation">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="location"
-                                name="location"
-                                label="Ort"
-                                id="location">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-text-field
-                                v-model="imageLink"
-                                name="imageLink"
-                                label="Bild Link"
-                                id="imageLink">
-                            </v-text-field>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-        <v-layout row>
-            <v-flex xs6>
-                <form>
-                    <v-layout row>
-                        <v-flex xs6 offset-sm3>
-                            <v-btn
-                            :loading="loadingCheck"
-                            :disabled="loadingCheck"
-                            color="secondary"
-                            @click="createTeam"
-                            >
-                            Team Erstellen
-                            </v-btn>
-                        </v-flex>
-                    </v-layout>
-                </form>
-            </v-flex>
-        </v-layout>
-    </v-container>
+  <v-app>
+    <Header />
+    <v-content>
+        <v-container>
+            <v-layout row>
+                <v-flex xs6>
+                    <h2>Team erstellen</h2>
+                </v-flex>
+            </v-layout>
+            <v-layout row v-if="error">
+                <v-flex xs6>
+                    <h2>{{this.$store.state.error}}</h2>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-text-field
+                                    v-model="name"
+                                    name="name"
+                                    label="Name"
+                                    id="name">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-text-field
+                                    v-model="nickname"
+                                    name="nickname"
+                                    label="Spitzname Team"
+                                    id="nickname">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-text-field
+                                    v-model="shortname"
+                                    name="shortname"
+                                    label="Abkürzung"
+                                    id="shortname">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-text-field
+                                    v-model="foundation"
+                                    name="foundation"
+                                    label="Gründung"
+                                    id="foundation">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-text-field
+                                    v-model="location"
+                                    name="location"
+                                    label="Ort"
+                                    id="location">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-text-field
+                                    v-model="imageLink"
+                                    name="imageLink"
+                                    label="Bild Link"
+                                    id="imageLink">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-btn
+                                :loading="loadingCheck"
+                                :disabled="loadingCheck"
+                                color="secondary"
+                                @click="createTeam"
+                                >
+                                Team Erstellen
+                                </v-btn>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+        </v-container>
+        </v-content>
+    <Footer />
+  </v-app>
 </template>
 
 <script>
+    import Header from '../shared/Header.vue'
+    import Footer from '../shared/Footer.vue'
     export default {
+        components: {
+        Header,
+        Footer
+        },
         data () {
             return {
                 name: null,

@@ -1,22 +1,6 @@
 <template>
-  <v-app id="inspire">
-    <v-toolbar app fixed clipped-left>
-      <v-toolbar-title> 
-        <router-link to="/" tag="span" style="cursor: pointer">Basketball Stats</router-link>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn
-        flat
-        v-for="item in menuItems"
-        :key="item.title"
-        router
-        :to="item.link"
-        >
-          {{ item.title }}
-        </v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
+  <v-app>
+    <Header />
     <v-content>
       <v-container>
         <v-layout xs7 offset-(xs5|md2|lg5)>
@@ -78,14 +62,18 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-footer app fixed>
-      <span>&copy; 2017</span>
-    </v-footer>
+    <Footer />
   </v-app>
 </template>
 
 <script>
+import Header from '../shared/Header.vue'
+import Footer from '../shared/Footer.vue'
   export default {
+    components: {
+      Header,
+      Footer
+    },
     name: 'Player',
     data () {
       return{

@@ -57,6 +57,31 @@ export default {
             });
             commit('setLoading', false)
         },
+        updatePlayReport ({commit}, data) {
+            commit('setLoading', true)
+            commit('clearError')
+            db.collection('playreports').doc(data.id).update({
+                ergebnis1viertel: data.ergebnis1viertel,
+                ergebnis2viertel: data.ergebnis2viertel,
+                ergebnis3viertel: data.ergebnis3viertel,
+                ergebnis4viertel: data.ergebnis4viertel,
+                gesamtErgebnis: data.gesamtErgebnis,
+                attendance: data.attendance,
+                referee1: data.referee1,
+                referee2: data.referee2,
+                referee3: data.referee3,
+                playerDataTeam1: data.playerDataTeam1,
+                playerDataTeam2: data.playerDataTeam2
+            })
+            .then(function() {
+                alert("Document successfully written!");
+            })
+            .catch(function(error) {
+                commit('setError', error)
+                alert("Error writing document: ", error);
+            });
+            commit('setLoading', false)
+        },
         selectPlayReport({commit}, id) {
             commit('setSelectedPlayReport', id)
         },
