@@ -315,6 +315,8 @@
 <script>
 import Header from '../shared/Header.vue'
 import Footer from '../shared/Footer.vue'
+import nationsData from './nations.json'
+
     export default {
     components: {
       Header,
@@ -346,7 +348,7 @@ import Footer from '../shared/Footer.vue'
                 positions: ['Center', 'Power Forward', 'Small Forward', 'Shooting Guard', 'Point Guard'],
                 team: null,
                 teamNames: [],
-                nations: ['Deutschland', 'Vereinigte Staaten von Amerika'],
+                nations: [],
                 draftyears: ['1997', '1998', '1999',
                 '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
                 '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
@@ -407,12 +409,16 @@ import Footer from '../shared/Footer.vue'
                 } else {
                     return true
                 }
-            }
+            },
+            
         },
         mounted () {
             this.teams.map((team, index) => {
                 this.teamNames.push(team.data.name)
-            })  
+            })
+            nationsData.map((item, index) => {
+                this.nations.push(item.name)
+            })
         }
     }
 </script>
