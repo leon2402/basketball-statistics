@@ -67,7 +67,6 @@
                   <v-data-table class="datatable"
                     :headers="headers2"
                     :items="random"
-                    :items-per-page="all"
                     hide-default-footer>
                   </v-data-table>
                 </v-flex>
@@ -176,8 +175,8 @@
                 <v-flex xs12 md12>
                   <v-data-table class="datatable"
                     :headers="headers"
-                    :items="desserts"
-                    :items-per-page="all"
+                    :items="playerStats"
+                    
                     hide-default-footer>
                   </v-data-table>
                 </v-flex>
@@ -202,156 +201,131 @@ import Footer from '../shared/Footer.vue'
     name: 'Player',
     data () {
       return{
-        menuItems: [
-          { title: 'News', link:'/allnews'},
-          { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/teams'},
-        ],
+        test: [],
+        
         headers: [
-          {
-            text: '19/20',
-            sortable: false,
-            value: 'game',
-            align: 'center',
-          },
-          {
-            text: 'Geg.',
-            sortable: false,
-            value: 'gg',
-            align: 'center',
-          },
           {
             text: 'MP',
             sortable: false,
-            value: 'mp',
+            value: 'MP',
             align: 'center',
           },
           {
             text: 'FG',
             sortable: false,
-            value: 'fg',
+            value: 'FG',
             align: 'center',
           },
           {
             text: 'FGA',
             sortable: false,
-            value: 'fga',
+            value: 'FGA',
             align: 'center',
           },
-          {
+          /*{
             text: 'FG%',
             sortable: false,
             value: 'fgp',
             align: 'center',
-          },
+          },*/
           {
             text: '3P',
             sortable: false,
-            value: '3p',
+            value: 'ThreeP',
             align: 'center',
           },
           {
             text: '3PA',
             sortable: false,
-            value: '3pa',
+            value: 'ThreePA',
             align: 'center',
           },
-          {
+          /*{
             text: '3P%',
             sortable: false,
             value: '3pp',
             align: 'center',
-          },
+          },*/
           {
             text: 'FT',
             sortable: false,
-            value: 'ft',
+            value: 'FT',
             align: 'center',
           },
           {
             text: 'FTA',
             sortable: false,
-            value: 'fta',
+            value: 'FTA',
             align: 'center',
           },
-          {
+          /*{
             text: 'FT%',
             sortable: false,
             value: 'ftp',
             align: 'center',
-          },
+          },*/
           {
             text: 'ORB',
             sortable: false,
-            value: 'orb',
+            value: 'ORB',
             align: 'center',
           },
           {
             text: 'DRB',
             sortable: false,
-            value: 'drb',
+            value: 'DRB',
             align: 'center',
           },
-          {
+          /*{
             text: 'TRB',
             sortable: false,
             value: 'trb',
             align: 'center',
-          },
+          },*/
           {
             text: 'AST',
             sortable: false,
-            value: 'ast',
+            value: 'AST',
             align: 'center',
           },
           {
             text: 'STL',
             sortable: false,
-            value: 'stl',
+            value: 'STL',
             align: 'center',
           },
           {
             text: 'BLK',
             sortable: false,
-            value: 'blk',
+            value: 'BLK',
             align: 'center',
           },
           {
             text: 'TOV',
             sortable: false,
-            value: 'tov',
+            value: 'TOV',
             align: 'center',
           },
           {
             text: 'PF',
             sortable: false,
-            value: 'pf',
+            value: 'PF',
             align: 'center',
           },
           {
             text: 'PTS',
             sortable: false,
-            value: 'pts',
+            value: 'PTS',
             align: 'center',
           },
           {
             text: '+/-',
             sortable: false,
-            value: '+/-',
+            value: 'plusMinus',
             align: 'center',
           },
         ],
-        desserts: [
-          {
-            game: 1,
-            gg: 'GSW',
-            mp: '30:20',
-            fg: 3,
-            fga: 10,
-            fgp: '.30',
-            align: 'center',
-          }
-        ],
+        playerStats: [],
         headers2: [
           {
             text: 'G',
@@ -435,17 +409,19 @@ import Footer from '../shared/Footer.vue'
         return this.$store.getters.getAllPlayReports
       }
     },
-    created () {
+    mounted () {
       let stats 
       if(this.playReports.filter(playReport => playReport.team1 == this.player.teamID) ){
         const relevantPlayReports = this.playReports.filter(playReport => playReport.team1 == this.player.teamID)
         relevantPlayReports.map((relevantPlayReport, index) => {
           const playerData = relevantPlayReport.data.playerDataTeam1
-          const key = Object.keys(test).filter(key => key == this.player.id)
-          console.log(playerData[key])
+          const key = Object.keys(playerData).filter(key => key == this.player.id)
+          this.playerStats.push(playerData[key])
         })
+        console.log('yes')
       } else if(this.playReports.find(playReport => playReport.team2 == this.player.teamID)) {
         console.log(this.playReports.find(playReport => playReport.team1 == this.player.teamID))
+        console.log('yes')
       }
     }
   }

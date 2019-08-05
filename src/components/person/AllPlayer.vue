@@ -6,7 +6,7 @@
         <v-layout>
           <v-flex shrink>
             <v-card v-for="player in players" :key="player.id">
-              <v-img
+              <v-img v-if="player.data.imageLink"
                 :src="player.data.imageLink"
                 aspect-ratio="0.7"
               ></v-img>

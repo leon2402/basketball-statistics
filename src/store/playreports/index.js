@@ -21,7 +21,11 @@ export default {
         loadAllPlayReports ({commit}) {
             //commit('setSiteLoading', true)
             let allPlayReports = []
-            let query = db.collection('playreports')
+            //Dates for Season 2019/2020
+            let start = new Date('2019-07-01');
+            let end = new Date('2020-06-30');
+
+            let query = db.collection('playreports').where("date", ">", start).where("date", "<", end).orderBy("date")
             let observer = query.onSnapshot(querySnapshot => {
                 let changes = querySnapshot.docChanges()
                 changes.forEach(change => {
