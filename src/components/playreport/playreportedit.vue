@@ -280,6 +280,19 @@ import Footer from '../shared/Footer.vue'
         },
         methods: {
             createPlayReport (id) {
+                for (let item in this.playerDataTeam1) {
+                    this.playerDataTeam1[item]['FGP'] = parseFloat(this.playerDataTeam1[item].FG) / parseFloat(this.playerDataTeam1[item].FGA)
+                    this.playerDataTeam1[item]['ThreePO'] = parseFloat(this.playerDataTeam1[item].ThreeP) / parseFloat(this.playerDataTeam1[item].ThreePA)
+                    this.playerDataTeam1[item]['FTP'] = parseFloat(this.playerDataTeam1[item].FT) / parseFloat(this.playerDataTeam1[item].FTA)
+                    this.playerDataTeam1[item]['TRB'] = parseFloat(this.playerDataTeam1[item].ORB) + parseFloat(this.playerDataTeam1[item].DRB)
+                }
+                for (let item in this.playerDataTeam2) {
+                    this.playerDataTeam1[item]['FGP'] = parseFloat(this.playerDataTeam1[item].FG) / parseFloat(this.playerDataTeam1[item].FGA)
+                    this.playerDataTeam1[item]['ThreePO'] = parseFloat(this.playerDataTeam1[item].ThreeP) / parseFloat(this.playerDataTeam1[item].ThreePA)
+                    this.playerDataTeam1[item]['FTP'] = parseFloat(this.playerDataTeam1[item].FT) / parseFloat(this.playerDataTeam1[item].FTA)
+                    this.playerDataTeam1[item]['TRB'] = parseFloat(this.playerDataTeam1[item].ORB) + parseFloat(this.playerDataTeam1[item].DRB)
+                }
+                //console.log(this.playerDataTeam1)
                 let updatePlayReport = {
                     id: id,
                     ergebnis1viertel: this.ergebnis1viertel,

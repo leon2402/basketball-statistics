@@ -83,6 +83,7 @@ import Footer from '../shared/Footer.vue'
             { title: 'Teams', link:'/teams'},
         ],
         show: false,
+        NBANews: null,
       }
     },
     methods: {
@@ -92,9 +93,13 @@ import Footer from '../shared/Footer.vue'
       }
     },
     computed: {
-        allNews () {
-            return this.$store.getters.getAllNews
-        }
+      allNews () {
+          return this.$store.getters.getAllNews
+      }
+    },
+    mounted () {
+      const NBANews = this.allNews.filter(news => news.data.tags == 'NBA')
+      this.NBANews = NBANews
     }
   }
 </script>

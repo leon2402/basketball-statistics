@@ -21,7 +21,7 @@ export default {
         loadAllNews ({commit}) { 
             //commit('setSiteLoading', true)
             let allNews = []
-            let query = db.collection('news')
+            let query = db.collection('news').orderBy("time", "desc")
             let observer = query.onSnapshot(querySnapshot => {
                 let changes = querySnapshot.docChanges()
                 changes.forEach(change => {

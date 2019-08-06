@@ -25,7 +25,7 @@ export default {
             let start = new Date('2019-07-01');
             let end = new Date('2020-06-30');
 
-            let query = db.collection('playreports').where("date", ">", start).where("date", "<", end).orderBy("date")
+            let query = db.collection('playreports').where("date", ">", start).where("date", "<", end).orderBy("date", "desc")
             let observer = query.onSnapshot(querySnapshot => {
                 let changes = querySnapshot.docChanges()
                 changes.forEach(change => {
