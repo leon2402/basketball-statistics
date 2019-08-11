@@ -410,23 +410,30 @@ import Footer from '../shared/Footer.vue'
       }
     },
     mounted () {
-      //let stats 
-      if(this.playReports.filter(playReport => playReport.team1 == this.player.teamID)){
-        const relevantPlayReports = this.playReports.filter(playReport => playReport.team1 == this.player.teamID)
-        relevantPlayReports.map((relevantPlayReport, index) => {
-          const playerData = relevantPlayReport.data.playerDataTeam1
+      this.playReports.map((playReport, index) => {
+        if(playReport.data.team1 === this.player.data.teamID) {
+          const playerData = playReport.data.playerDataTeam1
           const key = Object.keys(playerData).filter(key => key == this.player.id)
-          this.playerStats.push(playerData[key])
-        })
-        console.log('yes')
-      } else if(this.playReports.find(playReport => playReport.team2 == this.player.teamID)) {
-        const relevantPlayReports = this.playReports.filter(playReport => playReport.team1 == this.player.teamID)
-        relevantPlayReports.map((relevantPlayReport, index) => {
-          const playerData = relevantPlayReport.data.playerDataTeam1
+          if(playerData[key] == undefined) {
+            this.playerStats.push({MP:0})
+            //todo colon should display "did not play"
+          } else {
+            this.playerStats.push(playerData[key])
+          }
+        }
+        else if(playReport.data.team2 === this.player.data.teamID) {
+          const playerData = playReport.data.playerDataTeam2
           const key = Object.keys(playerData).filter(key => key == this.player.id)
-          this.playerStats.push(playerData[key])
-        })
-      }
+          if(playerData[key] == undefined) {
+            //todo colon should display "did not play"
+            this.playerStats.push({MP:0})
+          } else {
+            this.playerStats.push(playerData[key])
+          }
+        }
+        else {
+        }
+      })
     }
   }
 </script>
