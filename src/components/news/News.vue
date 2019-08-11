@@ -16,9 +16,6 @@
                 </div>
               </v-card-title>
                 <v-card-text class="text--primary">
-                  <div>
-                    
-                  </div>
                 </v-card-text>
             </v-card>
           </v-flex>
