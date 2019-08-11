@@ -12,6 +12,7 @@ import News from '../components/news/News.vue'
 import AllPlayReports from '../components/playreport/allplayreports.vue'
 import PlayReportCreate from '../components/playreport/playreportcreate.vue'
 import PlayReportEdit from '../components/playreport/playreportedit.vue'
+import nbaTable from '../components/tables/nbaTable.vue'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,11 @@ export default new VueRouter({
             path: '/playreportedit/:id',
             name: 'PlayReportEdit',
             component: PlayReportEdit
+        },
+        {
+            path: '/nba',
+            name: 'NBA',
+            component: nbaTable
         },
     ]
 })
