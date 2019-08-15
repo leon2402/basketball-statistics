@@ -3,41 +3,82 @@
         <Header />
             <v-content>
                 <v-container justify-center>
-                        <v-layout justify-center wrap>
-                            <v-flex xs12 md6 class="background">
-                                <v-container fluid>
+                    <v-layout justify-center wrap>
+                        <v-flex xs12 md6 class="background">
+                            <v-container fluid>
                                 <v-layout>
                                     <v-flex xs12 md12 class="header">
                                     <tr><h3>NBA</h3></tr>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout>
-                                    <v-flex xs12 md6 class="headertopwestern">
-                                    <tr><h3>Western Conference</h3></tr>
-                                    </v-flex>
-                                    <v-flex xs12 md6 class="headertopeastern">
-                                    <tr><h3>Eastern Conference</h3></tr>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout>
+                                <v-layout wrap>
                                     <v-flex xs12 md6>
-                                    <v-data-table class="datatablewestern"
-                                        :headers="conferenceheaderwest"
-                                        :items="western"
-                                        :items-per-page="15"
-                                        hide-default-footer
-                                        dense
-                                        calculate-widths>
-                                    </v-data-table>
+                                        <v-container>
+                                            <v-layout>
+                                                <v-flex xs12 md12 class="headertopwestern">
+                                                    <tr><h3>Western Conference</h3></tr>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout>
+                                                <v-simple-table class="datatablewestern"
+                                                    dense>
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th class="text-left">Team</th>
+                                                        <th class="text-center">W</th>
+                                                        <th class="text-center">L</th>
+                                                        <th class="text-center">%</th>
+                                                        <th class="text-center">GP</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="item in western" :key="item.name">
+                                                        <td class="text-center">{{ item.position }}</td>
+                                                        <td class="text-left">{{ item.teamName }}</td>
+                                                        <td class="text-center">{{ item.win }}</td>
+                                                        <td class="text-center">{{ item.loses }}</td>
+                                                        <td class="text-center">{{ item.pct }}</td>
+                                                        <td class="text-center">{{ item.gamesPlayed }}</td>
+                                                    </tr>
+                                                </tbody>
+                                                </v-simple-table>
+                                            </v-layout>
+                                        </v-container>
                                     </v-flex>
                                     <v-flex xs12 md6>
-                                    <v-data-table class="datatableeastern"
-                                        :headers="conferenceheadereast"
-                                        :items="eastern"
-                                        :items-per-page="15"
-                                        hide-default-footer
-                                        dense>
-                                    </v-data-table>
+                                        <v-container>
+                                            <v-layout>
+                                                <v-flex xs12 md12 class="headertopeastern">
+                                                    <tr><h3>Eastern Conference</h3></tr>
+                                                </v-flex>
+                                            </v-layout>
+                                            <v-layout>
+                                                <v-simple-table class="datatableeastern"
+                                                dense>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">#</th>
+                                                            <th class="text-left">Team</th>
+                                                            <th class="text-center">W</th>
+                                                            <th class="text-center">L</th>
+                                                            <th class="text-center">%</th>
+                                                            <th class="text-center">GP</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr v-for="item in eastern" :key="item.name">
+                                                            <td class="text-center">{{ item.position }}</td>
+                                                            <td class="text-left">{{ item.teamName }}</td>
+                                                            <td class="text-center">{{ item.win }}</td>
+                                                            <td class="text-center">{{ item.loses }}</td>
+                                                            <td class="text-center">{{ item.pct }}</td>
+                                                            <td class="text-center">{{ item.gamesPlayed }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </v-simple-table>
+                                            </v-layout>
+                                        </v-container>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout>
@@ -47,7 +88,7 @@
                                         :items="games"
                                         :items-per-page="15"
                                         hide-default-footer>
-                                    </v-data-table>
+                                        </v-data-table>
                                     </v-flex>
                                 </v-layout>
                                 </v-container>
@@ -60,29 +101,33 @@
                                     </v-flex>
                                 </v-layout>
                                 <v-layout>
-                                    <v-flex xs12 md12>
-                                    <v-card>
-                                        <v-card-Text>Doncic Rookie of the Year</v-card-text>
-                                    </v-card>
+                                    <v-flex xs12 md12 class="background">
+                                        <v-card max-width="285" max-height="100" class="newscard" v-for="news in NBANews" :key="news.id" @click="viewNews(news.data, news.id)">
+                                            <v-layout align-center>
+                                            <v-flex xs4 md4>
+                                                <v-img
+                                                    :src="news.data.imageLink"
+                                                    max-width="200px"
+                                                    contain
+                                                    class="newscardpicture"
+                                                    >
+                                                    </v-img>
+                                            </v-flex>
+                                            <v-flex xs8 md8>
+                                                <v-card-text>
+                                                <div>
+                                                <div class="news">
+                                                    {{news.data.title}}</div>
+                                                </div>
+                                            </v-card-text>
+                                            </v-flex>
+                                            </v-layout>
+                                        </v-card>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout> 
-                                    <v-flex xs12 md12>
-                                    <v-card>
-                                        <v-card-Text>Rookie of the Month</v-card-text>
-                                    </v-card>
-                                    </v-flex>
-                                </v-layout>
-                                <v-layout>
-                                    <v-flex xs12 md12>
-                                    <v-card>
-                                        <v-card-Text>Erstes Trible Double für Doncic</v-card-text>
-                                    </v-card>
-                                    </v-flex>
-                                </v-layout>
-                                </v-container>
-                            </v-flex>
-                        </v-layout>
+                            </v-container>
+                        </v-flex>
+                    </v-layout>
                 </v-container>
             </v-content>
         <Footer />
@@ -99,78 +144,6 @@
     },
     data () {
       return{
-        conferenceheaderwest: [
-            {
-                text: '#',
-                sortable: true,
-                value: 'position',
-                align: 'center',
-                width: '30'
-            },
-            {
-                text: 'Team',
-                sortable: true,
-                value: 'westernteam',
-                align: 'left',
-            },
-            {
-                text: 'W',
-                sortable: true,
-                value: 'win',
-                align: 'center',
-                width: '30'
-            },
-            {
-                text: 'L',
-                sortable: true,
-                value: 'loses',
-                align: 'center',
-                width: '30'
-            },
-            {
-                text: '%',
-                sortable: true,
-                value: 'percentwinlose',
-                align: 'center',
-                width: '50'
-            },
-        ],
-        conferenceheadereast: [
-            {
-                text: '#',
-                sortable: true,
-                value: 'position',
-                align: 'center',
-                width: '30'
-            },
-            {
-                text: 'Team',
-                sortable: true,
-                value: 'easternteam',
-                align: 'left'
-            },
-            {
-                text: 'W',
-                sortable: true,
-                value: 'win',
-                align: 'center',
-                width: '30'
-            },
-            {
-                text: 'L',
-                sortable: true,
-                value: 'loses',
-                align: 'center',
-                width: '30'
-            },
-            {
-                text: '%',
-                sortable: true,
-                value: 'percentwinlose',
-                align: 'center',
-                width: '50'
-            },
-        ],
         gameday: [
             {
                 text: 'Datum',
@@ -199,108 +172,6 @@
                 align: 'center',
             },
         ],
-        western: [
-            {
-                position: 1,
-                westernteam: 'Dallas Mavericks',
-                win: 30,
-                loses: 15,
-                percentwinlose: 0.667
-            },
-            {
-                position: 2,
-                westernteam: 'Golden State Warriors',
-                win: 32,
-                loses: 17,
-                percentwinlose: 0.653
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            },
-            {
-                westernteam: 'Dallas Mavericks'
-            }
-        ],
-        eastern: [
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-            {
-                easternteam: 'New York Knicks'
-            },
-        ],
         games: [
             {
                 date: '31.10.2019 18:00',
@@ -314,9 +185,90 @@
                 result: '- : -',
                 awayteam: 'Boston Celtics'
             }
-        ]
+        ],
+        western: null,
+        eastern: null,
+        show: false,
       }
-    }}
+    },
+    methods: {
+        viewNews (newsData, id) {
+            this.$store.dispatch('selectNews', id)
+            this.$router.push('/news/' + newsData.title + '/' + id)
+        }
+    },
+    computed: {
+        allPlayReports () {
+            return this.$store.getters.getAllPlayReports
+        },
+        allTeams () {
+            return this.$store.getters.getAllTeams
+        },
+        allNews () {
+            return this.$store.getters.getAllNews
+        }
+    },
+    created () {
+        let western = []
+        this.allTeams.map((team, index) => {
+            let win = 0
+            let loss = 0
+            this.allPlayReports.map((item, i) => {
+                const colon = item.data.gesamtErgebnis.search(/:/)
+                if(team.id == item.data.team1 && team.data.conference === 'Western') {
+                    if(item.data.gesamtErgebnis.slice(0,colon) > item.data.gesamtErgebnis.slice(colon+1)){
+                        win += 1
+                    } else {
+                        loss += 1
+                    }
+                } else if(team.id == item.data.team2 && team.data.conference === 'Western') {
+                    if(item.data.gesamtErgebnis.slice(0,colon) < item.data.gesamtErgebnis.slice(colon+1)){
+                        win += 1
+                    } else {
+                        loss += 1
+                    }
+                }
+            })
+            const gamesPlayed = win + loss
+            const pct = parseFloat(win)/parseFloat(gamesPlayed)
+            if(team.data.conference === 'Western') { 
+                western.push({teamID: team.id, teamName:team.data.name, win:win, loses:loss, gamesPlayed:gamesPlayed, pct:pct})}
+        })
+        
+        this.western = western
+
+        let eastern = []
+        this.allTeams.map((team, index) => {
+            let win = 0
+            let loss = 0
+            this.allPlayReports.map((item, i) => {
+                const colon = item.data.gesamtErgebnis.search(/:/)
+                if(team.id == item.data.team1 && team.data.conference == 'Eastern') {
+                    if(item.data.gesamtErgebnis.slice(0,colon) > item.data.gesamtErgebnis.slice(colon+1)){
+                        win += 1
+                    } else {
+                        loss += 1
+                    }
+                } else if(team.id == item.data.team2 && team.data.conference == 'Eastern') {
+                    if(item.data.gesamtErgebnis.slice(0,colon) < item.data.gesamtErgebnis.slice(colon+1)){
+                        win += 1
+                    } else {
+                        loss += 1
+                    }
+                }
+            })
+            const gamesPlayed = win + loss
+            const pct = parseFloat(win)/parseFloat(gamesPlayed)
+            if(team.data.conference === 'Eastern') { 
+                eastern.push({teamID: team.id, teamName:team.data.name, win:win, loses:loss, gamesPlayed:gamesPlayed, pct:pct})}
+        })
+        
+        this.eastern = eastern
+
+        const NBANews = this.allNews.filter(news => news.data.NBA == '1')
+        this.NBANews = NBANews
+    },
+}
 </script>
 
 <style>
@@ -383,4 +335,8 @@
     .test {
         margin-top: 10px;
     }
+    .v-application .text-left {
+    text-align: left!important;
+    padding: 5px 8px 4px;
+    }   
 </style>
