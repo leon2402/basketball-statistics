@@ -193,6 +193,9 @@ import Footer from '../shared/Footer.vue'
     margin-left: auto!important;
     margin-top: 3px;
   }
+  .newscardpicture {
+    margin-left: 10px;
+  }
   .news {
     color: black;
     font-size: 12px;
