@@ -176,7 +176,7 @@
                   <v-data-table class="datatable"
                     :headers="headers"
                     :items="playerStats"
-                    
+                    @click:row="showConsole(value)"
                     hide-default-footer>
                   </v-data-table>
                 </v-flex>
@@ -396,6 +396,11 @@ import Footer from '../shared/Footer.vue'
             align: 'center',
           }
         ]
+      }
+    },
+    methods: {
+      showConsole (items) {
+        console.log(items)
       }
     },
     computed: {

@@ -46,7 +46,7 @@ import Footer from '../shared/Footer.vue'
     },
     computed: {
         allPlayReports () {
-            return this.$store.getters.getAllPlayReports
+            return this.$store.getters.getUnfinishedPlayReports
         }
     }
   }
