@@ -18,6 +18,16 @@
                     :items="items"
                     :items-per-page="20"
                     hide-default-footer>
+                    <template v-slot:item="props">
+                      <tr>
+                        <td> {{props.item.nr}} </td>
+                        <td> {{props.item.pos1}} </td>
+                        <td @click="onLoadPlayer(props.item)"> {{props.item.playername}} </td>
+                        <td> {{props.item.birthday}} </td>
+                        <td> {{props.item.height}} </td>
+                        <td> <v-img :src="flaggen.find(flagge => flagge.name === props.item.nationality).flagge" /> </td>
+                      </tr>
+                    </template>
                   </v-data-table>
                 </v-flex>
               </v-layout>
@@ -154,6 +164,8 @@
 <script>
   import Header from '../shared/Header.vue'
   import Footer from '../shared/Footer.vue'
+  import nationsData from '../shared/nations.json'
+
   export default {
     components: {
       Header,
@@ -161,11 +173,7 @@
     },
     data () {
       return{
-        menuItems: [
-          { title: 'News', link:'/allnews'},
-          { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/teams'},
-        ],
+        flaggen : null,
         headers: [
           {
             text: '#',
@@ -246,105 +254,105 @@
             pos1: 'SF',
             birthday: '28.02.1999',
             height: 2.01,
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Vereinigte Staaten',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
           {
             nr: 77,
             playername: 'Luka Doncic',
             pos1: 'SF',
             birthday: '28.02.1999',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
         ],
         itemscoach: [
@@ -352,7 +360,7 @@
             coachname: 'Rick Carlisle',
             posc: 'Headcoach',
             birthday: '27.10.1959',
-            nationality: 'Flag',
+            nationality: 'Slowenien',
           },
         ]
       }
@@ -361,7 +369,18 @@
         viewNews (newsData, id) {
             this.$store.dispatch('selectNews', id)
             this.$router.push('/news/' + newsData.title + '/' + id)
-        }
+        },
+        test (item) {
+          console.log(item)
+          console.log(nationsData[1].name)
+        },
+        getFlagge (item) {
+        this.flaggen.map((flagge, index) => {
+          if(flagge.name === item.nationality) {
+            return flagge.flagge
+          }
+        })
+      }
     },
     computed: {
       team () {
@@ -369,11 +388,25 @@
       },
       allNews () {
         return this.$store.getters.getAllNews
+      },
+      onLoadPlayer (playerdata) {
+        //TODO get all relevant Player out of Database than router push can work
+        console.log(playerdata)
+
+        //this.$store.dispatch('selectPerson', id)
+        //this.$router.push('/player/' + playerdata.name + '/' + id)
       }
     },
     created () {
       const TeamNews = this.allNews.filter(news => news.data.team == '1')
-        this.TeamNews = TeamNews
+      this.TeamNews = TeamNews
+      let flaggen = []
+      nationsData.map((nation, index) =>{
+          if(nation.flagge) {
+            flaggen.push(nation)
+          }
+        })
+      this.flaggen = flaggen
     }
   }
 </script>

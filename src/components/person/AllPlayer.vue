@@ -45,11 +45,6 @@ import Footer from '../shared/Footer.vue'
     name: 'AllPlayer',
     data () {
       return{
-        menuItems: [
-          { title: 'News', link:'/allnews'},
-          { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/teams'},
-        ]
       }
     },
     methods: {

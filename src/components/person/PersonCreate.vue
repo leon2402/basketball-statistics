@@ -315,7 +315,7 @@
 <script>
 import Header from '../shared/Header.vue'
 import Footer from '../shared/Footer.vue'
-import nationsData from './nations.json'
+import nationsData from '../shared/nations.json'
 
     export default {
     components: {
