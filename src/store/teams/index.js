@@ -52,6 +52,7 @@ export default {
                 foundation: team.foundation,
                 location: team.location,
                 imageLink: team.imageLink,
+                teamtype: team.teamtype,
             })
             .then(function() {
                 alert("Document successfully written!");

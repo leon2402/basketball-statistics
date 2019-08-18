@@ -8,7 +8,7 @@
                             <v-container fluid>
                                 <v-layout>
                                     <v-flex xs12 md12 class="header">
-                                    <tr><h3>NBA</h3></tr>
+                                    <tr><h3>2019 FIBA Basketball World Cup</h3></tr>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout wrap>
@@ -16,7 +16,7 @@
                                         <v-container>
                                             <v-layout>
                                                 <v-flex xs12 md12 class="headertopwestern">
-                                                    <tr><h3>Western Conference</h3></tr>
+                                                    <tr><h3>Gruppe G</h3></tr>
                                                 </v-flex>
                                             </v-layout>
                                             <v-layout>
@@ -24,10 +24,22 @@
                                                 :headers="headerconference"
                                                 :items="western"
                                                 :items-per-page="15"
-                                                sort-by="pct"
+                                                sort-by="pkt"
+                                                sort-desc
                                                 hide-default-footer
-                                                @click:row="viewTeam(team.id, team.data)"
                                                 dense>
+                                                <template v-slot:item="props">
+                                                    <tr>
+                                                        <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                height="12px"
+                                                                width="23px">
+                                                                &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                        <td align="center"> {{props.item.win}} </td>
+                                                        <td align="center"> {{props.item.loses}} </td>
+                                                        <td align="center"> {{props.item.pkt}} </td>
+                                                        <td align="center"> {{props.item.gamesPlayed}} </td>
+                                                    </tr>
+                                                </template>
                                                 </v-data-table>
                                             </v-layout>
                                         </v-container>
@@ -36,7 +48,7 @@
                                         <v-container>
                                             <v-layout>
                                                 <v-flex xs12 md12 class="headertopeastern">
-                                                    <tr><h3>Eastern Conference</h3></tr>
+                                                    <tr><h3>Gruppe H</h3></tr>
                                                 </v-flex>
                                             </v-layout>
                                             <v-layout>
@@ -44,9 +56,22 @@
                                                 :headers="headerconference"
                                                 :items="eastern"
                                                 :items-per-page="15"
-                                                sort-by="pct"
+                                                sort-by="pkt"
+                                                sort-desc
                                                 hide-default-footer
                                                 dense>
+                                                <template v-slot:item="props">
+                                                    <tr>
+                                                        <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                height="12px"
+                                                                width="23px">
+                                                                &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                        <td align="center"> {{props.item.win}} </td>
+                                                        <td align="center"> {{props.item.loses}} </td>
+                                                        <td align="center"> {{props.item.pkt}} </td>
+                                                        <td align="center"> {{props.item.gamesPlayed}} </td>
+                                                    </tr>
+                                                </template>
                                                 </v-data-table>
                                             </v-layout>
                                         </v-container>
@@ -119,8 +144,8 @@
             {
                 text:'Team',
                 sortable: true,
-                value: 'teamName',
-                align: 'left',
+                value: 'imageLink'+'teamName',
+                align: 'center',
                 width: '260'
             },
             {
@@ -136,9 +161,9 @@
                 align: 'center',
             },
             {
-                text:'PCT',
+                text:'PKT',
                 sortable: true,
-                value: 'pct',
+                value: 'pkt',
                 align: 'center',
             },
             {
@@ -214,7 +239,7 @@
         },
         allNews () {
             return this.$store.getters.getAllNews
-        }
+        },
     },
     created () {
         let western = []
@@ -237,10 +262,11 @@
                     }
                 }
             })
+            const pkt = (win*2)+(loss*1)
             const gamesPlayed = win + loss
-            const pct = parseFloat(win)/parseFloat(gamesPlayed)
-            if(team.data.conference === 'Western') { 
-                western.push({teamID: team.id, teamName:team.data.name, win:win, loses:loss, gamesPlayed:gamesPlayed, pct:pct})}
+            /*const pct = parseFloat(win)/parseFloat(gamesPlayed)*/
+            if(team.data.group1 === 'G') { 
+                western.push({teamID: team.id, imageLink:team.data.imageLink, teamName:team.data.name, win:win, loses:loss, gamesPlayed:gamesPlayed, pkt:pkt})}
         })
         
         this.western = western
@@ -265,10 +291,11 @@
                     }
                 }
             })
+            const pkt = (win*2)+(loss*1)
             const gamesPlayed = win + loss
-            const pct = parseFloat(win)/parseFloat(gamesPlayed)
-            if(team.data.conference === 'Eastern') { 
-                eastern.push({teamID: team.id, teamName:team.data.name, win:win, loses:loss, gamesPlayed:gamesPlayed, pct:pct})}
+            /*const pct = parseFloat(win)/parseFloat(gamesPlayed)*/
+            if(team.data.group1 === 'H') { 
+                eastern.push({teamID: team.id, imageLink:team.data.imageLink, teamName:team.data.name, win:win, loses:loss, gamesPlayed:gamesPlayed, pkt:pkt})}
         })
         
         this.eastern = eastern
@@ -279,71 +306,9 @@
 }
 </script>
 
-<style>
-    .datatablewestern {
-        width: 99%
+<style>  
+    .v-data-table .teamnameleft {
+        padding: 5px 8px 4px;
+        border-right: 0px;
     }
-    .datatablewestern thead {
-    background: #e9e9e9;
-  }
-    .datatablewestern th {
-        color: black;
-        border: 1px solid #ddd;
-    } 
-    .datatablewestern td {
-        color: black;
-        border: 1px solid #ddd;
-    }    
-    .datatableeastern {
-        width: 99%;
-        margin-left: 1%
-    }
-    .datatableeastern thead {
-    background: #e9e9e9;
-  }
-    .datatableeastern th {
-        color: black;
-        border: 1px solid #ddd;
-    } 
-    .datatableeastern td {
-        color: black;
-        border: 1px solid #ddd;
-    }
-    .headertopwestern {
-    display: block;
-    font-family: "Oswald", sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    text-transform: uppercase;
-    color: #fff;
-    border: 0;
-    margin: 0;
-    position: relative;
-    background-color: #17408B;
-    padding: 5px 8px 4px;
-    border: 2px solid #ddd;
-    margin-top: 10px;
-    }
-    .headertopeastern {
-    display: block;
-    font-family: "Oswald", sans-serif;
-    font-size: 14px;
-    font-weight: normal;
-    text-transform: uppercase;
-    color: #fff;
-    border: 0;
-    margin: 0;
-    position: relative;
-    background-color: #17408B;
-    padding: 5px 8px 4px;
-    border: 2px solid #ddd;
-    margin-top: 10px;
-    }
-    .test {
-        margin-top: 10px;
-    }
-    .v-application .text-left {
-    text-align: left!important;
-    padding: 5px 8px 4px;
-    }   
 </style>

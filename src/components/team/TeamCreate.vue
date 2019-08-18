@@ -25,6 +25,15 @@
                                     id="name">
                                 </v-text-field>
                             </v-flex>
+                            <v-flex xs6 offset-sm3>
+                                <v-select
+                                    v-model="teamtype"
+                                    :items="teamtypes"
+                                    name="Teamtyp"
+                                    label="Teamtyp"
+                                    id="teamtype">
+                                </v-select>
+                            </v-flex>
                         </v-layout>
                     </form>
                 </v-flex>
@@ -149,6 +158,7 @@
                 foundation: null,
                 location: null,
                 imageLink: null,
+                teamtypes: ['Verein' , 'Nationalmannschaft']
             }
            
         },
@@ -161,6 +171,7 @@
                     foundation: this.foundation,
                     location: this.location,
                     imageLink: this.imageLink,
+                    teamtype: this.teamtype,
                 }
                 console.log(newTeam)
                 this.$store.dispatch('createTeam', newTeam)
@@ -170,6 +181,7 @@
                 this.foundation = null
                 this.location = null
                 this.imageLink = null
+                this.teamtype = null
             }
         },
         computed: {

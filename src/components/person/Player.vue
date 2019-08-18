@@ -276,12 +276,12 @@ import Footer from '../shared/Footer.vue'
             value: 'DRB',
             align: 'center',
           },
-          /*{
+          {
             text: 'TRB',
             sortable: false,
             value: 'trb',
             align: 'center',
-          },*/
+          },
           {
             text: 'AST',
             sortable: false,
@@ -522,7 +522,7 @@ import Footer from '../shared/Footer.vue'
     font-size: 14px;
     padding: 10px 15px;
     line-height: 18px;
-    min-height: 230px;
+   
   }
   .informationkarriere {
     border: 1px solid #ddd;

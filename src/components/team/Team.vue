@@ -48,7 +48,7 @@
               <v-layout>
                 <v-flex xs6 md6 align-self-center grow class="picture">
                   <v-img
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Dallas_Mavericks_logo.svg/1280px-Dallas_Mavericks_logo.svg.png"
+                    :src="team.data.imageLink"
                     min-height=230px
                     contain>
                   </v-img>
@@ -58,9 +58,9 @@
                     <tr><th>Teamname:</th></tr>
                     <tr>{{team.data.name}}</tr>
                     <tr><th>Ort:</th></tr>
-                    <tr>Dallas, Texas</tr>
+                    <tr>{{team.data.location}}</tr>
                     <tr><th>Gründung:</th></tr>
-                    <tr>1980</tr>
+                    <tr>{{team.data.foundation}}</tr>
                     <tr><th>Headcoach:</th></tr>
                     <tr>Rick Carlisle</tr>
                     <tr><th>Arena</th></tr>
@@ -89,9 +89,9 @@
               </v-layout>
               <v-layout>
                 <v-flex xs12 md12 class="background">
-                  <v-card max-width="285" max-height="100" class="newscard" v-for="news in TeamNews" :key="news.id" @click="viewNews(news.data, news.id)">
+                  <v-card max-width="440" max-height="100" class="newscard" v-for="news in TeamNews" :key="news.id" @click="viewNews(news.data, news.id)">
                     <v-layout align-center>
-                      <v-flex xs4 md4>
+                      <v-flex xs3 md3>
                         <v-img
                           :src="news.data.imageLink"
                           max-width="200px"
@@ -100,7 +100,7 @@
                           >
                         </v-img>
                       </v-flex>
-                      <v-flex xs8 md8>
+                      <v-flex xs9 md9>
                         <v-card-text>
                           <div>
                             <div class="news">
@@ -239,114 +239,7 @@
             width: '60',
           },
         ],
-        items: [
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            height: 2.01,
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-          {
-            nr: 77,
-            playername: 'Luka Doncic',
-            pos1: 'SF',
-            birthday: '28.02.1999',
-            nationality: 'Flag',
-          },
-        ],
+        items: null,
         itemscoach: [
           {
             coachname: 'Rick Carlisle',
@@ -369,11 +262,23 @@
       },
       allNews () {
         return this.$store.getters.getAllNews
-      }
-    },
+      },
+      person () {
+        return this.$store.getters.getAllPersons
+      },
+    }, 
     created () {
       const TeamNews = this.allNews.filter(news => news.data.team == '1')
         this.TeamNews = TeamNews
+        
+      const leerzeichen = ' ';
+      let items = []
+      this.person.map((person, i) => {
+        if(person.data.teamID === this.team.id) {
+          items.push({playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, nationality:person.data.nation})
+        }
+      })
+      this.items = items
     }
   }
 </script>
