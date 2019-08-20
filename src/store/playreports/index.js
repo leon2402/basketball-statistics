@@ -11,7 +11,6 @@ export default {
             state.allPlayReports = payload
         },
         setUnfinishedPlayReport(state, payload){
-        unfinishedPlayReports: null
             state.unfinishedPlayReports = payload
         },
         setSelectedPlayReport(state, payload){
