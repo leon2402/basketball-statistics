@@ -18,6 +18,16 @@
                     :items="items"
                     :items-per-page="20"
                     hide-default-footer>
+                    <template v-slot:item="props">
+                      <tr>
+                        <td> {{props.item.nr}} </td>
+                        <td @click="onLoadPlayer(player.data, player.id)"> {{props.item.playername}} </td>
+                        <td> {{props.item.pos1}} </td>
+                        <td> {{props.item.birthday}} </td>
+                        <td> {{props.item.height}} </td>
+                        
+                      </tr>
+                    </template>
                   </v-data-table>
                 </v-flex>
               </v-layout>
@@ -254,7 +264,11 @@
         viewNews (newsData, id) {
             this.$store.dispatch('selectNews', id)
             this.$router.push('/news/' + newsData.title + '/' + id)
-        }
+        },
+        onLoadPlayer (playerdata, id) {
+        this.$store.dispatch('selectPerson', id)
+        this.$router.push('/player/' + playerdata.name + '/' + id)
+      }
     },
     computed: {
       team () {
@@ -275,7 +289,7 @@
       let items = []
       this.person.map((person, i) => {
         if(person.data.teamID === this.team.id) {
-          items.push({playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, nationality:person.data.nation})
+          items.push({playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
       })
       this.items = items

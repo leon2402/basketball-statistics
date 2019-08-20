@@ -60,6 +60,7 @@ export default {
             commit('clearError')
             db.collection("playreports").add({
                liga: data.liga,
+               spieltag: data.spieltag,
                team1: data.team1,
                team2: data.team2,
                date: data.date

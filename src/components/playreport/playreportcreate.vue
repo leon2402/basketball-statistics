@@ -36,6 +36,23 @@
                         <v-layout row>
                             <v-flex xs6 offset-sm2>
                                 <v-select
+                                    v-model="spieltag"
+                                    :items="spieltage"
+                                    name="spieltag"
+                                    label="Spieltag/Gruppe/usw."
+                                    id="spieltag">
+                                </v-select>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm2>
+                                <v-select
                                     v-model="team1"
                                     :items="teamNames"
                                     name="team"
@@ -117,7 +134,12 @@ import Footer from '../shared/Footer.vue'
         data () {
             return {
                 liga: null,
-                ligen: ['NBA', 'BBL'],
+                ligen: ['NBA','FIBA WM'],
+                spieltag: null,
+                spieltage: ['1', '2', '3', '4', '5', '6', '7', '8', '9',
+                '10', '11', '12', '13','14', '15', '16', '17', '18', '19',
+                '20', '21', '22', '23','24', '25', '26', '27', '28', '29', '30',
+                '31', '32', '33', '34', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',],
                 team1: null,
                 team2: null,
                 teamNames: [],
@@ -142,6 +164,7 @@ import Footer from '../shared/Footer.vue'
 
                 let newPlayReport = {
                     liga: this.liga,
+                    spieltag: this.spieltag,
                     team1: teamID1,
                     team2: teamID2,
                     date: this.submittableDateTime
@@ -163,6 +186,9 @@ import Footer from '../shared/Footer.vue'
             persons () {
                 return this.$store.getters.getAllPersons
             },
+            liga () {
+                return this.$store.getters.getAllLeagues
+            },
             submittableDateTime () {
                 const date = new Date(this.datePicker)
                 const hours = this.time.match(/^(\d+)/)[1]
@@ -183,6 +209,9 @@ import Footer from '../shared/Footer.vue'
             this.teams.map((team, index) => {
                 this.teamNames.push(team.data.name)
             }) 
+            this.liga.map((liga, index) => {
+                this.ligen.push(liga.data.name)
+            })
         },
     }
 </script>
