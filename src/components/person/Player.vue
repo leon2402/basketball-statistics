@@ -176,7 +176,7 @@
                   <v-data-table class="datatable"
                     :headers="headers"
                     :items="playerStats"
-                    
+                    @click:row="showConsole(value)"
                     hide-default-footer>
                   </v-data-table>
                 </v-flex>
@@ -276,12 +276,12 @@ import Footer from '../shared/Footer.vue'
             value: 'DRB',
             align: 'center',
           },
-          /*{
+          {
             text: 'TRB',
             sortable: false,
             value: 'trb',
             align: 'center',
-          },*/
+          },
           {
             text: 'AST',
             sortable: false,
@@ -396,6 +396,11 @@ import Footer from '../shared/Footer.vue'
             align: 'center',
           }
         ]
+      }
+    },
+    methods: {
+      showConsole (items) {
+        console.log(items)
       }
     },
     computed: {
@@ -522,7 +527,7 @@ import Footer from '../shared/Footer.vue'
     font-size: 14px;
     padding: 10px 15px;
     line-height: 18px;
-    min-height: 230px;
+   
   }
   .informationkarriere {
     border: 1px solid #ddd;

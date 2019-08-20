@@ -20,29 +20,15 @@
                                                 </v-flex>
                                             </v-layout>
                                             <v-layout>
-                                                <v-simple-table class="datatablewestern"
-                                                    dense>
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center">#</th>
-                                                        <th class="text-left">Team</th>
-                                                        <th class="text-center">W</th>
-                                                        <th class="text-center">L</th>
-                                                        <th class="text-center">%</th>
-                                                        <th class="text-center">GP</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="item in western" :key="item.name">
-                                                        <td class="text-center">{{ item.position }}</td>
-                                                        <td class="text-left">{{ item.teamName }}</td>
-                                                        <td class="text-center">{{ item.win }}</td>
-                                                        <td class="text-center">{{ item.loses }}</td>
-                                                        <td class="text-center">{{ item.pct }}</td>
-                                                        <td class="text-center">{{ item.gamesPlayed }}</td>
-                                                    </tr>
-                                                </tbody>
-                                                </v-simple-table>
+                                                <v-data-table class="datatable"
+                                                :headers="headerconference"
+                                                :items="western"
+                                                :items-per-page="15"
+                                                sort-by="pct"
+                                                hide-default-footer
+                                                @click:row="viewTeam(team.id, team.data)"
+                                                dense>
+                                                </v-data-table>
                                             </v-layout>
                                         </v-container>
                                     </v-flex>
@@ -54,29 +40,14 @@
                                                 </v-flex>
                                             </v-layout>
                                             <v-layout>
-                                                <v-simple-table class="datatableeastern"
+                                                <v-data-table class="datatable"
+                                                :headers="headerconference"
+                                                :items="eastern"
+                                                :items-per-page="15"
+                                                sort-by="pct"
+                                                hide-default-footer
                                                 dense>
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center">#</th>
-                                                            <th class="text-left">Team</th>
-                                                            <th class="text-center">W</th>
-                                                            <th class="text-center">L</th>
-                                                            <th class="text-center">%</th>
-                                                            <th class="text-center">GP</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr v-for="item in eastern" :key="item.name">
-                                                            <td class="text-center">{{ item.position }}</td>
-                                                            <td class="text-left">{{ item.teamName }}</td>
-                                                            <td class="text-center">{{ item.win }}</td>
-                                                            <td class="text-center">{{ item.loses }}</td>
-                                                            <td class="text-center">{{ item.pct }}</td>
-                                                            <td class="text-center">{{ item.gamesPlayed }}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </v-simple-table>
+                                                </v-data-table>
                                             </v-layout>
                                         </v-container>
                                     </v-flex>
@@ -144,6 +115,39 @@
     },
     data () {
       return{
+        headerconference: [
+            {
+                text:'Team',
+                sortable: true,
+                value: 'teamName',
+                align: 'left',
+                width: '260'
+            },
+            {
+                text:'W',
+                sortable: true,
+                value: 'win',
+                align: 'center',
+            },
+            {
+                text:'L',
+                sortable: true,
+                value: 'loses',
+                align: 'center',
+            },
+            {
+                text:'PCT',
+                sortable: true,
+                value: 'pct',
+                align: 'center',
+            },
+            {
+                text:'GP',
+                sortable: true,
+                value: 'gamesPlayed',
+                align: 'center',
+            }
+        ],
         gameday: [
             {
                 text: 'Datum',
@@ -195,6 +199,10 @@
         viewNews (newsData, id) {
             this.$store.dispatch('selectNews', id)
             this.$router.push('/news/' + newsData.title + '/' + id)
+        },
+        viewTeam (id, teamData) {
+            this.$store.dispatch('selectTeam', id)
+            this.$router.push('/team/' + teamData.name)
         }
     },
     computed: {
@@ -215,13 +223,13 @@
             let loss = 0
             this.allPlayReports.map((item, i) => {
                 const colon = item.data.gesamtErgebnis.search(/:/)
-                if(team.id == item.data.team1 && team.data.conference === 'Western') {
+                if(team.id == item.data.team1) {
                     if(item.data.gesamtErgebnis.slice(0,colon) > item.data.gesamtErgebnis.slice(colon+1)){
                         win += 1
                     } else {
                         loss += 1
                     }
-                } else if(team.id == item.data.team2 && team.data.conference === 'Western') {
+                } else if(team.id == item.data.team2) {
                     if(item.data.gesamtErgebnis.slice(0,colon) < item.data.gesamtErgebnis.slice(colon+1)){
                         win += 1
                     } else {
@@ -330,7 +338,6 @@
     padding: 5px 8px 4px;
     border: 2px solid #ddd;
     margin-top: 10px;
-    margin-left: 1%
     }
     .test {
         margin-top: 10px;

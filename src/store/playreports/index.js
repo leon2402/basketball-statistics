@@ -3,14 +3,19 @@ import { db } from '@/firebase.js'
 export default {
     state:{
         allPlayReports: null,
-        selectedPlayReport: null
+        selectedPlayReport: null,
+        unfinishedPlayReports: null
     },
     mutations:{
         setPlayReport(state, payload){
             state.allPlayReports = payload
         },
+        setUnfinishedPlayReport(state, payload){
+        unfinishedPlayReports: null
+            state.unfinishedPlayReports = payload
+        },
         setSelectedPlayReport(state, payload){
-            state.allPlayReports.map((item, index) => {
+            state.unfinishedPlayReports.map((item, index) => {
                 if(item.id == payload){
                     state.selectedPlayReport = item
                 }
@@ -21,6 +26,7 @@ export default {
         loadAllPlayReports ({commit}) {
             //commit('setSiteLoading', true)
             let allPlayReports = []
+            let unfinishedPlayReports = []
             //Dates for Season 2019/2020
             const start = new Date('2019-07-01');
             const end = new Date('2020-06-30');
@@ -30,13 +36,19 @@ export default {
                 let changes = querySnapshot.docChanges()
                 changes.forEach(change => {
                     console.log(change.type)
-                    let team = {
+                    let playReport = {
                         id: change.doc.id,
                         data: change.doc.data()
                     }
-                    allPlayReports.push(team)
+                    if(playReport.data.gesamtErgebnis){
+                        allPlayReports.push(playReport)
+                    } else {
+                        unfinishedPlayReports.push(playReport)
+                    }
+                    
                 })
             commit('setPlayReport', allPlayReports)
+            commit('setUnfinishedPlayReport', unfinishedPlayReports)
             //commit('setSiteLoading', false)
             }, err => {
                 commit('setError', error)
@@ -48,6 +60,7 @@ export default {
             commit('clearError')
             db.collection("playreports").add({
                liga: data.liga,
+               spieltag: data.spieltag,
                team1: data.team1,
                team2: data.team2,
                date: data.date
@@ -93,6 +106,9 @@ export default {
     getters: {
         getAllPlayReports (state) {
             return state.allPlayReports
+        },
+        getUnfinishedPlayReports (state) {
+            return state.unfinishedPlayReports
         },
         getSelectedPlayReport (state) {
             return state.selectedPlayReport
