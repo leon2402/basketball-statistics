@@ -256,6 +256,11 @@ import Footer from '../shared/Footer.vue'
                     }
                 ]
             }
+        },
+        computed: {
+            playReport () {
+                return this.$store.getters.getSelectedPlayReport
+            }
         }
     }
 </script>
