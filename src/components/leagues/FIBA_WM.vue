@@ -289,7 +289,6 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer
-                                                            @click:row="test(any)"
                                                             >
                                                             <template v-slot:item="props">
                                                                 <tr @click="viewPlayReport(props.item)">
@@ -475,7 +474,7 @@ import { type } from 'os';
             this.$router.push('/team/' + item.teamName)
         },
         viewPlayReport (item) {
-            console.log(item)
+            //consolconsole.log(item)
             this.$store.dispatch('selectPlayReport', item.playreportID)
             this.$router.push('/gamereport/'+ item.playreportID)
         }
