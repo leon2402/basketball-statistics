@@ -599,7 +599,7 @@ import { type } from 'os';
             this.$router.push('/team/' + item.teamName)
         },
         viewPlayReport (item) {
-            console.log(item)
+            //consolconsole.log(item)
             this.$store.dispatch('selectPlayReport', item.playreportID)
             this.$router.push('/gamereport/'+ item.playreportID)
         }

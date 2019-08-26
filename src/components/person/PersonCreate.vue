@@ -240,7 +240,7 @@
                 <v-flex xs6>
                     <form>
                         <v-layout row>
-                            <v-flex xs6 offset-sm2>
+                            <v-flex xs3 offset-sm1>
                                 <v-select
                                     v-model="team"
                                     :items="teamNames"
@@ -248,6 +248,35 @@
                                     label="Team Auswahl"
                                     id="team">
                                 </v-select>
+                            </v-flex>
+                            <v-flex xs3 offset-sm1>
+                                <v-text-field
+                                    v-model="teamnumber"
+                                    :items="teamnumber"
+                                    name="teamnumber"
+                                    label="Nummer im Team"
+                                    id="teamnumber">
+                                </v-text-field>
+                            </v-flex>
+                        </v-layout>
+                        <v-layout row>
+                            <v-flex xs3 offset-sm1>
+                                <v-select
+                                    v-model="nationalteam"
+                                    :items="teamNames"
+                                    name="nationalteam"
+                                    label="Nationalmannschaft"
+                                    id="nationalteam">
+                                </v-select>
+                            </v-flex>
+                            <v-flex xs3 offset-sm1>
+                                <v-text-field
+                                    v-model="nationalteamnumber"
+                                    :items="nationalteamnumber"
+                                    name="nationalteamnumber"
+                                    label="Nummer im Nationalteam"
+                                    id="nationalteamnumber">
+                                </v-text-field>
                             </v-flex>
                         </v-layout>
                     </form>
@@ -345,9 +374,12 @@ import nationsData from '../shared/nations.json'
                 draftyear: null,
                 draftpick: null,
                 draftround: null,
-                positions: ['Center', 'Power Forward', 'Small Forward', 'Shooting Guard', 'Point Guard'],
+                positions: ['C', 'PF', 'SF', 'SG', 'PG'],
                 team: null,
                 teamNames: [],
+                teamnumber: null,
+                nationalteam: null,
+                nationalteamnumber: null,
                 nations: [],
                 draftyears: ['1997', '1998', '1999',
                 '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009',
@@ -366,7 +398,13 @@ import nationsData from '../shared/nations.json'
                     if(team.data.name == this.team){
                         teamID = team.id
                     }
-                })  
+                }) 
+                let nationalteamID
+                this.teams.map((team, index) => {
+                    if(team.data.name == this.nationalteam){
+                        nationalteamID = team.id
+                    }
+                })   
                 let newperson = {
                     role: this.role,
                     gender: this.gender,
@@ -387,10 +425,28 @@ import nationsData from '../shared/nations.json'
                     teamID: teamID,
                     draftyear: this.draftyear,
                     draftpick: this.draftpick,
-                    draftround: this.draftround
+                    draftround: this.draftround,
+                    teamnumber: this.teamnumber,
+                    nationalteamID: nationalteamID,
+                    nationalteamnumber: this.nationalteamnumber
                 }
                 console.log(newperson)
-                this.$store.dispatch('createPerson', newperson)
+                    this.$store.dispatch('createPerson', newperson)
+                    this.firstname = null
+                    this.name = null
+                    this.fullname = null
+                    this.imageLink = null
+                    this.birth = null
+                    this.birthplace = null
+                    this.birthnation = null
+                    this.nation = null
+                    this.nation2 = null
+                    this.position1 = null
+                    this.position2 = null
+                    this.team = null
+                    this.teamnumber = null
+                    this.nationalteam = null
+                    this.nationalteamnumber = null
             },
         },
         computed: {
@@ -404,7 +460,7 @@ import nationsData from '../shared/nations.json'
                 return this.$store.getters.getAllTeams
             },
             checkForm () {
-                if(this.name && this.firstname && this.team && this.role){
+                if(this.name && this.firstname && this.role){
                     return false
                 } else {
                     return true

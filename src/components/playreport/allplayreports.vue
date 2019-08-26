@@ -9,7 +9,8 @@
               <v-card-title primary-title>
                 <div>
                   <h3 class="headline mb-0">{{playreport.data.liga}}</h3>
-                  
+                  <p>{{teamName(playreport.data.team1)}} : {{teamName(playreport.data.team2)}}</p>
+
                 </div>
               </v-card-title>
               <v-card-actions>
@@ -37,17 +38,24 @@ import Footer from '../shared/Footer.vue'
       Header,
       Footer
     },
-    name: 'Player',
+    name: 'AllPlayReports',
     methods: {
         editPlayReport (id) {
             this.$store.dispatch('selectPlayReport', id)
             this.$router.push('/playreportedit/'+ id)
+        },
+        teamName (teamID) {
+          const team = this.teams.find(team => team.id === teamID)
+          return team.data.name
         }
     },
     computed: {
-        allPlayReports () {
-            return this.$store.getters.getUnfinishedPlayReports
-        }
+      allPlayReports () {
+        return this.$store.getters.getUnfinishedPlayReports
+      },
+      teams () {
+        return this.$store.getters.getAllTeams
+      }
     }
   }
 </script>

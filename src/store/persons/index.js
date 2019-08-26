@@ -85,9 +85,12 @@ export default {
                 position1: player.position1,
                 position2: player.position2,
                 teamID: player.teamID,
+                nationalteamID: player.nationalteamID,
                 draftyear: player.draftyear,
                 draftpick: player.draftpick,
-                draftround: player.draftround
+                draftround: player.draftround,
+                teamnumber: player.teamnumber,
+                nationalteamnumber: player.nationalteamnumber
             })
             .then(function() {
                 alert("Document successfully written!");

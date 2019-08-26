@@ -288,7 +288,7 @@
       const leerzeichen = ' ';
       let items = []
       this.person.map((person, i) => {
-        if(person.data.teamID === this.team.id) {
+        if(person.data.teamID === this.team.id || person.data.nationalteamID === this.team.id) {
           items.push({playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
       })

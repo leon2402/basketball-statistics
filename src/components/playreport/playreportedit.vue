@@ -344,8 +344,8 @@ import Arena from '../shared/arena.json'
             const teamName1 = this.teams.find(team => team.id == this.playReport.data.team1)
             const teamName2 = this.teams.find(team => team.id == this.playReport.data.team2)
             this.teamNames = [ teamName1.data.name , teamName2.data.name ] 
-            const playerNames1 = this.player.filter(player => player.data.teamID == this.playReport.data.team1)
-            const playerNames2 = this.player.filter(player => player.data.teamID == this.playReport.data.team2)
+            const playerNames1 = this.player.filter(player => player.data.teamID == this.playReport.data.team1 || player.data.nationalteamID == this.playReport.data.team1)
+            const playerNames2 = this.player.filter(player => player.data.teamID == this.playReport.data.team2 || player.data.nationalteamID == this.playReport.data.team2)
             this.playerTeam1 = playerNames1
             this.playerTeam2 = playerNames2
 

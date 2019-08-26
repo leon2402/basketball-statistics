@@ -61,7 +61,7 @@
                   <v-divider light></v-divider>
                   <v-card-actions>
                     <v-btn 
-                    flat 
+                    text 
                     dark
                     @click="viewNews(news.data, news.id)"
                     >
@@ -103,7 +103,7 @@
                   <v-divider light></v-divider>
                   <v-card-actions>
                     <v-btn 
-                    flat 
+                    text
                     dark
                     @click="viewNews(news.data, news.id)"
                     >
