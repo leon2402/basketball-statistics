@@ -33,10 +33,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -65,10 +65,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -99,10 +99,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -131,10 +131,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -165,10 +165,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -197,10 +197,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -231,10 +231,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -263,10 +263,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -289,15 +289,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                     <v-tab>Gruppe B</v-tab>
@@ -309,15 +309,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                     <v-tab>Gruppe C</v-tab>
@@ -329,15 +329,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                     <v-tab>Gruppe D</v-tab>
@@ -349,15 +349,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                     <v-tab>Gruppe E</v-tab>
@@ -369,15 +369,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                     <v-tab>Gruppe F</v-tab>
@@ -389,25 +389,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
-                                                                    <td class="text-center"> 
-                                                                        <img :src="props.item.imageLink" 
-                                                                            height="12px"
-                                                                            width="23px">
-                                                                            &nbsp;&nbsp;
-                                                                        {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
-                                                                    <td class="text-center"> 
-                                                                        <img :src="props.item.imageLink" 
-                                                                            height="12px"
-                                                                            width="23px">
-                                                                            &nbsp;&nbsp;
-                                                                        {{props.item.awayteam}} </td>        
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                     <v-tab>Gruppe G</v-tab>
@@ -418,14 +408,12 @@
                                                             :items="gamesg"
                                                             :items-per-page="15"
                                                             sort-by="date"
-                                                            hide-default-footer
-                                                            @click:row="test(any)"
-                                                            >
+                                                            hide-default-footer>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
@@ -441,15 +429,15 @@
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                 </v-tabs>
@@ -479,7 +467,7 @@
                                 </v-layout>
                                 <v-layout>
                                     <v-flex xs12 md12 class="background">
-                                        <v-card max-width="285" max-height="100" class="newscard" v-for="news in NBANews" :key="news.id" @click="viewNews(news.data, news.id)">
+                                        <v-card max-width="285" max-height="100" class="newscard" v-for="news in FIBANews" :key="news.id" @click="viewNews(news.data, news.id)">
                                             <v-layout align-center>
                                             <v-flex xs4 md4>
                                                 <v-img
@@ -535,24 +523,28 @@ import { type } from 'os';
                 sortable: true,
                 value: 'win',
                 align: 'center',
+                width: '30'
             },
             {
                 text:'L',
                 sortable: true,
                 value: 'loses',
                 align: 'center',
+                width: '30'
             },
             {
                 text:'PKT',
                 sortable: true,
                 value: 'pkt',
                 align: 'center',
+                width: '30'
             },
             {
                 text:'GP',
                 sortable: true,
                 value: 'gamesPlayed',
                 align: 'center',
+                width: '30'
             }
         ],
         gameday: [
@@ -568,6 +560,7 @@ import { type } from 'os';
                 sortable: true,
                 value: 'hometeam',
                 align: 'center',
+                width: '200',
             },
             {
                 text: 'Erg.',
@@ -581,6 +574,7 @@ import { type } from 'os';
                 sortable: true,
                 value: 'awayteam',
                 align: 'center',
+                width: '200',
             },
         ],
         groupa: null,
@@ -1193,8 +1187,8 @@ import { type } from 'os';
 
         this.gamesh = gamesh
 
-        const NBANews = this.allNews.filter(news => news.data.NBA == '1')
-        this.NBANews = NBANews
+        const FIBANews = this.allNews.filter(news => news.data.FIBA == '1')
+        this.FIBANews = FIBANews
     },
 }
 </script>
@@ -1203,5 +1197,10 @@ import { type } from 'os';
     .v-data-table .teamnameleft {
         padding: 5px 8px 4px;
         border-right: 0px;
+    }
+    .btnfibawm {
+        text-transform: inherit;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif
     }
 </style>

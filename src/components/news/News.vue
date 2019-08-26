@@ -15,7 +15,9 @@
                   <div>{{news.data.title}}</div>
                 </div>
               </v-card-title>
-                <v-card-text class="text--primary">
+                <v-card-text class="text--primary"
+                  >
+                  <span v-html="news.data.text"> </span>
                 </v-card-text>
             </v-card>
           </v-flex>
@@ -36,19 +38,22 @@
 <script>
 import Header from '../shared/Header.vue'
 import Footer from '../shared/Footer.vue'
+import NewsData from '../shared/news.json'
   export default {
     components: {
       Header,
       Footer
     },
-    name: 'Player',
+    name: 'News',
     data () {
       return{
         menuItems: [
             { title: 'News', link:'/allnews'},
             { title: 'AllPlayer', link:'/allplayer'},
             { title: 'Teams', link:'/teams'},
-        ]
+        ],
+        
+        newstext: null,
       }
     },
     computed: {
@@ -56,7 +61,12 @@ import Footer from '../shared/Footer.vue'
             return this.$store.getters.getSelectedNews
         }
     },
-  }
+    created () {
+      const newstext = NewsData.find(newsdata => newsdata.ID === this.news.id)
+      console.log(newstext)
+      this.newstext = newstext.Text
+    }
+    }
 </script>
 
 <style>

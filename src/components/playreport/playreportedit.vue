@@ -83,6 +83,15 @@
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs4 offset-sm2>
+                                    <v-select
+                                        v-model="arenas"
+                                        :items="arena"
+                                        name="arena"
+                                        label="Arena"
+                                        id="arena">
+                                    </v-select>
+                                </v-flex>
+                                <v-flex xs4 offset-sm2>
                                     <v-text-field
                                         v-model="attendance"
                                         name="attendance"
@@ -254,6 +263,7 @@
 <script>
 import Header from '../shared/Header.vue'
 import Footer from '../shared/Footer.vue'
+import Arena from '../shared/arena.json'
     export default {
         components: {
             Header,
@@ -267,6 +277,8 @@ import Footer from '../shared/Footer.vue'
                 ergebnis3viertel: null,
                 ergebnis4viertel: null,
                 gesamtErgebnis: null,
+                arenas: null,
+                arena: [],
                 attendance: null,
                 referee1: null,
                 referee2: null,
@@ -300,6 +312,7 @@ import Footer from '../shared/Footer.vue'
                     ergebnis3viertel: this.ergebnis3viertel,
                     ergebnis4viertel: this.ergebnis4viertel,
                     gesamtErgebnis: this.gesamtErgebnis,
+                    arenas: this.arenas,
                     attendance: this.attendance,
                     referee1: this.referee1,
                     referee2: this.referee2,
@@ -349,6 +362,11 @@ import Footer from '../shared/Footer.vue'
                 ORB:null, DRB: null, AST: null, STL: null, BLK: null, TOV: null, PF: null, PTS: null, plusMinus: null}
             })
             this.playerDataTeam2 = playerDataTeam2
+        },
+        mounted () {
+            Arena.map((item, index) => {
+                this.arena.push(item.name)
+            })
         }
     }
 </script>
