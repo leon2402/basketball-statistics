@@ -1,0 +1,10 @@
+[
+    {"name": "Dongguan Basketball Center", "Capacity": "16.000", "Location": "Dongguan"},
+    {"name": "Foshan International Sports & Cultural Arena", "Capacity": "14.700", "Location": "Foshan"},
+    {"name": "Guangzhou Gymnasium", "Capacity": "11.609", "Location": "Guangzhou"},
+    {"name": "Gymnasium of Youth Olypmic Games Sport Park", "Capacity": "19.614", "Location": "Nanjing"},
+    {"name": "Shanghai Oriental Sports Center", "Capacity": "18.000", "Location": "Shanghai"},
+    {"name": "Shenzhen Bay Sports Centre", "Capacity": "12.381", "Location": "Shenzhen"},
+    {"name": "Wuhan Sport Center", "Capacity": "11.700", "Location": "Wuhan"},
+    {"name": "Wukesong Sport Center", "Capacity": "18.000", "Location": "Beijing"}
+]

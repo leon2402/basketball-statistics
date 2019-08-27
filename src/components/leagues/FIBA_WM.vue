@@ -33,10 +33,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -65,10 +65,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -99,10 +99,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -131,10 +131,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -165,10 +165,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -197,10 +197,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -231,10 +231,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -263,10 +263,10 @@
                                                             dense>
                                                             <template v-slot:item="props">
                                                                 <tr>
-                                                                    <td class="teamnameleft"> <img :src="props.item.imageLink" 
+                                                                    <td class="teamnameleft" @click="viewTeam(props.item)"> <v-btn text x-small class="btnfibawm"><img :src="props.item.imageLink" 
                                                                             height="12px"
                                                                             width="23px">
-                                                                            &nbsp;&nbsp;{{props.item.teamName}} </td>
+                                                                            &nbsp;&nbsp;{{props.item.teamName}} </v-btn> </td>
                                                                     <td align="center"> {{props.item.win}} </td>
                                                                     <td align="center"> {{props.item.loses}} </td>
                                                                     <td align="center"> {{props.item.pkt}} </td>
@@ -280,21 +280,40 @@
                                             </v-layout>
                                             <v-layout>
                                                 <v-tabs centered>
-                                                    <v-tab>Gruppe G</v-tab>
+                                                    <v-tab>Gruppe A</v-tab>
                                                     <v-tab-item>
                                                         <v-flex xs12 md12 class="test">
                                                             <v-data-table
                                                             :headers="gameday"
-                                                            :items="gamesg"
+                                                            :items="gamesa"
                                                             :items-per-page="15"
                                                             sort-by="date"
-                                                            hide-default-footer
-                                                            >
+                                                            hide-default-footer>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
+                                                                </tr>
+                                                            </template>
+                                                            </v-data-table>
+                                                        </v-flex>
+                                                    </v-tab-item>
+                                                    <v-tab>Gruppe B</v-tab>
+                                                    <v-tab-item>
+                                                        <v-flex xs12 md12 class="test">
+                                                            <v-data-table
+                                                            :headers="gameday"
+                                                            :items="gamesb"
+                                                            :items-per-page="15"
+                                                            sort-by="date"
+                                                            hide-default-footer>
+                                                            <template v-slot:item="props">
+                                                                <tr>
+                                                                    <td class="text-center"> {{props.item.date}} </td>
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
@@ -306,19 +325,119 @@
                                                         <v-flex xs12 md12 class="test">
                                                             <v-data-table
                                                             :headers="gameday"
+                                                            :items="gamesc"
+                                                            :items-per-page="15"
+                                                            sort-by="date"
+                                                            hide-default-footer>
+                                                            <template v-slot:item="props">
+                                                                <tr>
+                                                                    <td class="text-center"> {{props.item.date}} </td>
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
+                                                                </tr>
+                                                            </template>
+                                                            </v-data-table>
+                                                        </v-flex>
+                                                    </v-tab-item>
+                                                    <v-tab>Gruppe D</v-tab>
+                                                    <v-tab-item>
+                                                        <v-flex xs12 md12 class="test">
+                                                            <v-data-table
+                                                            :headers="gameday"
+                                                            :items="gamesd"
+                                                            :items-per-page="15"
+                                                            sort-by="date"
+                                                            hide-default-footer>
+                                                            <template v-slot:item="props">
+                                                                <tr>
+                                                                    <td class="text-center"> {{props.item.date}} </td>
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
+                                                                </tr>
+                                                            </template>
+                                                            </v-data-table>
+                                                        </v-flex>
+                                                    </v-tab-item>
+                                                    <v-tab>Gruppe E</v-tab>
+                                                    <v-tab-item>
+                                                        <v-flex xs12 md12 class="test">
+                                                            <v-data-table
+                                                            :headers="gameday"
+                                                            :items="gamese"
+                                                            :items-per-page="15"
+                                                            sort-by="date"
+                                                            hide-default-footer>
+                                                            <template v-slot:item="props">
+                                                                <tr>
+                                                                    <td class="text-center"> {{props.item.date}} </td>
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
+                                                                </tr>
+                                                            </template>
+                                                            </v-data-table>
+                                                        </v-flex>
+                                                    </v-tab-item>
+                                                    <v-tab>Gruppe F</v-tab>
+                                                    <v-tab-item>
+                                                        <v-flex xs12 md12 class="test">
+                                                            <v-data-table
+                                                            :headers="gameday"
+                                                            :items="gamesf"
+                                                            :items-per-page="15"
+                                                            sort-by="date"
+                                                            hide-default-footer>
+                                                            <template v-slot:item="props">
+                                                                <tr>
+                                                                    <td class="text-center"> {{props.item.date}} </td>
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
+                                                                </tr>
+                                                            </template>
+                                                            </v-data-table>
+                                                        </v-flex>
+                                                    </v-tab-item>
+                                                    <v-tab>Gruppe G</v-tab>
+                                                    <v-tab-item>
+                                                        <v-flex xs12 md12 class="test">
+                                                            <v-data-table
+                                                            :headers="gameday"
                                                             :items="gamesg"
                                                             :items-per-page="15"
                                                             sort-by="date"
                                                             hide-default-footer>
-                                                            </v-data-table>
                                                             <template v-slot:item="props">
-                                                                <tr @click="viewPlayReport(props.item)">
+                                                                <tr>
                                                                     <td class="text-center"> {{props.item.date}} </td>
                                                                     <td class="text-center"> {{props.item.hometeam}} </td>
-                                                                    <td class="text-center"> {{props.item.result}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
                                                                     <td class="text-center"> {{props.item.awayteam}} </td>        
                                                                 </tr>
                                                             </template>
+                                                            </v-data-table>
+                                                        </v-flex>
+                                                    </v-tab-item>
+                                                    <v-tab>Gruppe H</v-tab>
+                                                    <v-tab-item>
+                                                        <v-flex xs12 md12 class="test">
+                                                            <v-data-table
+                                                            :headers="gameday"
+                                                            :items="gamesh"
+                                                            :items-per-page="15"
+                                                            sort-by="date"
+                                                            hide-default-footer>
+                                                            <template v-slot:item="props">
+                                                                <tr>
+                                                                    <td class="text-center"> {{props.item.date}} </td>
+                                                                    <td class="text-center"> {{props.item.hometeam}} </td>
+                                                                    <td class="text-center" @click="viewPlayReport(props.item)"> <v-btn text x-small>{{props.item.result}} </v-btn></td>
+                                                                    <td class="text-center"> {{props.item.awayteam}} </td>        
+                                                                </tr>
+                                                            </template>
+                                                            </v-data-table>
                                                         </v-flex>
                                                     </v-tab-item>
                                                 </v-tabs>
@@ -348,7 +467,7 @@
                                 </v-layout>
                                 <v-layout>
                                     <v-flex xs12 md12 class="background">
-                                        <v-card max-width="285" max-height="100" class="newscard" v-for="news in NBANews" :key="news.id" @click="viewNews(news.data, news.id)">
+                                        <v-card max-width="285" max-height="100" class="newscard" v-for="news in FIBANews" :key="news.id" @click="viewNews(news.data, news.id)">
                                             <v-layout align-center>
                                             <v-flex xs4 md4>
                                                 <v-img
@@ -404,24 +523,28 @@ import { type } from 'os';
                 sortable: true,
                 value: 'win',
                 align: 'center',
+                width: '30'
             },
             {
                 text:'L',
                 sortable: true,
                 value: 'loses',
                 align: 'center',
+                width: '30'
             },
             {
                 text:'PKT',
                 sortable: true,
                 value: 'pkt',
                 align: 'center',
+                width: '30'
             },
             {
                 text:'GP',
                 sortable: true,
                 value: 'gamesPlayed',
                 align: 'center',
+                width: '30'
             }
         ],
         gameday: [
@@ -437,6 +560,7 @@ import { type } from 'os';
                 sortable: true,
                 value: 'hometeam',
                 align: 'center',
+                width: '200',
             },
             {
                 text: 'Erg.',
@@ -450,6 +574,7 @@ import { type } from 'os';
                 sortable: true,
                 value: 'awayteam',
                 align: 'center',
+                width: '200',
             },
         ],
         groupa: null,
@@ -468,13 +593,12 @@ import { type } from 'os';
             this.$store.dispatch('selectNews', id)
             this.$router.push('/news/' + newsData.title + '/' + id)
         },
-
         viewTeam (item) {
             this.$store.dispatch('selectTeam', item.teamID)
             this.$router.push('/team/' + item.teamName)
         },
         viewPlayReport (item) {
-            //consolconsole.log(item)
+            console.log(item)
             this.$store.dispatch('selectPlayReport', item.playreportID)
             this.$router.push('/gamereport/'+ item.playreportID)
         }
@@ -522,7 +646,6 @@ import { type } from 'os';
         })
         
         this.groupa = groupa
-
         let groupb = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -551,7 +674,6 @@ import { type } from 'os';
         })
         
         this.groupb = groupb
-
         let groupc = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -580,7 +702,6 @@ import { type } from 'os';
         })
         
         this.groupc = groupc
-
         let groupd = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -609,7 +730,6 @@ import { type } from 'os';
         })
         
         this.groupd = groupd
-
         let groupe = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -638,7 +758,6 @@ import { type } from 'os';
         })
         
         this.groupe = groupe
-
         let groupf = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -667,7 +786,6 @@ import { type } from 'os';
         })
         
         this.groupf = groupf
-
         let groupg = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -696,7 +814,6 @@ import { type } from 'os';
         })
         
         this.groupg = groupg
-
         let grouph = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -725,7 +842,246 @@ import { type } from 'os';
         })
         
         this.grouph = grouph
-
+        let gamesa = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'A') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesa.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'A') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesa.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamesa = gamesa
+        let gamesb = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'B') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesb.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'B') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesb.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamesb = gamesb
+        let gamesc = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'C') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesc.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'C') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesc.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamesc = gamesc
+        let gamesd = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'D') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesd.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'D') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesd.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamesd = gamesd
+        let gamese = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'E') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamese.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'E') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamese.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamese = gamese
+        let gamesf = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'F') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesf.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'F') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesf.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamesf = gamesf
         let gamesg = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'G') {
@@ -743,7 +1099,7 @@ import { type } from 'os';
                 const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
                 const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
                 //console.log(homeTeam)
-                gamesg.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "0:0",  awayteam:awayTeam.data.name})
+                gamesg.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
             }
         })
         this.allPlayReports.map((playreport, index) => {
@@ -765,11 +1121,49 @@ import { type } from 'os';
                 gamesg.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesg = gamesg
-
-        const NBANews = this.allNews.filter(news => news.data.NBA == '1')
-        this.NBANews = NBANews
+        let gamesh = []
+        this.unfinishedPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'H') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesh.push({playreportID: playreport.id, date: formattedDate, hometeam:homeTeam.data.name, result: "- : -",  awayteam:awayTeam.data.name})
+            }
+        })
+        this.allPlayReports.map((playreport, index) => {
+            if(playreport.data.spieltag == 'H') {
+                const date = playreport.data.date.toDate()
+                let dd = date.getDate(); 
+                let mm = date.getMonth() + 1; 
+                const yyyy = date.getFullYear(); 
+                if (dd < 10) { 
+                    dd = '0' + dd; 
+                } 
+                if (mm < 10) { 
+                    mm = '0' + mm; 
+                } 
+                const formattedDate = dd + '.' + mm + '.' + yyyy; 
+                const homeTeam = this.allTeams.find(team => team.id === playreport.data.team1)
+                const awayTeam = this.allTeams.find(team => team.id === playreport.data.team2)
+                //console.log(homeTeam)
+                gamesh.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
+            }
+        })
+        this.gamesh = gamesh
+        const FIBANews = this.allNews.filter(news => news.data.FIBA == '1')
+        this.FIBANews = FIBANews
     },
 }
 </script>
@@ -778,5 +1172,10 @@ import { type } from 'os';
     .v-data-table .teamnameleft {
         padding: 5px 8px 4px;
         border-right: 0px;
+    }
+    .btnfibawm {
+        text-transform: inherit;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif
     }
 </style>

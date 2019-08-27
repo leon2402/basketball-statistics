@@ -64,7 +64,7 @@
                             </v-layout>
                             <v-layout>
                                 <v-tabs centered>
-                                    <v-tab>Dallas Mavericks</v-tab>
+                                    <v-tab>{{homeTeam.data.name}</v-tab>
                                         <v-tab-item>
                                             <v-data-table class="datatable"
                                                 :headers="boxscore"
@@ -73,7 +73,7 @@
                                                 hide-default-footer>
                                             </v-data-table>
                                         </v-tab-item>
-                                    <v-tab>Golden State Warriors</v-tab>
+                                    <v-tab>{{awayTeam.data.name}}</v-tab>
                                         <v-tab-item>
                                             <v-data-table class="datatable"
                                                 :headers="boxscore"
@@ -247,11 +247,9 @@ import Footer from '../shared/Footer.vue'
                 return this.$store.getters.getAllTeams
             }
         },
-        created () {
-
+        mounted () {
             this.homeTeam = this.teams.find(team => team.id === this.playReport.data.team1)
             this.awayTeam = this.teams.find(team => team.id === this.playReport.data.team2)
-
         }
     }
 </script>
