@@ -43,6 +43,40 @@
                     <form>
                         <v-layout row>
                             <v-flex xs6 offset-sm3>
+                                <v-select
+                                    v-model="league"
+                                    :items="leagues"
+                                    name="league"
+                                    label="Liga"
+                                    id="league">
+                                </v-select>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
+                                <v-select
+                                    v-model="group"
+                                    :items="groups"
+                                    name="group"
+                                    label="Gruppe/Ligalevel"
+                                    id="group">
+                                </v-select>
+                            </v-flex>
+                        </v-layout>
+                    </form>
+                </v-flex>
+            </v-layout>
+            <v-layout row>
+                <v-flex xs6>
+                    <form>
+                        <v-layout row>
+                            <v-flex xs6 offset-sm3>
                                 <v-text-field
                                     v-model="nickname"
                                     name="nickname"
@@ -153,6 +187,10 @@
         data () {
             return {
                 name: null,
+                league: null,
+                leagues: ['NBA', 'BBL', 'ProA', 'ProB', 'FIBA WM'],
+                group: null,
+                groups: ['Western Conference', 'Eastern Conference'],
                 nickname: null,
                 shortname: null,
                 foundation: null,
@@ -166,6 +204,8 @@
             createTeam () {
                 let newTeam = {
                     name: this.name,
+                    league: this.league,
+                    group: this.group,
                     nickname: this.nickname,
                     shortname: this.shortname,
                     foundation: this.foundation,
@@ -176,6 +216,8 @@
                 console.log(newTeam)
                 this.$store.dispatch('createTeam', newTeam)
                 this.name = null
+                this.league = null
+                this.group = null
                 this.nickname = null
                 this.shortname = null
                 this.foundation = null

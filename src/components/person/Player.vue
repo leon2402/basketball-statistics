@@ -85,6 +85,7 @@
                   <v-img
                     :src="team.data.imageLink"
                     min-height=230px
+                    max-height=230px
                     contain>
                   </v-img>
                 </v-flex>
@@ -225,7 +226,7 @@ import Footer from '../shared/Footer.vue'
           {
             text: 'FG%',
             sortable: false,
-            value: 'fgp',
+            value: 'FGP',
             align: 'center',
           },
           {
@@ -243,7 +244,7 @@ import Footer from '../shared/Footer.vue'
           {
             text: '3P%',
             sortable: false,
-            value: '3pp',
+            value: 'ThreePO',
             align: 'center',
           },
           {
@@ -261,7 +262,7 @@ import Footer from '../shared/Footer.vue'
           {
             text: 'FT%',
             sortable: false,
-            value: 'ftp',
+            value: 'FTP',
             align: 'center',
           },
           {
@@ -279,7 +280,7 @@ import Footer from '../shared/Footer.vue'
           {
             text: 'TRB',
             sortable: false,
-            value: 'trb',
+            value: 'TRB',
             align: 'center',
           },
           {
@@ -416,7 +417,7 @@ import Footer from '../shared/Footer.vue'
     },
     mounted () {
       this.playReports.map((playReport, index) => {
-        if(playReport.data.team1 === this.player.data.teamID) {
+        if(playReport.data.team1 === this.player.data.teamID || playReport.data.team1 === this.player.data.nationalteamID) {
           const playerData = playReport.data.playerDataTeam1
           const key = Object.keys(playerData).filter(key => key == this.player.id)
           if(playerData[key] == undefined) {
@@ -426,7 +427,7 @@ import Footer from '../shared/Footer.vue'
             this.playerStats.push(playerData[key])
           }
         }
-        else if(playReport.data.team2 === this.player.data.teamID) {
+        else if(playReport.data.team2 === this.player.data.teamID || playReport.data.team2 === this.player.data.nationalteamID) {
           const playerData = playReport.data.playerDataTeam2
           const key = Object.keys(playerData).filter(key => key == this.player.id)
           if(playerData[key] == undefined) {
