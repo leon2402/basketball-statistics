@@ -593,13 +593,12 @@ import { type } from 'os';
             this.$store.dispatch('selectNews', id)
             this.$router.push('/news/' + newsData.title + '/' + id)
         },
-
         viewTeam (item) {
             this.$store.dispatch('selectTeam', item.teamID)
             this.$router.push('/team/' + item.teamName)
         },
         viewPlayReport (item) {
-            //consolconsole.log(item)
+            console.log(item)
             this.$store.dispatch('selectPlayReport', item.playreportID)
             this.$router.push('/gamereport/'+ item.playreportID)
         }
@@ -647,7 +646,6 @@ import { type } from 'os';
         })
         
         this.groupa = groupa
-
         let groupb = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -676,7 +674,6 @@ import { type } from 'os';
         })
         
         this.groupb = groupb
-
         let groupc = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -705,7 +702,6 @@ import { type } from 'os';
         })
         
         this.groupc = groupc
-
         let groupd = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -734,7 +730,6 @@ import { type } from 'os';
         })
         
         this.groupd = groupd
-
         let groupe = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -763,7 +758,6 @@ import { type } from 'os';
         })
         
         this.groupe = groupe
-
         let groupf = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -792,7 +786,6 @@ import { type } from 'os';
         })
         
         this.groupf = groupf
-
         let groupg = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -821,7 +814,6 @@ import { type } from 'os';
         })
         
         this.groupg = groupg
-
         let grouph = []
         this.allTeams.map((team, index) => {
             let win = 0
@@ -850,7 +842,6 @@ import { type } from 'os';
         })
         
         this.grouph = grouph
-
         let gamesa = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'A') {
@@ -890,9 +881,7 @@ import { type } from 'os';
                 gamesa.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesa = gamesa
-
         let gamesb = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'B') {
@@ -932,9 +921,7 @@ import { type } from 'os';
                 gamesb.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesb = gamesb
-
         let gamesc = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'C') {
@@ -974,9 +961,7 @@ import { type } from 'os';
                 gamesc.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesc = gamesc
-
         let gamesd = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'D') {
@@ -1016,9 +1001,7 @@ import { type } from 'os';
                 gamesd.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesd = gamesd
-
         let gamese = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'E') {
@@ -1058,9 +1041,7 @@ import { type } from 'os';
                 gamese.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamese = gamese
-
         let gamesf = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'F') {
@@ -1100,9 +1081,7 @@ import { type } from 'os';
                 gamesf.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesf = gamesf
-
         let gamesg = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'G') {
@@ -1142,9 +1121,7 @@ import { type } from 'os';
                 gamesg.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesg = gamesg
-
         let gamesh = []
         this.unfinishedPlayReports.map((playreport, index) => {
             if(playreport.data.spieltag == 'H') {
@@ -1184,9 +1161,7 @@ import { type } from 'os';
                 gamesh.push({playreportID: playreport.id,date: formattedDate, hometeam:homeTeam.data.name, result: playreport.data.gesamtErgebnis,  awayteam:awayTeam.data.name})
             }
         })
-
         this.gamesh = gamesh
-
         const FIBANews = this.allNews.filter(news => news.data.FIBA == '1')
         this.FIBANews = FIBANews
     },

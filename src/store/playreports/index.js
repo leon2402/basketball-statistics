@@ -19,6 +19,11 @@ export default {
                     state.selectedPlayReport = item
                 }
             })
+            state.allPlayReports.map((item, index) => {
+                if(item.id == payload){
+                    state.selectedPlayReport = item
+                }
+            })
         },
     },
     actions: {
@@ -84,6 +89,7 @@ export default {
                 gesamtErgebnis: data.gesamtErgebnis,
                 arenas: data.arenas,
                 attendance: data.attendance,
+                arenas: this.arenas,
                 referee1: data.referee1,
                 referee2: data.referee2,
                 referee3: data.referee3,
