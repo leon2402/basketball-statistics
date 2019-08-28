@@ -87,6 +87,7 @@ export default {
                 ergebnis3viertel: data.ergebnis3viertel,
                 ergebnis4viertel: data.ergebnis4viertel,
                 gesamtErgebnis: data.gesamtErgebnis,
+                arenas: data.arenas,
                 attendance: data.attendance,
                 arenas: this.arenas,
                 referee1: data.referee1,
