@@ -34,8 +34,11 @@
                                     <v-layout justify-center class="spieldaten">
                                         <b>{{playReport.data.date.toDate()}}</b>
                                     </v-layout>
-                                    <v-layout justify-center class="spieldaten">
-                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>15.870 Zuschauer</b>
+                                    <v-layout justify-center class="spieldaten" v-if="playReport.data.attendance">
+                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>{{playReport.data.attendance}}</b>
+                                    </v-layout>
+                                    <v-layout justify-center class="spieldaten" v-else>
+                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>-</b>
                                     </v-layout>
                                 </v-flex>
                                 <v-flex xs12 md3>
@@ -64,20 +67,20 @@
                             </v-layout>
                             <v-layout>
                                 <v-tabs centered>
-                                    <v-tab>Dallas Mavericks</v-tab>
+                                    <v-tab>{{homeTeam.data.name}}</v-tab>
                                         <v-tab-item>
                                             <v-data-table class="datatable"
                                                 :headers="boxscore"
-                                                :items="boxscoreteam1"
+                                                :items="dataTeam1"
                                                 :items-per-page="20"
                                                 hide-default-footer>
                                             </v-data-table>
                                         </v-tab-item>
-                                    <v-tab>Golden State Warriors</v-tab>
+                                    <v-tab>{{ awayTeam.data.name }}</v-tab>
                                         <v-tab-item>
                                             <v-data-table class="datatable"
                                                 :headers="boxscore"
-                                                :items="boxscoreteam2"
+                                                :items="dataTeam2"
                                                 :items-per-page="20"
                                                 hide-default-footer
                                                 dense>
@@ -106,8 +109,8 @@ import Footer from '../shared/Footer.vue'
             return {
                 homeTeam: null,
                 awayTeam: null,
-                dataTeam1: null,
-                dataTeam2: null,
+                dataTeam1: [],
+                dataTeam2: [],
                 boxscore: [
                     {
                         text: 'Spieler',
@@ -119,7 +122,7 @@ import Footer from '../shared/Footer.vue'
                     {
                         text: 'MP',
                         sortable: false,
-                        value: 'mp',
+                        value: 'MP',
                         align: 'center',
                     },
                     {
@@ -245,13 +248,29 @@ import Footer from '../shared/Footer.vue'
             },
             teams () {
                 return this.$store.getters.getAllTeams
+            },
+            players () {
+                const allplayer = this.$store.getters.getAllPersons.filter(item => item.data.role == "player")
+                return allplayer
             }
         },
-        created () {
-
+        mounted () {
             this.homeTeam = this.teams.find(team => team.id === this.playReport.data.team1)
             this.awayTeam = this.teams.find(team => team.id === this.playReport.data.team2)
 
+            for(let id in this.playReport.data.playerDataTeam1) {
+                const player = this.players.find(player => player.id === id)
+                const data = {name: player.data.name}
+                data = Object.assign(data, this.playReport.data.playerDataTeam1[id])
+                this.dataTeam1.push(data)
+            }
+
+            for(let id in this.playReport.data.playerDataTeam2) {
+                const player = this.players.find(player => player.id === id)
+                const data = {name: player.data.name}
+                data = Object.assign(data, this.playReport.data.playerDataTeam2[id])
+                this.dataTeam2.push(data)
+            }
         }
     }
 </script>

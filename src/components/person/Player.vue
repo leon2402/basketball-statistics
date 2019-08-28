@@ -83,7 +83,7 @@
               <v-layout>
                 <v-flex xs6 md6 align-self-center grow class="picture">
                   <v-img
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Dallas_Mavericks_logo.svg/1280px-Dallas_Mavericks_logo.svg.png"
+                    :src="team.data.imageLink"
                     min-height=230px
                     contain>
                   </v-img>
@@ -91,11 +91,11 @@
                 <v-flex cs6 md6 class="information2">
                   <table class="teamdaten">
                     <tr><th>Teamname:</th></tr>
-                    <tr>Dallas Mavericks</tr>
+                    <tr>{{team.data.name}}</tr>
                     <tr><th>Ort:</th></tr>
                     <tr>Dallas, Texas</tr>
                     <tr><th>Gründung:</th></tr>
-                    <tr>1980</tr>
+                    <tr>{{team.data.foundation}}</tr>
                   </table>
                 </v-flex>
               </v-layout>
@@ -202,7 +202,7 @@ import Footer from '../shared/Footer.vue'
     data () {
       return{
         test: [],
-        
+        team: null,
         headers: [
           {
             text: 'MP',
@@ -222,12 +222,12 @@ import Footer from '../shared/Footer.vue'
             value: 'FGA',
             align: 'center',
           },
-          /*{
+          {
             text: 'FG%',
             sortable: false,
             value: 'fgp',
             align: 'center',
-          },*/
+          },
           {
             text: '3P',
             sortable: false,
@@ -240,12 +240,12 @@ import Footer from '../shared/Footer.vue'
             value: 'ThreePA',
             align: 'center',
           },
-          /*{
+          {
             text: '3P%',
             sortable: false,
             value: '3pp',
             align: 'center',
-          },*/
+          },
           {
             text: 'FT',
             sortable: false,
@@ -258,12 +258,12 @@ import Footer from '../shared/Footer.vue'
             value: 'FTA',
             align: 'center',
           },
-          /*{
+          {
             text: 'FT%',
             sortable: false,
             value: 'ftp',
             align: 'center',
-          },*/
+          },
           {
             text: 'ORB',
             sortable: false,
@@ -401,7 +401,7 @@ import Footer from '../shared/Footer.vue'
     methods: {
       showConsole (items) {
         console.log(items)
-      }
+      },
     },
     computed: {
       player () {
@@ -439,6 +439,7 @@ import Footer from '../shared/Footer.vue'
         else {
         }
       })
+      this.team = this.teams.find(team => team.id === this.player.data.teamID)
     }
   }
 </script>
