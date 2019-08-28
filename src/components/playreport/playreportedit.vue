@@ -83,6 +83,15 @@
                                     </v-text-field>
                                 </v-flex>
                                 <v-flex xs4 offset-sm2>
+                                    <v-select
+                                        v-model="arenas"
+                                        :items="arena"
+                                        name="arena"
+                                        label="Arena"
+                                        id="arena">
+                                    </v-select>
+                                </v-flex>
+                                <v-flex xs4 offset-sm2>
                                     <v-text-field
                                         v-model="attendance"
                                         name="attendance"
@@ -254,6 +263,7 @@
 <script>
 import Header from '../shared/Header.vue'
 import Footer from '../shared/Footer.vue'
+import Arena from '../shared/arena.json'
     export default {
         components: {
             Header,
@@ -267,6 +277,8 @@ import Footer from '../shared/Footer.vue'
                 ergebnis3viertel: null,
                 ergebnis4viertel: null,
                 gesamtErgebnis: null,
+                arenas: null,
+                arena: [],
                 attendance: null,
                 referee1: null,
                 referee2: null,
@@ -287,10 +299,10 @@ import Footer from '../shared/Footer.vue'
                     this.playerDataTeam1[item]['TRB'] = parseFloat(this.playerDataTeam1[item].ORB) + parseFloat(this.playerDataTeam1[item].DRB)
                 }
                 for (let item in this.playerDataTeam2) {
-                    this.playerDataTeam1[item]['FGP'] = parseFloat(this.playerDataTeam1[item].FG) / parseFloat(this.playerDataTeam1[item].FGA)
-                    this.playerDataTeam1[item]['ThreePO'] = parseFloat(this.playerDataTeam1[item].ThreeP) / parseFloat(this.playerDataTeam1[item].ThreePA)
-                    this.playerDataTeam1[item]['FTP'] = parseFloat(this.playerDataTeam1[item].FT) / parseFloat(this.playerDataTeam1[item].FTA)
-                    this.playerDataTeam1[item]['TRB'] = parseFloat(this.playerDataTeam1[item].ORB) + parseFloat(this.playerDataTeam1[item].DRB)
+                    this.playerDataTeam2[item]['FGP'] = parseFloat(this.playerDataTeam2[item].FG) / parseFloat(this.playerDataTeam2[item].FGA)
+                    this.playerDataTeam2[item]['ThreePO'] = parseFloat(this.playerDataTeam2[item].ThreeP) / parseFloat(this.playerDataTeam2[item].ThreePA)
+                    this.playerDataTeam2[item]['FTP'] = parseFloat(this.playerDataTeam2[item].FT) / parseFloat(this.playerDataTeam2[item].FTA)
+                    this.playerDataTeam2[item]['TRB'] = parseFloat(this.playerDataTeam2[item].ORB) + parseFloat(this.playerDataTeam2[item].DRB)
                 }
                 //console.log(this.playerDataTeam1)
                 let updatePlayReport = {
@@ -300,6 +312,7 @@ import Footer from '../shared/Footer.vue'
                     ergebnis3viertel: this.ergebnis3viertel,
                     ergebnis4viertel: this.ergebnis4viertel,
                     gesamtErgebnis: this.gesamtErgebnis,
+                    arenas: this.arenas,
                     attendance: this.attendance,
                     referee1: this.referee1,
                     referee2: this.referee2,
@@ -331,24 +344,27 @@ import Footer from '../shared/Footer.vue'
             const teamName1 = this.teams.find(team => team.id == this.playReport.data.team1)
             const teamName2 = this.teams.find(team => team.id == this.playReport.data.team2)
             this.teamNames = [ teamName1.data.name , teamName2.data.name ] 
-            const playerNames1 = this.player.filter(player => player.data.teamID == this.playReport.data.team1)
-            const playerNames2 = this.player.filter(player => player.data.teamID == this.playReport.data.team2)
+            const playerNames1 = this.player.filter(player => player.data.teamID == this.playReport.data.team1 || player.data.nationalteamID == this.playReport.data.team1)
+            const playerNames2 = this.player.filter(player => player.data.teamID == this.playReport.data.team2 || player.data.nationalteamID == this.playReport.data.team2)
             this.playerTeam1 = playerNames1
             this.playerTeam2 = playerNames2
-
             let playerDataTeam1 = {}
             playerNames1.map((item, index) => {
                 playerDataTeam1[item.id] =  {MP:null, FG:null, FGA: null, ThreeP: null, ThreePA: null, FT: null, FTA: null, 
                 ORB:null, DRB: null, AST: null, STL: null, BLK: null, TOV: null, PF: null, PTS: null, plusMinus: null}
             })
             this.playerDataTeam1 = playerDataTeam1
-
             let playerDataTeam2 = {}
             playerNames2.map((item, index) => {
                 playerDataTeam2[item.id] =  {MP:null, FG:null, FGA: null, ThreeP: null, ThreePA: null, FT: null, FTA: null, 
                 ORB:null, DRB: null, AST: null, STL: null, BLK: null, TOV: null, PF: null, PTS: null, plusMinus: null}
             })
             this.playerDataTeam2 = playerDataTeam2
+        },
+        mounted () {
+            Arena.map((item, index) => {
+                this.arena.push(item.name)
+            })
         }
     }
 </script>

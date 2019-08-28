@@ -127,7 +127,7 @@
 <script>
   import Header from '../shared/Header.vue'
   import Footer from '../shared/Footer.vue'
-  export default {
+export default {
     components: {
       Header,
       Footer
@@ -195,6 +195,11 @@
             }
         ],
       }
+    },
+    computed: {
+        playReport () {
+            return this.$store.getters.getSelectedPlayReport
+        }
     }
-    }
+}
 </script>

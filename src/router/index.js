@@ -13,6 +13,10 @@ import AllPlayReports from '../components/playreport/allplayreports.vue'
 import PlayReportCreate from '../components/playreport/playreportcreate.vue'
 import PlayReportEdit from '../components/playreport/playreportedit.vue'
 import nbaTable from '../components/tables/nbaTable.vue'
+import NBA from '../components/leagues/NBA.vue'
+import Gameplan from '../components/leagues/Gameplan.vue'
+import FIBA_WM from '../components/leagues/FIBA_WM.vue'
+import Gamereport from '../components/playreport/gamereport.vue'
 
 Vue.use(VueRouter)
 
@@ -81,9 +85,29 @@ export default new VueRouter({
             component: PlayReportEdit
         },
         {
+            path: '/nbatable',
+            name: 'NBATable',
+            component: nbaTable
+        },
+        {
             path: '/nba',
             name: 'NBA',
-            component: nbaTable
+            component: NBA
+        },
+        {
+            path: '/nba/gameplan',
+            name: 'Gameplan',
+            component: Gameplan
+        },
+        {
+            path: '/fiba_wm',
+            name: 'FIBA WM',
+            component: FIBA_WM
+        },
+        {
+            path: '/gamereport/:id',
+            name: 'Gamereport',
+            component: Gamereport
         },
     ]
 })

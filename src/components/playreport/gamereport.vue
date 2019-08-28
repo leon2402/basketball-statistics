@@ -15,36 +15,42 @@
                                 <v-flex xs12 md3>
                                     <v-layout>
                                         <v-img
-                                            src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Dallas_Mavericks_logo.svg/1280px-Dallas_Mavericks_logo.svg.png"
+                                            :src="homeTeam.data.imageLink"
                                             max-height=200px
                                             contain>
                                         </v-img>
                                     </v-layout>
                                     <v-layout justify-center>
-                                        <h3>Dallas Mavericks</h3>
+                                        <h3>{{homeTeam.data.name}}</h3>
                                     </v-layout>
                                 </v-flex>
                                 <v-flex xs12 md4>
-                                    <v-layout justify-center class="ergebnis">
-                                        110:113
+                                    <v-layout justify-center class="ergebnis" v-if="playReport.data.gesamtErgebnis">
+                                        {{playReport.data.gesamtErgebnis}}
+                                    </v-layout>
+                                    <v-layout justify-center class="ergebnis" v-else>
+                                        - : -
                                     </v-layout>
                                     <v-layout justify-center class="spieldaten">
-                                        <b>31.10.2019 18:00 Uhr</b>
+                                        <b>{{playReport.data.date.toDate()}}</b>
                                     </v-layout>
-                                    <v-layout justify-center class="spieldaten">
-                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>15.870 Zuschauer</b>
+                                    <v-layout justify-center class="spieldaten" v-if="playReport.data.attendance">
+                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>{{playReport.data.attendance}}</b>
+                                    </v-layout>
+                                    <v-layout justify-center class="spieldaten" v-else>
+                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>-</b>
                                     </v-layout>
                                 </v-flex>
                                 <v-flex xs12 md3>
                                     <v-layout>
                                         <v-img
-                                            src="https://upload.wikimedia.org/wikipedia/en/thumb/0/01/Golden_State_Warriors_logo.svg/1024px-Golden_State_Warriors_logo.svg.png"
+                                            :src="awayTeam.data.imageLink"
                                             max-height=200px
                                             contain>
                                         </v-img>
                                     </v-layout>
                                     <v-layout justify-center>
-                                        <h3>Golden State Warriors</h3>
+                                        <h3>{{awayTeam.data.name}}</h3>
                                     </v-layout>
                                 </v-flex>
                             </v-layout>
@@ -61,20 +67,20 @@
                             </v-layout>
                             <v-layout>
                                 <v-tabs centered>
-                                    <v-tab>Dallas Mavericks</v-tab>
+                                    <v-tab>{{homeTeam.data.name}}</v-tab>
                                         <v-tab-item>
                                             <v-data-table class="datatable"
                                                 :headers="boxscore"
-                                                :items="boxscoreteam1"
+                                                :items="dataTeam1"
                                                 :items-per-page="20"
                                                 hide-default-footer>
                                             </v-data-table>
                                         </v-tab-item>
-                                    <v-tab>Golden State Warriors</v-tab>
+                                    <v-tab>{{ awayTeam.data.name }}</v-tab>
                                         <v-tab-item>
                                             <v-data-table class="datatable"
                                                 :headers="boxscore"
-                                                :items="boxscoreteam2"
+                                                :items="dataTeam2"
                                                 :items-per-page="20"
                                                 hide-default-footer
                                                 dense>
@@ -101,6 +107,10 @@ import Footer from '../shared/Footer.vue'
         },
         data () {
             return {
+                homeTeam: null,
+                awayTeam: null,
+                dataTeam1: [],
+                dataTeam2: [],
                 boxscore: [
                     {
                         text: 'Spieler',
@@ -112,7 +122,7 @@ import Footer from '../shared/Footer.vue'
                     {
                         text: 'MP',
                         sortable: false,
-                        value: 'mp',
+                        value: 'MP',
                         align: 'center',
                     },
                     {
@@ -230,31 +240,36 @@ import Footer from '../shared/Footer.vue'
                         align: 'center',
                     },
                 ],
-                boxscoreteam1: [
-                    {
-                        name: 'Dirk Nowitzki',
-                        mp: '25:35',
-                        fg: 5,
-                        fga: 15,
-                        fgp: 0.333,
-                        tp: 1,
-                        tpa: 4,
-                        tpp: 0.25,
-                        ft: 5,
-                        fta: 5,
-                        ftp: 1,
-                        orb: 0,
-                        drb: 3,
-                        trb: 3,
-                        ast: 2,
-                        stl: 0,
-                        blk: 0,
-                        tov: 1,
-                        pf: 3,
-                        pts: 16,
-                        pn: -5,
-                    }
-                ]
+            }
+        },
+        computed: {
+            playReport () {
+                return this.$store.getters.getSelectedPlayReport
+            },
+            teams () {
+                return this.$store.getters.getAllTeams
+            },
+            players () {
+                const allplayer = this.$store.getters.getAllPersons.filter(item => item.data.role == "player")
+                return allplayer
+            }
+        },
+        mounted () {
+            this.homeTeam = this.teams.find(team => team.id === this.playReport.data.team1)
+            this.awayTeam = this.teams.find(team => team.id === this.playReport.data.team2)
+
+            for(let id in this.playReport.data.playerDataTeam1) {
+                const player = this.players.find(player => player.id === id)
+                const data = {name: player.data.name}
+                data = Object.assign(data, this.playReport.data.playerDataTeam1[id])
+                this.dataTeam1.push(data)
+            }
+
+            for(let id in this.playReport.data.playerDataTeam2) {
+                const player = this.players.find(player => player.id === id)
+                const data = {name: player.data.name}
+                data = Object.assign(data, this.playReport.data.playerDataTeam2[id])
+                this.dataTeam2.push(data)
             }
         }
     }
