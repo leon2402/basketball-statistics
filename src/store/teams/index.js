@@ -47,6 +47,8 @@ export default {
             commit('clearError')
             db.collection("teams").add({
                 name: team.name,
+                league: team.league,
+                group: team.group,
                 nickname: team.nickname,
                 shortname: team.shortname,
                 foundation: team.foundation,
