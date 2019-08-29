@@ -24,10 +24,15 @@ export default new VueRouter({
     mode: 'history',
     base: __dirname,
     routes: [
-        {
+        /*{
             path: '/',
             name: 'HomePage',
             component: HomePage
+        },*/
+        {
+            path: '/',
+            name: 'AllNews',
+            component: AllNews
         },
         {
             path: '/allplayer',
@@ -58,11 +63,6 @@ export default new VueRouter({
             path: '/teamcreate',
             name: 'TeamCreate',
             component: TeamCreate
-        },
-        {
-            path: '/allnews',
-            name: 'AllNews',
-            component: AllNews
         },
         {
             path: '/news/:name/:id',

@@ -24,9 +24,8 @@
     data () {
       return{
         menuItems: [
-          { title: 'News', link:'/allnews'},
-          { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/teams'},
+          { title: 'News', link:'/'},
+          { title: 'FIBA WM', link:'/fiba_wm'},
         ]
       }
     },

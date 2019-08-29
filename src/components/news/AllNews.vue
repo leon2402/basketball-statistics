@@ -14,6 +14,7 @@
                 reverse-transition="fade-transition"
                 transition="fade-transition"
                 color="white"
+                @click="viewNews(news.data, news.id)"
               >
               <v-layout
                 align-end
@@ -62,7 +63,7 @@
                   <v-card-actions>
                     <v-btn 
                     text 
-                    dark
+                    primary
                     @click="viewNews(news.data, news.id)"
                     >
                     View News
@@ -104,7 +105,7 @@
                   <v-card-actions>
                     <v-btn 
                     text
-                    dark
+                    primary
                     @click="viewNews(news.data, news.id)"
                     >
                     View News

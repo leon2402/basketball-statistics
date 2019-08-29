@@ -58,6 +58,7 @@
                 </v-flex>
               </v-layout>
               <v-layout>
+                <!--
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Karriere-Stats</h3></tr>
                 </v-flex>
@@ -70,6 +71,7 @@
                     hide-default-footer>
                   </v-data-table>
                 </v-flex>
+                -->
               </v-layout>
             </v-container>
           </v-flex>
@@ -205,6 +207,12 @@ import Footer from '../shared/Footer.vue'
         test: [],
         team: null,
         headers: [
+          {
+            text: 'Date',
+            sortable: false,
+            value: 'date',
+            align: 'center',
+          },
           {
             text: 'MP',
             sortable: false,
@@ -383,6 +391,7 @@ import Footer from '../shared/Footer.vue'
             align: 'center',
           },
         ],
+        careerStats: [],
         random: [
           {
             gamenrc: 72,
@@ -396,7 +405,8 @@ import Footer from '../shared/Footer.vue'
             blkc: 0.3,
             align: 'center',
           }
-        ]
+        ],
+        relevantNews: [],
       }
     },
     methods: {
@@ -413,6 +423,9 @@ import Footer from '../shared/Footer.vue'
       },
       playReports () {
         return this.$store.getters.getAllPlayReports
+      },
+      allNews () {
+        return this.$store.getters.getAllNews
       }
     },
     mounted () {
@@ -424,7 +437,8 @@ import Footer from '../shared/Footer.vue'
             this.playerStats.push({MP:0})
             //todo colon should display "did not play"
           } else {
-            this.playerStats.push(playerData[key])
+            let playerStats = playerData[key]
+            this.playerStats.push(playerStats)
           }
         }
         else if(playReport.data.team2 === this.player.data.teamID || playReport.data.team2 === this.player.data.nationalteamID) {
@@ -433,14 +447,16 @@ import Footer from '../shared/Footer.vue'
           if(playerData[key] == undefined) {
             //todo colon should display "did not play"
             this.playerStats.push({MP:0})
-          } else {
-            this.playerStats.push(playerData[key])
+          } else {  
+            let playerStats = playerData[key]
+            this.playerStats.push(playerStats)
           }
         }
         else {
         }
       })
       this.team = this.teams.find(team => team.id === this.player.data.teamID)
+      //console.log(this.playerStats)
     }
   }
 </script>
