@@ -17,11 +17,13 @@
                                         <v-img
                                             :src="homeTeam.data.imageLink"
                                             max-height=200px
-                                            contain>
+                                            contain
+                                            @click="viewTeam(homeTeam)"
+                                            >
                                         </v-img>
                                     </v-layout>
                                     <v-layout justify-center>
-                                        <h3>{{homeTeam.data.name}}</h3>
+                                        <h3 @click="viewTeam(homeTeam)">{{homeTeam.data.name}}</h3>
                                     </v-layout>
                                 </v-flex>
                                 <v-flex xs12 md4>
@@ -46,11 +48,13 @@
                                         <v-img
                                             :src="awayTeam.data.imageLink"
                                             max-height=200px
-                                            contain>
+                                            contain
+                                            @click="viewTeam(awayTeam)"
+                                            >
                                         </v-img>
                                     </v-layout>
                                     <v-layout justify-center>
-                                        <h3>{{awayTeam.data.name}}</h3>
+                                        <h3 @click="viewTeam(awayTeam)">{{awayTeam.data.name}}</h3>
                                     </v-layout>
                                 </v-flex>
                             </v-layout>
@@ -241,6 +245,16 @@ import Footer from '../shared/Footer.vue'
                     },
                 ],
             }
+        },
+        methods: {
+            onLoadPlayer (item) {
+                this.$store.dispatch('selectPerson', item.id)
+                this.$router.push('/player/' + item.name + '/' + item.id)
+            },
+            viewTeam (teamData) {
+                this.$store.dispatch('selectTeam', teamData.id)
+                this.$router.push('/team/' + teamData.data.name)
+            }   
         },
         computed: {
             playReport () {

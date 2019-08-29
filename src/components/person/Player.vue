@@ -58,6 +58,7 @@
                 </v-flex>
               </v-layout>
               <v-layout>
+                <!--
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Karriere-Stats</h3></tr>
                 </v-flex>
@@ -70,6 +71,7 @@
                     hide-default-footer>
                   </v-data-table>
                 </v-flex>
+                -->
               </v-layout>
             </v-container>
           </v-flex>
@@ -389,6 +391,7 @@ import Footer from '../shared/Footer.vue'
             align: 'center',
           },
         ],
+        careerStats: [],
         random: [
           {
             gamenrc: 72,
@@ -402,7 +405,8 @@ import Footer from '../shared/Footer.vue'
             blkc: 0.3,
             align: 'center',
           }
-        ]
+        ],
+        relevantNews: [],
       }
     },
     methods: {
@@ -419,6 +423,9 @@ import Footer from '../shared/Footer.vue'
       },
       playReports () {
         return this.$store.getters.getAllPlayReports
+      },
+      allNews () {
+        return this.$store.getters.getAllNews
       }
     },
     mounted () {
@@ -449,7 +456,7 @@ import Footer from '../shared/Footer.vue'
         }
       })
       this.team = this.teams.find(team => team.id === this.player.data.teamID)
-      console.log(this.playerStats)
+      //console.log(this.playerStats)
     }
   }
 </script>
