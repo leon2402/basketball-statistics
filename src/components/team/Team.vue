@@ -20,12 +20,12 @@
                     hide-default-footer>
                     <template v-slot:item="props">
                       <tr>
-                        <td> {{props.item.nr}} </td>
-                        <td @click="onLoadPlayer(player.data, player.id)"> {{props.item.playername}} </td>
+                        <td class="text-align-center"> {{props.item.nr}} </td>
+                        <td class="text-align-center" @click="onLoadPlayer(props.item)"> {{props.item.playername}} </td>
                         <td> {{props.item.pos1}} </td>
                         <td> {{props.item.birthday}} </td>
                         <td> {{props.item.height}} </td>
-                        
+                        <td> <v-img :src="flaggen.find(flagge => flagge.name === props.item.nationality).flag" /> </td>   
                       </tr>
                     </template>
                   </v-data-table>
@@ -164,6 +164,7 @@
 <script>
   import Header from '../shared/Header.vue'
   import Footer from '../shared/Footer.vue'
+  import nationsData from '../shared/nations.json'
   export default {
     components: {
       Header,
@@ -171,11 +172,7 @@
     },
     data () {
       return{
-        menuItems: [
-          { title: 'News', link:'/allnews'},
-          { title: 'AllPlayer', link:'/allplayer'},
-          { title: 'Teams', link:'/teams'},
-        ],
+        flaggen : null,
         headers: [
           {
             text: '#',
@@ -262,13 +259,13 @@
     },
     methods: {
         viewNews (newsData, id) {
-            this.$store.dispatch('selectNews', id)
-            this.$router.push('/news/' + newsData.title + '/' + id)
+          this.$store.dispatch('selectNews', id)
+          this.$router.push('/news/' + newsData.title + '/' + id)
         },
-        onLoadPlayer (playerdata, id) {
-        this.$store.dispatch('selectPerson', id)
-        this.$router.push('/player/' + playerdata.name + '/' + id)
-      }
+      onLoadPlayer (item) {
+        this.$store.dispatch('selectPerson', item.id)
+        this.$router.push('/player/' + item.name + '/' + item.id)
+      },   
     },
     computed: {
       team () {
@@ -289,10 +286,17 @@
       let items = []
       this.person.map((person, i) => {
         if(person.data.teamID === this.team.id || person.data.nationalteamID === this.team.id) {
-          items.push({playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
+          items.push({id:person.id, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
       })
       this.items = items
+      let flaggen = []
+      nationsData.map((nation, index) =>{
+          if(nation.flag) {
+            flaggen.push(nation)
+          }
+        })
+      this.flaggen = flaggen
     }
   }
 </script>

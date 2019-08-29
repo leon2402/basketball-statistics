@@ -206,6 +206,12 @@ import Footer from '../shared/Footer.vue'
         team: null,
         headers: [
           {
+            text: 'Date',
+            sortable: false,
+            value: 'date',
+            align: 'center',
+          },
+          {
             text: 'MP',
             sortable: false,
             value: 'MP',
@@ -424,7 +430,8 @@ import Footer from '../shared/Footer.vue'
             this.playerStats.push({MP:0})
             //todo colon should display "did not play"
           } else {
-            this.playerStats.push(playerData[key])
+            let playerStats = playerData[key]
+            this.playerStats.push(playerStats)
           }
         }
         else if(playReport.data.team2 === this.player.data.teamID || playReport.data.team2 === this.player.data.nationalteamID) {
@@ -433,14 +440,16 @@ import Footer from '../shared/Footer.vue'
           if(playerData[key] == undefined) {
             //todo colon should display "did not play"
             this.playerStats.push({MP:0})
-          } else {
-            this.playerStats.push(playerData[key])
+          } else {  
+            let playerStats = playerData[key]
+            this.playerStats.push(playerStats)
           }
         }
         else {
         }
       })
       this.team = this.teams.find(team => team.id === this.player.data.teamID)
+      console.log(this.playerStats)
     }
   }
 </script>
