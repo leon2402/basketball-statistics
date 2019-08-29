@@ -34,42 +34,42 @@ export default new VueRouter({
             name: 'AllNews',
             component: AllNews
         },
-        {
+        /*{
             path: '/allplayer',
             name: 'AllPlayer',
             component: AllPlayer
-        },
+        },*/
         {
             path: '/player/:name/:id',
             name: 'Player',
             component: Player
         },
-        {
+        /*{
             path: '/personcreate',
             name: 'PersonCreate',
             component: PersonCreate
-        },
-        {
+        },*/
+        /*{
             path: '/teams',
             name: 'Teams',
             component: Teams
-        },
+        },*/
         {
             path: '/team/:name',
             name: 'Team',
             component: Team
         },
-        {
+        /*{
             path: '/teamcreate',
             name: 'TeamCreate',
             component: TeamCreate
-        },
+        },*/
         {
             path: '/news/:name/:id',
             name: 'News',
             component: News
         },
-        {
+        /*{
             path: '/playreportcreate',
             name: 'PlayReportCreate',
             component: PlayReportCreate
@@ -98,7 +98,7 @@ export default new VueRouter({
             path: '/nba/gameplan',
             name: 'Gameplan',
             component: Gameplan
-        },
+        },*/
         {
             path: '/fiba_wm',
             name: 'FIBA WM',
