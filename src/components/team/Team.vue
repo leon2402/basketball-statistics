@@ -46,6 +46,16 @@
                     :items="itemscoach"
                     :items-per-page="20"
                     hide-default-footer>
+                    <template v-slot:item="props">
+                      <tr>
+                        <td class="teamnameleft"> {{props.item.coachname}} </td>
+                        <td align="center"> {{props.item.posc}} </td>
+                        <td align="center"> {{props.item.birthday}} </td>
+                        <td align="center"> <img :src="flaggen.find(flagge => flagge.name === props.item.nationality).flag" 
+                          height="12px"
+                          width="23px"> </td> 
+                      </tr>
+                    </template>
                   </v-data-table>
                 </v-flex>
               </v-layout>
@@ -250,14 +260,7 @@
           },
         ],
         items: null,
-        itemscoach: [
-          {
-            coachname: 'Rick Carlisle',
-            posc: 'Headcoach',
-            birthday: '27.10.1959',
-            nationality: 'Flag',
-          },
-        ]
+        itemscoach: null
       }
     },
     methods: {
@@ -288,10 +291,10 @@
       const leerzeichen = ' ';
       let items = []
       this.person.map((person, i) => {
-        if(person.data.teamID === this.team.id) {
+        if(person.data.teamID === this.team.id && person.data.role =='player') {
           items.push({id:person.id, nr:person.data.teamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
-        else if (person.data.nationalteamID === this.team.id) {
+        else if (person.data.nationalteamID === this.team.id && person.data.role =='player') {
           items.push({id:person.id, nr:person.data.nationalteamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
       })
@@ -303,6 +306,17 @@
           }
         })
       this.flaggen = flaggen
+
+      let itemscoach = []
+      this.person.map((person, i) => {
+        if(person.data.teamID === this.team.id && person.data.role =='Headcoach') {
+          itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
+        }
+        else if(person.data.nationalteamID === this.team.id && person.data.role =='Headcoach') {
+          itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
+        }
+      })
+      this.itemscoach = itemscoach
     }
   }
 </script>
