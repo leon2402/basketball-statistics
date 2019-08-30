@@ -112,6 +112,31 @@
                                                 :items="dataTeam2"
                                                 :items-per-page="20"
                                                 hide-default-footer>
+                                                <template v-slot:item="props">
+                                                    <tr>
+                                                        <td class="teamnameleft" @click="onLoadPlayer(props.item)"> <v-btn text x-small class="btnfibawmgamereportplayer"> {{props.item.name}} </v-btn> </td>
+                                                        <td align="center"> {{props.item.MP}} </td>
+                                                        <td align="center"> {{props.item.FG}} </td>
+                                                        <td align="center"> {{props.item.FGA}} </td>
+                                                        <td align="center"> {{props.item.FGP}} </td>
+                                                        <td align="center"> {{props.item.ThreeP}} </td>
+                                                        <td align="center"> {{props.item.ThreePA}} </td>
+                                                        <td align="center"> {{props.item.ThreePO}} </td>
+                                                        <td align="center"> {{props.item.FT}} </td>
+                                                        <td align="center"> {{props.item.FTA}} </td>
+                                                        <td align="center"> {{props.item.FTP}} </td>
+                                                        <td align="center"> {{props.item.ORB}} </td>
+                                                        <td align="center"> {{props.item.DRB}} </td>
+                                                        <td align="center"> {{props.item.TRB}} </td>
+                                                        <td align="center"> {{props.item.AST}} </td>
+                                                        <td align="center"> {{props.item.STL}} </td>
+                                                        <td align="center"> {{props.item.BLK}} </td>
+                                                        <td align="center"> {{props.item.TOV}} </td>
+                                                        <td align="center"> {{props.item.PF}} </td>
+                                                        <td align="center"> {{props.item.PTS}} </td>
+                                                        <td align="center"> {{props.item.plusMinus}} </td>
+                                                    </tr>
+                                                </template>
                                             </v-data-table>
                                         </v-tab-item>
                                 </v-tabs>
@@ -299,14 +324,14 @@ import Footer from '../shared/Footer.vue'
 
             for(let id in this.playReport.data.playerDataTeam1) {
                 const player = this.players.find(player => player.id === id)
-                const data = {name: player.data.name}
+                const data = {id: player.id, name: player.data.name}
                 data = Object.assign(data, this.playReport.data.playerDataTeam1[id])
                 this.dataTeam1.push(data)
             }
 
             for(let id in this.playReport.data.playerDataTeam2) {
                 const player = this.players.find(player => player.id === id)
-                const data = {name: player.data.firstname+leerzeichen+player.data.name}
+                const data = {id: player.id, name: player.data.name}
                 data = Object.assign(data, this.playReport.data.playerDataTeam2[id])
                 this.dataTeam2.push(data)
             }
