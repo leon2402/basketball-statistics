@@ -291,10 +291,10 @@
       const leerzeichen = ' ';
       let items = []
       this.person.map((person, i) => {
-        if(person.data.teamID === this.team.id) {
+        if(person.data.teamID === this.team.id && person.data.role =='player') {
           items.push({id:person.id, nr:person.data.teamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
-        else if (person.data.nationalteamID === this.team.id) {
+        else if (person.data.nationalteamID === this.team.id && person.data.role =='player') {
           items.push({id:person.id, nr:person.data.nationalteamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
       })
