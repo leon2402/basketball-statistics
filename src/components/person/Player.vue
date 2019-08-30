@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Header />
-    <v-content>
+    <v-content class="mainbackground">
       <v-container >
         <v-layout justify-center wrap>
           <v-flex xs12 md5 class="background">
@@ -15,14 +15,16 @@
                 <v-flex xs12 md9 align-start class="information">
                   <table class="spielerdaten">
                   <tr><th>Name: </th><td>{{player.data.firstname}} {{player.data.name}}</td></tr>
-                  <tr><th>Geburtstag: </th><td>{{player.data.birth}} in {{player.data.birthplace}}</td></tr>
-                  <tr><th>Größe: </th><td>{{player.data.height}}cm</td></tr>
+                  <tr><th>Geburtstag: </th><td>{{player.data.birth}} in {{player.data.birthplace}}&nbsp;<img :src="flaggen.find(flagge => flagge.name === player.data.birthnation).flag" 
+                          height="12px"
+                          width="23px"></td></tr>
+                  <tr><th>Größe: </th><td>{{player.data.height}}&nbsp;cm</td></tr>
                   <tr><th>Nationalität: </th><td>{{player.data.nation}}</td></tr>
-                  <tr><th>1.Position: </th><td>{{player.data.position1}}</td></tr>
-                  <tr><th>2.Position: </th><td>{{player.data.position2}}</td></tr>
-                  <tr><th>Draftpick: </th><td>Nr.: {{player.data.draftpick}}</td></tr>
-                  <tr><th>Draftrunde: </th><td>{{player.data.draftround}}</td></tr>
-                  <tr><th>Draftjahr: </th><td>{{player.data.draftyear}}</td></tr>
+                  <tr><th>Position: </th><td>{{player.data.position1}}</td></tr>
+                  <!--<tr><th>2.Position: </th><td>{{player.data.position2}}</td></tr> -->
+                  <tr v-if="player.data.draftpick"><th>Draftpick: </th><td>Nr.: {{player.data.draftpick}}</td></tr>
+                  <tr v-if="player.data.draftround"><th>Draftrunde: </th><td>{{player.data.draftround}}</td></tr>
+                  <tr v-if="player.data.draftyear"><th>Draftjahr: </th><td>{{player.data.draftyear}}</td></tr>
                   </table>
                 </v-flex>
                 <v-flex xs6 md3 align-start class="picture">
@@ -33,7 +35,7 @@
                   </v-img>
                 </v-flex>
               </v-layout>
-              <v-layout>
+              <!-- <v-layout>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Erfolge</h3></tr>
                 </v-flex>
@@ -56,7 +58,7 @@
                     <tr><th>Liga ACB champion </th><td>2015,2016,2018</td></tr>
                   </table>
                 </v-flex>
-              </v-layout>
+              </v-layout> -->
               <v-layout>
                 <!--
                 <v-flex xs12 md12 class="headertop">
@@ -96,13 +98,13 @@
                     <tr><th>Teamname:</th></tr>
                     <tr>{{team.data.name}}</tr>
                     <tr><th>Ort:</th></tr>
-                    <tr>Dallas, Texas</tr>
+                    <tr>{{team.data.location}}</tr>
                     <tr><th>Gründung:</th></tr>
                     <tr>{{team.data.foundation}}</tr>
                   </table>
                 </v-flex>
               </v-layout>
-              <v-layout>
+              <!-- <v-layout>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Karriere</h3></tr>
                 </v-flex>
@@ -136,30 +138,34 @@
                     </tr>
                   </table>
                 </v-flex>
-              </v-layout>
+              </v-layout> -->
               <v-layout>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>News</h3></tr>
                 </v-flex>
               </v-layout>
               <v-layout>
-                <v-flex xs6 md12>
-                  <v-card>
-                    <v-card-Text>Doncic Rookie of the Year</v-card-text>
-                  </v-card>
-                </v-flex>
-              </v-layout>
-              <v-layout> 
-                <v-flex xs6 md12>
-                  <v-card>
-                    <v-card-Text>Rookie of the Month</v-card-text>
-                  </v-card>
-                </v-flex>
-              </v-layout>
-              <v-layout>
-                <v-flex xs6 md12>
-                  <v-card>
-                    <v-card-Text>Erstes Trible Double für Doncic</v-card-text>
+                <v-flex xs12 md12 class="background">
+                  <v-card max-width="440" max-height="100" class="newscard" v-for="news in PlayerNews" :key="news.id" @click="viewNews(news.data, news.id)">
+                    <v-layout align-center>
+                      <v-flex xs3 md3>
+                        <v-img
+                          :src="news.data.imageLink"
+                          max-width="200px"
+                          contain
+                          class="newscardpicture"
+                          >
+                        </v-img>
+                      </v-flex>
+                      <v-flex xs9 md9>
+                        <v-card-text>
+                          <div>
+                            <div class="news">
+                              {{news.data.title}}</div>
+                          </div>
+                        </v-card-text>
+                      </v-flex>
+                    </v-layout>
                   </v-card>
                 </v-flex>
               </v-layout>
@@ -196,6 +202,7 @@
 <script>
 import Header from '../shared/Header.vue'
 import Footer from '../shared/Footer.vue'
+import nationsData from '../shared/nations.json'
   export default {
     components: {
       Header,
@@ -206,6 +213,7 @@ import Footer from '../shared/Footer.vue'
       return{
         test: [],
         team: null,
+        flaggen: null,
         headers: [
           {
             text: 'Date',
@@ -413,6 +421,10 @@ import Footer from '../shared/Footer.vue'
       showConsole (items) {
         console.log(items)
       },
+      viewNews (newsData, id) {
+        this.$store.dispatch('selectNews', id)
+        this.$router.push('/news/' + newsData.title + '/' + id)
+      },
     },
     computed: {
       player () {
@@ -457,6 +469,18 @@ import Footer from '../shared/Footer.vue'
       })
       this.team = this.teams.find(team => team.id === this.player.data.teamID)
       //console.log(this.playerStats)
+    },
+    created () {
+      const PlayerNews = this.allNews.filter(news => news.data.player == this.player.data.name)
+        this.PlayerNews = PlayerNews
+
+      let flaggen = []
+      nationsData.map((nation, index) =>{
+          if(nation.flag) {
+            flaggen.push(nation)
+          }
+        })
+      this.flaggen = flaggen
     }
   }
 </script>
