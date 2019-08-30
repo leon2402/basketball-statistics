@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Header />
-    <v-content>
+    <v-content class="mainbackground">
       <v-container justify-center wrap>
         <v-layout justify-center wrap>
           <v-flex xs12 md5 class="background">
@@ -17,15 +17,18 @@
                     :headers="headers"
                     :items="items"
                     :items-per-page="20"
+                    sort-by="nr"
                     hide-default-footer>
                     <template v-slot:item="props">
                       <tr>
-                        <td class="text-align-center"> {{props.item.nr}} </td>
-                        <td class="text-align-center" @click="onLoadPlayer(props.item)"> {{props.item.playername}} </td>
-                        <td> {{props.item.pos1}} </td>
-                        <td> {{props.item.birthday}} </td>
-                        <td> {{props.item.height}} </td>
-                        <td> <v-img :src="flaggen.find(flagge => flagge.name === props.item.nationality).flag" /> </td>   
+                        <td align="center"> {{props.item.nr}} </td>
+                        <td class="teamnameleft" @click="onLoadPlayer(props.item)"><v-btn text x-small class="btnfibawm"> {{props.item.playername}} </v-btn> </td>
+                        <td align="center"> {{props.item.pos1}} </td>
+                        <td align="center"> {{props.item.birthday}} </td>
+                        <td align="center"> {{props.item.height}}&nbsp;cm </td>
+                        <td align="center"> <img :src="flaggen.find(flagge => flagge.name === props.item.nationality).flag" 
+                          height="12px"
+                          width="23px"> </td>   
                       </tr>
                     </template>
                   </v-data-table>
@@ -43,6 +46,16 @@
                     :items="itemscoach"
                     :items-per-page="20"
                     hide-default-footer>
+                    <template v-slot:item="props">
+                      <tr>
+                        <td class="teamnameleft"> {{props.item.coachname}} </td>
+                        <td align="center"> {{props.item.posc}} </td>
+                        <td align="center"> {{props.item.birthday}} </td>
+                        <td align="center"> <img :src="flaggen.find(flagge => flagge.name === props.item.nationality).flag" 
+                          height="12px"
+                          width="23px"> </td> 
+                      </tr>
+                    </template>
                   </v-data-table>
                 </v-flex>
               </v-layout>
@@ -71,14 +84,14 @@
                     <tr>{{team.data.location}}</tr>
                     <tr><th>Gründung:</th></tr>
                     <tr>{{team.data.foundation}}</tr>
-                    <tr><th>Headcoach:</th></tr>
+                    <!-- <tr><th>Headcoach:</th></tr>
                     <tr>Rick Carlisle</tr>
                     <tr><th>Arena</th></tr>
-                    <tr>American Airline Center</tr>
+                    <tr>American Airline Center</tr> -->
                   </table>
                 </v-flex>
               </v-layout>
-              <v-layout>
+              <!-- <v-layout>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Erfolge</h3></tr>
                 </v-flex>
@@ -91,7 +104,7 @@
                     <tr><th>Division titles:</th><td>1987, 2007, 2010</td></tr>
                   </table>
                 </v-flex>
-              </v-layout>
+              </v-layout> -->
               <v-layout>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>News</h3></tr>
@@ -122,7 +135,7 @@
                   </v-card>
                 </v-flex>
               </v-layout>
-              <v-layout>
+              <!-- <v-layout>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Letztes Spiel</h3></tr>
                 </v-flex>
@@ -151,7 +164,7 @@
                     contain>
                   </v-img>
                 </v-flex>
-              </v-layout>
+              </v-layout> -->
             </v-container>
           </v-flex>
         </v-layout>
@@ -247,14 +260,7 @@
           },
         ],
         items: null,
-        itemscoach: [
-          {
-            coachname: 'Rick Carlisle',
-            posc: 'Headcoach',
-            birthday: '27.10.1959',
-            nationality: 'Flag',
-          },
-        ]
+        itemscoach: null
       }
     },
     methods: {
@@ -279,14 +285,17 @@
       },
     }, 
     created () {
-      const TeamNews = this.allNews.filter(news => news.data.team == '1')
+      const TeamNews = this.allNews.filter(news => news.data.team2 == this.team.data.name)
         this.TeamNews = TeamNews
         
       const leerzeichen = ' ';
       let items = []
       this.person.map((person, i) => {
-        if(person.data.teamID === this.team.id || person.data.nationalteamID === this.team.id) {
-          items.push({id:person.id, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
+        if(person.data.teamID === this.team.id && person.data.role =='player') {
+          items.push({id:person.id, nr:person.data.teamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
+        }
+        else if (person.data.nationalteamID === this.team.id && person.data.role =='player') {
+          items.push({id:person.id, nr:person.data.nationalteamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
         }
       })
       this.items = items
@@ -297,6 +306,17 @@
           }
         })
       this.flaggen = flaggen
+
+      let itemscoach = []
+      this.person.map((person, i) => {
+        if(person.data.teamID === this.team.id && person.data.role =='Headcoach') {
+          itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
+        }
+        else if(person.data.nationalteamID === this.team.id && person.data.role =='Headcoach') {
+          itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
+        }
+      })
+      this.itemscoach = itemscoach
     }
   }
 </script>

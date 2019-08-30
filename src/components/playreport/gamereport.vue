@@ -23,7 +23,7 @@
                                         </v-img>
                                     </v-layout>
                                     <v-layout justify-center>
-                                        <h3 @click="viewTeam(homeTeam)">{{homeTeam.data.name}}</h3>
+                                        <v-btn text x-small class="btnfibawmgamereportnation"><h3 @click="viewTeam(homeTeam)">{{homeTeam.data.name}}</h3></v-btn>
                                     </v-layout>
                                 </v-flex>
                                 <v-flex xs12 md4>
@@ -37,10 +37,10 @@
                                         <b>{{playReport.data.date.toDate()}}</b>
                                     </v-layout>
                                     <v-layout justify-center class="spieldaten" v-if="playReport.data.attendance">
-                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>{{playReport.data.attendance}}</b>
+                                        {{playReport.data.arenas}}&nbsp;&nbsp;|&nbsp;&nbsp;<b>{{playReport.data.attendance}}</b>
                                     </v-layout>
                                     <v-layout justify-center class="spieldaten" v-else>
-                                        American Airline Center&nbsp;&nbsp;|&nbsp;&nbsp;<b>-</b>
+                                        {{playReport.data.arenas}}&nbsp;&nbsp;|&nbsp;&nbsp;<b>-</b>
                                     </v-layout>
                                 </v-flex>
                                 <v-flex xs12 md3>
@@ -54,7 +54,7 @@
                                         </v-img>
                                     </v-layout>
                                     <v-layout justify-center>
-                                        <h3 @click="viewTeam(awayTeam)">{{awayTeam.data.name}}</h3>
+                                        <v-btn text x-small class="btnfibawmgamereportnation"> <h3 @click="viewTeam(awayTeam)">{{awayTeam.data.name}} </h3></v-btn>
                                     </v-layout>
                                 </v-flex>
                             </v-layout>
@@ -78,6 +78,31 @@
                                                 :items="dataTeam1"
                                                 :items-per-page="20"
                                                 hide-default-footer>
+                                                <template v-slot:item="props">
+                                                    <tr>
+                                                        <td class="teamnameleft" @click="onLoadPlayer(props.item)"> <v-btn text x-small class="btnfibawmgamereportplayer"> {{props.item.name}} </v-btn> </td>
+                                                        <td align="center"> {{props.item.MP}} </td>
+                                                        <td align="center"> {{props.item.FG}} </td>
+                                                        <td align="center"> {{props.item.FGA}} </td>
+                                                        <td align="center"> {{props.item.FGP}} </td>
+                                                        <td align="center"> {{props.item.ThreeP}} </td>
+                                                        <td align="center"> {{props.item.ThreePA}} </td>
+                                                        <td align="center"> {{props.item.ThreePO}} </td>
+                                                        <td align="center"> {{props.item.FT}} </td>
+                                                        <td align="center"> {{props.item.FTA}} </td>
+                                                        <td align="center"> {{props.item.FTP}} </td>
+                                                        <td align="center"> {{props.item.ORB}} </td>
+                                                        <td align="center"> {{props.item.DRB}} </td>
+                                                        <td align="center"> {{props.item.TRB}} </td>
+                                                        <td align="center"> {{props.item.AST}} </td>
+                                                        <td align="center"> {{props.item.STL}} </td>
+                                                        <td align="center"> {{props.item.BLK}} </td>
+                                                        <td align="center"> {{props.item.TOV}} </td>
+                                                        <td align="center"> {{props.item.PF}} </td>
+                                                        <td align="center"> {{props.item.PTS}} </td>
+                                                        <td align="center"> {{props.item.plusMinus}} </td>
+                                                    </tr>
+                                                </template>
                                             </v-data-table>
                                         </v-tab-item>
                                     <v-tab>{{ awayTeam.data.name }}</v-tab>
@@ -86,8 +111,32 @@
                                                 :headers="boxscore"
                                                 :items="dataTeam2"
                                                 :items-per-page="20"
-                                                hide-default-footer
-                                                dense>
+                                                hide-default-footer>
+                                                <template v-slot:item="props">
+                                                    <tr>
+                                                        <td class="teamnameleft" @click="onLoadPlayer(props.item)"> <v-btn text x-small class="btnfibawmgamereportplayer"> {{props.item.name}} </v-btn> </td>
+                                                        <td align="center"> {{props.item.MP}} </td>
+                                                        <td align="center"> {{props.item.FG}} </td>
+                                                        <td align="center"> {{props.item.FGA}} </td>
+                                                        <td align="center"> {{props.item.FGP}} </td>
+                                                        <td align="center"> {{props.item.ThreeP}} </td>
+                                                        <td align="center"> {{props.item.ThreePA}} </td>
+                                                        <td align="center"> {{props.item.ThreePO}} </td>
+                                                        <td align="center"> {{props.item.FT}} </td>
+                                                        <td align="center"> {{props.item.FTA}} </td>
+                                                        <td align="center"> {{props.item.FTP}} </td>
+                                                        <td align="center"> {{props.item.ORB}} </td>
+                                                        <td align="center"> {{props.item.DRB}} </td>
+                                                        <td align="center"> {{props.item.TRB}} </td>
+                                                        <td align="center"> {{props.item.AST}} </td>
+                                                        <td align="center"> {{props.item.STL}} </td>
+                                                        <td align="center"> {{props.item.BLK}} </td>
+                                                        <td align="center"> {{props.item.TOV}} </td>
+                                                        <td align="center"> {{props.item.PF}} </td>
+                                                        <td align="center"> {{props.item.PTS}} </td>
+                                                        <td align="center"> {{props.item.plusMinus}} </td>
+                                                    </tr>
+                                                </template>
                                             </v-data-table>
                                         </v-tab-item>
                                 </v-tabs>
@@ -132,115 +181,115 @@ import Footer from '../shared/Footer.vue'
                     {
                         text: 'FG',
                         sortable: false,
-                        value: 'fg',
+                        value: 'FG',
                         align: 'center',
                     },
                     {
                         text: 'FGA',
                         sortable: false,
-                        value: 'fga',
+                        value: 'FGA',
                         align: 'center',
                     },
                     {
                         text: 'FG%',
                         sortable: false,
-                        value: 'fgp',
+                        value: 'FGP',
                         align: 'center',
                     },
                     {
                         text: '3P',
                         sortable: false,
-                        value: 'tp',
+                        value: 'ThreeP',
                         align: 'center',
                     },
                     {
                         text: '3PA',
                         sortable: false,
-                        value: 'tpa',
+                        value: 'ThreePA',
                         align: 'center',
                     },
                     {
                         text: '3P%',
                         sortable: false,
-                        value: 'tpp',
+                        value: 'ThreePO',
                         align: 'center',
                     },
                     {
                         text: 'FT',
                         sortable: false,
-                        value: 'ft',
+                        value: 'FT',
                         align: 'center',
                     },
                     {
                         text: 'FTA',
                         sortable: false,
-                        value: 'fta',
+                        value: 'FTA',
                         align: 'center',
                     },
                     {
                         text: 'FT%',
                         sortable: false,
-                        value: 'ftp',
+                        value: 'FTP',
                         align: 'center',
                     },
                     {
                         text: 'ORB',
                         sortable: false,
-                        value: 'orb',
+                        value: 'ORB',
                         align: 'center',
                     },
                     {
                         text: 'DRB',
                         sortable: false,
-                        value: 'drb',
+                        value: 'DRB',
                         align: 'center',
                     },
                     {
                         text: 'TRB',
                         sortable: false,
-                        value: 'trb',
+                        value: 'TRB',
                         align: 'center',
                     },
                     {
                         text: 'AST',
                         sortable: false,
-                        value: 'ast',
+                        value: 'AST',
                         align: 'center',
                     },
                     {
                         text: 'STL',
                         sortable: false,
-                        value: 'stl',
+                        value: 'STL',
                         align: 'center',
                     },
                     {
                         text: 'BLK',
                         sortable: false,
-                        value: 'blk',
+                        value: 'BLK',
                         align: 'center',
                     },
                     {
                         text: 'TOV',
                         sortable: false,
-                        value: 'tov',
+                        value: 'TOV',
                         align: 'center',
                     },
                     {
                         text: 'PF',
                         sortable: false,
-                        value: 'pf',
+                        value: 'PF',
                         align: 'center',
                     },
                     {
                         text: 'PTS',
                         sortable: false,
-                        value: 'pts',
+                        value: 'PTS',
                         align: 'center',
                     },
                     {
                         text: '+/-',
                         sortable: false,
-                        value: 'pn',
+                        value: 'plusMinus',
                         align: 'center',
                     },
                 ],
@@ -269,19 +318,20 @@ import Footer from '../shared/Footer.vue'
             }
         },
         mounted () {
+            const leerzeichen = ' '
             this.homeTeam = this.teams.find(team => team.id === this.playReport.data.team1)
             this.awayTeam = this.teams.find(team => team.id === this.playReport.data.team2)
 
             for(let id in this.playReport.data.playerDataTeam1) {
                 const player = this.players.find(player => player.id === id)
-                const data = {name: player.data.name}
+                const data = {id: player.id, name: player.data.name}
                 data = Object.assign(data, this.playReport.data.playerDataTeam1[id])
                 this.dataTeam1.push(data)
             }
 
             for(let id in this.playReport.data.playerDataTeam2) {
                 const player = this.players.find(player => player.id === id)
-                const data = {name: player.data.name}
+                const data = {id: player.id, name: player.data.name}
                 data = Object.assign(data, this.playReport.data.playerDataTeam2[id])
                 this.dataTeam2.push(data)
             }
@@ -295,5 +345,15 @@ import Footer from '../shared/Footer.vue'
     }
     .spieldaten {
         font-size: 14px;
+    }
+    .btnfibawmgamereportnation {
+        text-transform: inherit;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif
+    }
+    .btnfibawmgamereportplayer {
+        text-transform: inherit;
+        font-size: 14px;
+        font-family: Arial
     }
 </style>
