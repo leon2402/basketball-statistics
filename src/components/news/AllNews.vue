@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Header />
-    <v-content>
+    <v-content class="mainbackground">
       <v-container>
         <v-layout justify-center wrap>
           <v-flex xs12 md8 class="background">
@@ -32,7 +32,7 @@
           </v-flex>
         </v-layout>
         <v-layout justify-center wrap>
-          <v-flex xs12 md3>
+          <v-flex xs12 md2>
             <v-container class="background">
             <v-layout justify-center wrap>
               <v-flex xs12 md12 class="headertop">
@@ -48,11 +48,16 @@
                         max-width="400px"
                         contain
                       >
-                      <v-card-title class="align-end fill-height">
+                      <v-row align="end" class="lightbox white--text pa-2 fill-height">
+                        <v-col class="colnews">
+                          <div class="body-1">{{news.data.title}}</div>
+                        </v-col>
+                      </v-row>
+                      <!-- <v-card-title class="align-end fill-height">
                         <div>
                           <div>{{news.data.title}}</div>
                         </div>
-                      </v-card-title>
+                      </v-card-title>-->
                       </v-img>
                       <v-card-text>
                         <div>
@@ -74,7 +79,54 @@
             </v-layout>
             </v-container>
           </v-flex>
-          <v-flex xs12 md3>
+          <v-flex xs12 md2>
+            <v-container class="background">
+            <v-layout justify-center wrap>
+              <v-flex xs12 md12 class="headertop">
+                <tr><h3>FIBA WM</h3></tr>
+              </v-flex>
+            </v-layout>
+            <v-layout align-start justify-center wrap>
+              <v-flex xs12 md12 class="background">
+                <v-card color="white" max-width="400" class="mx-auto" v-for="news in FIBANews" :key="news.id">
+
+                      <v-img class="white--text"
+                        :src="news.data.imageLink"
+                        max-width="400px"
+                        contain
+                      >
+                      <v-row align="end" class="lightbox white--text pa-2 fill-height">
+                        <v-col class="colnews">
+                          <div class="body-1">{{news.data.title}}</div>
+                        </v-col>
+                      </v-row>
+                      <!-- <v-card-title class="align-end fill-height">
+                        <div>
+                          <div>{{news.data.title}}</div>
+                        </div>
+                      </v-card-title>-->
+                      </v-img>
+                      <v-card-text>
+                        <div>
+                          <div>{{news.data.intro}}</div>
+                        </div>
+                      </v-card-text>
+                  <v-divider light></v-divider>
+                  <v-card-actions>
+                    <v-btn 
+                    text
+                    primary
+                    @click="viewNews(news.data, news.id)"
+                    >
+                    View News
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-flex>
+            </v-layout>
+            </v-container>
+          </v-flex>
+          <v-flex xs12 md2>
             <v-container class="background">
             <v-layout justify-center wrap>
               <v-flex xs12 md12 class="headertop">
@@ -90,11 +142,16 @@
                         max-width="400px"
                         contain
                       >
-                      <v-card-title class="align-end fill-height">
+                      <v-row align="end" class="lightbox white--text pa-2 fill-height">
+                        <v-col class="colnews">
+                          <div class="body-1">{{news.data.title}}</div>
+                        </v-col>
+                      </v-row>
+                      <!-- <v-card-title class="align-end fill-height">
                         <div>
                           <div>{{news.data.title}}</div>
                         </div>
-                      </v-card-title>
+                      </v-card-title>-->
                       </v-img>
                       <v-card-text>
                         <div>
@@ -126,9 +183,9 @@
               <v-layout>
                 <v-flex xs12 md12 class="background">
                 <v-card max-width="275" max-height="100" class="newscard" v-for="news in allNews" :key="news.id">
-                  <v-card-text>
+                  <v-card-text  @click="viewNews(news.data, news.id)">
                     <div>
-                      <div class="news">{{news.data.title}}</div>
+                      <div class="news" >{{news.data.title}}</div>
                     </div>
                   </v-card-text>
                 </v-card>
@@ -175,6 +232,8 @@ import Footer from '../shared/Footer.vue'
       this.BannerNews = BannerNews
       const BBLNews = this.allNews.filter(news => news.data.BBL == '1')
       this.BBLNews = BBLNews
+      const FIBANews = this.allNews.filter(news => news.data.FIBA == '1')
+      this.FIBANews = FIBANews
     }
   }
 </script>
@@ -200,5 +259,8 @@ import Footer from '../shared/Footer.vue'
   .news {
     color: black;
     font-size: 12px;
+  }
+  .newstitlepreview {
+    font-size: 20px
   }
 </style>

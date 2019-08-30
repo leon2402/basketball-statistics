@@ -9,6 +9,11 @@
               <v-img class="white--text"
                 :src="news.data.imageLink"
                 contain>
+                <v-row align="end" class="lightbox white--text pa-2 fill-height">
+                  <v-col class="colnews">
+                    <div class="body-1">{{news.data.foto}}</div>
+                  </v-col>
+                </v-row>
               </v-img>
               <v-card-title>
                 <div>
@@ -25,6 +30,17 @@
             <v-layout justify-center wrap>
                 <v-flex xs12 md12 class="headertop">
                   <tr><h3>Alle News</h3></tr>
+                </v-flex>
+              </v-layout>
+              <v-layout>
+                <v-flex xs12 md12 class="background">
+                <v-card max-width="275" max-height="100" class="newscard" v-for="news in allNews" :key="news.id">
+                  <v-card-text  @click="viewNews(news.data, news.id)">
+                    <div>
+                      <div class="news" >{{news.data.title}}</div>
+                    </div>
+                  </v-card-text>
+                </v-card>
                 </v-flex>
               </v-layout>
           </v-flex>
@@ -56,9 +72,18 @@ import NewsData from '../shared/news.json'
         newstext: null,
       }
     },
+    methods: {
+        viewNews (newsData, id) {
+          this.$store.dispatch('selectNews', id)
+          this.$router.push('/news/' + newsData.title + '/' + id)
+      }
+    },
     computed: {
         news () {
-            return this.$store.getters.getSelectedNews
+          return this.$store.getters.getSelectedNews
+        },
+        allNews () {
+          return this.$store.getters.getAllNews
         }
     },
     created () {
@@ -80,5 +105,16 @@ import NewsData from '../shared/news.json'
   }
   .article body{
     font-size: 12px;
+  }
+  .lightbox {
+    box-shadow: 0 0 30px inset rgba(0, 0, 0, 0.2);
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 80px);
+  }
+  .colnews {
+    padding: 12px;
+    padding-top: 24px;
+    padding-right: 12px;
+    padding-bottom: 0px;
+    padding-left: 12px;
   }
 </style>
