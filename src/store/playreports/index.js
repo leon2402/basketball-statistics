@@ -28,7 +28,6 @@ export default {
     },
     actions: {
         loadAllPlayReports ({commit}) {
-            //commit('setSiteLoading', true)
             let allPlayReports = []
             let unfinishedPlayReports = []
             //Dates for Season 2019/2020
@@ -53,7 +52,34 @@ export default {
                 })
             commit('setPlayReport', allPlayReports)
             commit('setUnfinishedPlayReport', unfinishedPlayReports)
-            //commit('setSiteLoading', false)
+            }, err => {
+                commit('setError', error)
+                console.log(`Encountered error: ${err}`);
+            });
+        },
+        loadSelectedPlayReports ({commit}, where) {
+            commit('setLoading', true)
+            let allPlayReports = []
+            let unfinishedPlayReports = []
+            let query = db.collection('playreports').where(where.key, '==', where.value)
+            let observer = query.onSnapshot(querySnapshot => {
+                let changes = querySnapshot.docChanges()
+                changes.forEach(change => {
+                    console.log(change.type)
+                    let playReport = {
+                        id: change.doc.id,
+                        data: change.doc.data()
+                    }
+                    if(playReport.data.gesamtErgebnis){
+                        allPlayReports.push(playReport)
+                    } else {
+                        unfinishedPlayReports.push(playReport)
+                    }
+                    
+                })
+            commit('setPlayReport', allPlayReports)
+            commit('setUnfinishedPlayReport', unfinishedPlayReports)
+            commit('setLoading', false)
             }, err => {
                 commit('setError', error)
                 console.log(`Encountered error: ${err}`);
@@ -89,7 +115,7 @@ export default {
                 gesamtErgebnis: data.gesamtErgebnis,
                 arenas: data.arenas,
                 attendance: data.attendance,
-                arenas: this.arenas,
+                arenas: data.arenas,
                 referee1: data.referee1,
                 referee2: data.referee2,
                 referee3: data.referee3,

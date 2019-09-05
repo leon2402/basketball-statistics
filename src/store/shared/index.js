@@ -18,6 +18,11 @@ export default {
             state.error = null
         },
     },
+    actions: {
+        commitSiteLoading ({commit}, payload) {
+            commit('setSiteLoading', payload)
+        }
+    },
     getters: {
         siteLoading (state) {
             return state.siteLoading

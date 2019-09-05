@@ -19,7 +19,6 @@ export default {
     },
     actions:{
         getTeams ({commit}) { 
-            //commit('setSiteLoading', true)
             let allTeams = []
             let query = db.collection('teams')
             let observer = query.onSnapshot(querySnapshot => {
@@ -33,7 +32,27 @@ export default {
                     allTeams.push(team)
                 })
             commit('setTeams', allTeams)
-            //commit('setSiteLoading', false)
+            }, err => {
+                commit('setError', error)
+                console.log(`Encountered error: ${err}`);
+            });
+        },
+        loadSelectedTeams({commit}, where) {
+            commit('setLoading', true)
+            let selectedTeams = []
+            let query = db.collection('teams').where(where.key, '==', where.value)
+            let observer = query.onSnapshot(querySnapshot => {
+                let changes = querySnapshot.docChanges()
+                changes.forEach(change => {
+                    console.log(change.type)
+                    let team = {
+                        id: change.doc.id,
+                        data: change.doc.data()
+                    }
+                    selectedTeams.push(team)
+                })
+            commit('setTeams', selectedTeams)
+            //commit('setLoading', false)
             }, err => {
                 commit('setError', error)
                 console.log(`Encountered error: ${err}`);

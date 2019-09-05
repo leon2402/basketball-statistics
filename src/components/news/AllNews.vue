@@ -226,6 +226,7 @@ import Footer from '../shared/Footer.vue'
         }
     },
     created () {
+      
       const NBANews = this.allNews.filter(news => news.data.NBA == '1')
       this.NBANews = NBANews
       const BannerNews = this.allNews.filter(news => news.data.Banner == '1')

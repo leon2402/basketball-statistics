@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app v-if="this.$store.getters.unfinishedPlayReports != null && this.$store.getters.getAllTeams != null && this.$store.getters.getAllPlayReports != null">
         <Header />
             <v-content>
                 <v-container justify-center>
@@ -615,9 +615,21 @@ import { type } from 'os';
         },
         unfinishedPlayReports () {
             return this.$store.getters.getUnfinishedPlayReports
-        }
+        },
+        /*loading () {
+            if(this.$store.getters.loadingStatus === null) {
+                return true
+            } else {
+                return this.$store.getters.loadingStatus
+            }
+        }*/
     },
-    created () {
+    beforeCreate () {
+        this.$store.dispatch('loadSelectedTeams', {'key':'leagues.2019', 'value':'FIBAWM'})
+        this.$store.dispatch('loadSelectedPlayReports', {'key':'liga', 'value':'FIBA WM'})
+    },
+    mounted () {
+        
         let groupa = []
         this.allTeams.map((team, index) => {
             let win = 0

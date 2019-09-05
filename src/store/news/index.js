@@ -19,7 +19,7 @@ export default {
     },
     actions: {
         loadAllNews ({commit}) { 
-            //commit('setSiteLoading', true)
+            commit('setSiteLoading', true)
             let allNews = []
             let query = db.collection('news').orderBy("time", "desc")
             let observer = query.onSnapshot(querySnapshot => {

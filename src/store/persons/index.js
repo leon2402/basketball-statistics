@@ -26,7 +26,6 @@ export default {
     },
     actions:{
         getPersons ({commit}) { 
-            commit('setSiteLoading', true)
             let allPersons = []
             let query = db.collection('persons')
             let observer = query.onSnapshot(querySnapshot => {
@@ -55,7 +54,6 @@ export default {
                     }
                 })
             commit('setPersons', allPersons)
-            //commit('setSiteLoading', false)
             }, err => {
                 commit('setError', error)
                 console.log(`Encountered error: ${err}`);

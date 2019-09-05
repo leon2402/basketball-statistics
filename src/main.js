@@ -13,9 +13,9 @@ new Vue({
   router,
   store,
   created (){
-    this.$store.dispatch('getPersons')
+    /*this.$store.dispatch('getPersons')
     this.$store.dispatch('getTeams')
-    this.$store.dispatch('loadAllPlayReports')
+    this.$store.dispatch('loadAllPlayReports')*/
     this.$store.dispatch('loadAllNews')
   }
 }).$mount('#app')
