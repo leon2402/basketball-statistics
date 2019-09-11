@@ -3,6 +3,10 @@ import vuetify from './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import { store } from "./store"
+import * as VueSpinnersCss from "vue-spinners-css";
+
+Vue.use(VueSpinnersCss)
+
 
 Vue.config.productionTip = false
 
