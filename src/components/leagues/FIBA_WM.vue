@@ -1,6 +1,14 @@
 <template>  
     <v-app v-if="loading">
-        <FacebookLoader />
+        <Header />
+        <v-content>
+            <v-container>
+                <v-flex d-flex justify-center align-center>
+                    <RippleLoader color="#000075"/>
+                </v-flex>
+            </v-container>
+        </v-content>
+        <Footer />
     </v-app>
     <v-app v-else>
         <Header />
