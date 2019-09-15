@@ -59,6 +59,27 @@ export default {
                 console.log(`Encountered error: ${err}`);
             });
         },
+        loadSelectedPersons({commit}, where) {
+            commit('setLoading', true)
+            let selectedpersons = []
+            let query = db.collection('persons').where(where.key, '==', where.value)
+            let observer = query.onSnapshot(querySnapshot => {
+                let changes = querySnapshot.docChanges()
+                changes.forEach(change => {
+                    console.log(change.type)
+                    let person = {
+                        id: change.doc.id,
+                        data: change.doc.data()
+                    }
+                    selectedpersons.push(team)
+                })
+            commit('setTeams', selectedpersons)
+            //commit('setLoading', false)
+            }, err => {
+                commit('setError', error)
+                console.log(`Encountered error: ${err}`);
+            });
+        },
         selectPerson({commit}, id) {
             commit('setSelectedPerson', id)
         },
