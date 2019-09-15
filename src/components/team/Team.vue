@@ -1,5 +1,16 @@
 <template>
-  <v-app>
+  <v-app v-if="loading">
+        <Header />
+        <v-content>
+            <v-container>
+                <v-flex d-flex justify-center align-center>
+                    <RippleLoader color="#000075"/>
+                </v-flex>
+            </v-container>
+        </v-content>
+        <Footer />
+    </v-app>
+    <v-app v-else>
     <Header />
     <v-content class="mainbackground">
       <v-container justify-center wrap>
@@ -111,7 +122,7 @@
                 </v-flex>
               </v-layout>
               <v-layout>
-                <v-flex xs12 md12 class="background">
+                <!-- <v-flex xs12 md12 class="background">
                   <v-card max-width="440" max-height="100" class="newscard" v-for="news in TeamNews" :key="news.id" @click="viewNews(news.data, news.id)">
                     <v-layout align-center>
                       <v-flex xs3 md3>
@@ -133,7 +144,7 @@
                       </v-flex>
                     </v-layout>
                   </v-card>
-                </v-flex>
+                </v-flex> -->
               </v-layout>
               <!-- <v-layout>
                 <v-flex xs12 md12 class="headertop">
@@ -185,6 +196,7 @@
     },
     data () {
       return{
+        loading: true,
         flaggen : null,
         headers: [
           {
@@ -271,7 +283,41 @@
       onLoadPlayer (item) {
         this.$store.dispatch('selectPerson', item.id)
         this.$router.push('/player/' + item.name + '/' + item.id)
-      },   
+      }, 
+      init () {     
+        const leerzeichen = ' ';
+        let items = []
+        this.person.map((person, i) => {
+          if(person.data.teamID === this.team.id && person.data.role =='player') {
+            items.push({id:person.id, nr:person.data.teamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
+          }
+          else if (person.data.nationalteamID === this.team.id && person.data.role =='player') {
+            items.push({id:person.id, nr:person.data.nationalteamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
+          }
+        })
+        this.items = items
+        let flaggen = []
+        nationsData.map((nation, index) =>{
+            if(nation.flag) {
+              flaggen.push(nation)
+            }
+          })
+        this.flaggen = flaggen
+
+        let itemscoach = []
+        this.person.map((person, i) => {
+          if(person.data.teamID === this.team.id && person.data.role =='Headcoach') {
+            itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
+          }
+          else if(person.data.nationalteamID === this.team.id && person.data.role =='Headcoach') {
+            itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
+          }
+        })
+        this.itemscoach = itemscoach
+        /*const TeamNews = this.allNews.filter(news => news.data.team2 == this.team.data.name)
+        this.TeamNews = TeamNews*/
+        this.loading = false
+      }  
     },
     computed: {
       team () {
@@ -283,41 +329,15 @@
       person () {
         return this.$store.getters.getAllPersons
       },
-    }, 
-    created () {
-      const TeamNews = this.allNews.filter(news => news.data.team2 == this.team.data.name)
-        this.TeamNews = TeamNews
-        
-      const leerzeichen = ' ';
-      let items = []
-      this.person.map((person, i) => {
-        if(person.data.teamID === this.team.id && person.data.role =='player') {
-          items.push({id:person.id, nr:person.data.teamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
+    },
+    watch: {
+        person () {
+            this.init()
         }
-        else if (person.data.nationalteamID === this.team.id && person.data.role =='player') {
-          items.push({id:person.id, nr:person.data.nationalteamnumber, playername:person.data.firstname+leerzeichen+person.data.name, pos1:person.data.position1, birthday:person.data.birth, height:person.data.height, nationality:person.data.nation})
-        }
-      })
-      this.items = items
-      let flaggen = []
-      nationsData.map((nation, index) =>{
-          if(nation.flag) {
-            flaggen.push(nation)
-          }
-        })
-      this.flaggen = flaggen
-
-      let itemscoach = []
-      this.person.map((person, i) => {
-        if(person.data.teamID === this.team.id && person.data.role =='Headcoach') {
-          itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
-        }
-        else if(person.data.nationalteamID === this.team.id && person.data.role =='Headcoach') {
-          itemscoach.push({id:person.id, coachname:person.data.firstname+leerzeichen+person.data.name, posc:person.data.role, birthday:person.data.birth, nationality:person.data.nation})
-        }
-      })
-      this.itemscoach = itemscoach
-    }
+    },
+    mounted () {
+        this.$store.dispatch('loadSelectedPersons', {'key':'teamID', 'value':this.team.id})
+    },
   }
 </script>
 
