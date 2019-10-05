@@ -434,7 +434,7 @@ import nationsData from '../shared/nations.json'
         return this.$store.getters.getAllTeams
       },
       playReports () {
-        return this.$store.getters.getAllPlayReports
+        return this.$store.getters.getUnfinishedPlayReports
       },
       allNews () {
         return this.$store.getters.getAllNews
